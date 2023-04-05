@@ -1,2 +1,2 @@
 # Create an executable
-gcc src/main.c -o main
+gcc src/file.h src/file.c src/main.c
