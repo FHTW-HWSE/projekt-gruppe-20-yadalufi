@@ -1,5 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "file.h"
+#include "structs/student.h"
 
 int main()
 {
@@ -9,6 +11,14 @@ int main()
 
   saveCSV(file->name, file->content);
   readCSV(file->name);
+
+  struct Student *student = malloc(sizeof(struct Student));
+  if (student == NULL){
+      fprintf(stderr, "Out of memory\n");
+      exit(1);
+  }
+
+  free(Student);
 
   return 0;
 }
