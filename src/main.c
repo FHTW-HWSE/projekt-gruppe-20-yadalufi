@@ -4,7 +4,7 @@
 #include "structs/file.h"
 #include "structs/student.h"
 
-int main()
+int main(int argc, char **argv)
 {
   struct File *file = malloc(sizeof(struct File));
   file->name = "test.csv";
@@ -12,6 +12,10 @@ int main()
 
   // saveCSV(file->name, file->content);
   // readCSV(file->name);
+
+  for (int i = 0; i < argc; i++) {
+    // menu (switch case)
+  }
 
   room *Room = create_room();
 
