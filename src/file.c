@@ -171,7 +171,12 @@ while (1) {
     new_room->col = int_input; 
 
 
-    printf("Please enter occupancy rate:\n(1) for 100%\n(2) for 50%\n(3) for 25%\n");   //Auslastung des Raumes
+    printf("Please enter occupancy rate:");   //Auslastung des Raumes
+    printf("\n(1) for 100%%");
+    printf("\n(2) for 50%%");
+    printf("\n(3) for 25%%\n");
+
+
     scanf(" %s", input);                    
 while (1) {
     int_input = strtol(input, &ptr, 10); 
