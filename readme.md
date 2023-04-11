@@ -7,7 +7,6 @@ Participants:
 - Petrovic, Filip (ic22b071)
 
 ## Functional requirements
----
 
 1. The system has to provide a user interface that allows users to enter the number of rows and columns in the lecture hall.
 2. The system has to be able to generate different allocation patterns based on user input.
@@ -19,7 +18,6 @@ Participants:
 
 
 ## Non-Functional requirements
----
 
 1. The system has to be secure to protect the personal information of the students.
 2. The system has to be reliable
@@ -29,7 +27,6 @@ Participants:
 
 
 ## Constraints
----
 
 1. The system has to comply with data privacy regulations and policies.
 2. The system has to be compatible with different desktop-based devices and linux distributions.
@@ -38,7 +35,6 @@ Participants:
 5. The software needs to be developed without incurring any licensing expenses.
 
 ## Items
----
 
 1. [Define Room Size for Accurate Classroom Planning](items/item-1.md)
 2. [Generate Varying Occupancy Patterns for Classroom Capacity Analysis](items/item-2.md)
