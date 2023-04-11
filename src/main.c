@@ -23,6 +23,7 @@ int main()
 
   free(student);
   free_room(Room);
+  free(file);
 
   return 0;
 }
