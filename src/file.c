@@ -23,9 +23,25 @@ typedef struct {
     int occupancy;
 } room;
 
+typedef struct {
+    char *first_name;
+    char *last_name;
+    char *student_id;
+    int col;
+    int row;
+} student;
+
 #define MAX_STRING 250
 #define MIN_YEAR 2023
 #define MAX_YEAR 2100
+
+
+
+room* create_room();
+int free_room(room *new_room);
+student* create_student();
+int free_student(student *new_student);
+
 
                              
 
@@ -230,5 +246,82 @@ int free_room(room *new_room) {                                 //gibt zuerst de
     free(new_room->room_name);
     free(new_room->exam_name);
     free(new_room);
+    return EXIT_SUCCESS;
+}
+
+student* create_student() {
+    student *new_student = malloc(sizeof(student));
+    if (new_student == NULL) {
+        perror("malloc");
+    }
+
+    new_student->first_name = malloc(sizeof(char)*MAX_STRING);
+    if (new_student->first_name == NULL) {
+        perror("malloc");
+    }
+
+    new_student->last_name = malloc(sizeof(char)*MAX_STRING);
+    if (new_student->last_name == NULL) {
+        perror("malloc");
+    }
+
+    new_student->student_id = malloc(sizeof(char)*MAX_STRING);
+    if (new_student->student_id == NULL) {
+        perror("malloc");
+    }
+
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+
+
+do {
+    printf("Please enter student's first name(s)\n");
+    scanf(" %[^\n]", input);
+    if ((strcpy(new_student->first_name, input)) == NULL) {
+        perror("strcpy");
+    }
+
+    printf("Please enter student's last name(s)\n");
+    scanf(" %[^\n]", input);
+    if ((strcpy(new_student->last_name, input)) == NULL) {
+        perror("strcpy");
+    }
+
+    printf("Please enter student's ID number\n");
+    scanf(" %[^\n]", input);
+    if ((strcpy(new_student->student_id, input)) == NULL) {
+        perror("strcpy");
+    }
+
+
+/*Here comes the function that assigns the seat (row/col) to the student*/
+
+    printf("\nThe student's name is: %s %s\n", new_student->first_name, new_student->last_name);
+    printf("Their ID is: %s\n", new_student->student_id);
+
+    printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
+    scanf(" %s", input);
+    while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0) {
+        printf("Input invalid, please enter (y) or (n)\n");
+        scanf(" %s", input);
+    }
+
+
+} while(strcmp(input, "y") != 0);
+
+return new_student;
+ 
+}
+
+
+
+
+int free_student(student *new_student) {
+    free(new_student->first_name);
+    free(new_student->last_name);
+    free(new_student->student_id);
+    free(new_student);
     return EXIT_SUCCESS;
 }
