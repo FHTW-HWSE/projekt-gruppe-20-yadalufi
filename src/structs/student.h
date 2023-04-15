@@ -1,4 +1,4 @@
-struct Student
+struct student
 {
     char *first_name;
     char *last_name;
