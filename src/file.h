@@ -17,8 +17,19 @@ typedef struct {
     int occupancy;
 } room;
 
+typedef struct {
+    char *first_name;
+    char *last_name;
+    char *student_id;
+    int col;
+    int row;
+} student;
+
 room* create_room ();
 int free_room (room *new_room);    
+student* create_student ();
+int free_student (student *new_student);
+
 
 
 #endif /* FILE_H_ */
