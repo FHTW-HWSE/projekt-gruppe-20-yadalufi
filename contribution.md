@@ -15,6 +15,8 @@ git clone git@github.com:FHTW-HWSE/projekt-gruppe-20-yadalufi.git
 
 ## Committing Changes
 
+A commit in Git is a snapshot of changes made to a repository. It is used to save and track the history of modifications made to a project over time.
+
 To commit changes to the project, follow these steps:
 
 1. Make your changes to the code or files in the project
