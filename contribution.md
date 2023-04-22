@@ -4,7 +4,7 @@ Below are some guidelines on how to get started with cloning the project, commit
 
 ## Cloning the Project
 
-To clone this project follow these steps:
+To clone this project, follow these steps:
 
 1. Open the terminal or command prompt
 2. Navigate to the directory where you want to clone the project
