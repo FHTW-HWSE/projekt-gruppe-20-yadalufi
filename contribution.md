@@ -1,6 +1,6 @@
 # Contribution Guide
 
-Below are some guidelines on how to get started with cloning the project, committing changes, and branching.
+Below are some guidelines on how to get started in your terminal with cloning the project, committing changes, and branching.
 
 ## Cloning the Project
 
