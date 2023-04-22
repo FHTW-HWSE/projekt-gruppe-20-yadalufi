@@ -12,3 +12,24 @@ To clone this project, follow these steps:
 ```sh
 git clone git@github.com:FHTW-HWSE/projekt-gruppe-20-yadalufi.git
 ```
+
+## Committing Changes
+
+To commit changes to the project, follow these steps:
+
+1. Make your changes to the code or files in the project
+2. Open a terminal or command prompt
+3. Navigate to the project directory
+4. Run the following command to stage your changes:<br />
+```sh
+git add .
+```
+
+This will stage all changes you made in the project directory.
+
+5. Run the following command to commit your changes locally:
+```sh
+git commit -m "#[item-id] your commit message here"
+```
+
+Replace [item-id] with your item id and write a brief description of the changes you made.
