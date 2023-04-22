@@ -32,4 +32,39 @@ This will stage all changes you made in the project directory.
 git commit -m "#[item-id] your commit message here"
 ```
 
-Replace [item-id] with your item id and write a brief description of the changes you made.
+Replace `[item-id]` with your item id and write a brief description of the changes you made.
+
+## Branching
+
+To branch the project, follow these steps:
+
+1. Open a terminal or command prompt
+2. Navigate to the project directory
+3. Run the following command to create a new branch:
+```sh
+git checkout -b feature/item-[item-id]
+```
+
+Replace `[item-id]` with the number of the item you are working on.
+
+4. Make your changes to the code or files in the project
+5. Run the following command to stage your changes:
+```sh
+git add .
+```
+
+This will stage all changes you made in the project directory.
+
+6. Run the following command to commit your changes:
+```sh
+git commit -m "#[item-id] your commit message here"
+```
+
+Replace `[item-id]` with your item id and write a brief description of the changes you made.
+
+7. Run the following command to push your changes to the new branch:
+```sh
+git push origin feature/item-[item-id]
+```
+
+Replace `[item-id]` with the id of the item you are working on.
