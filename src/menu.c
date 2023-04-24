@@ -4,12 +4,15 @@
 
 void display_menu() {
     printf("=== MENU ===\n");
-    printf("1. Create plan \n");
-    printf("2. Show seats \n");
-    printf("3. Add student \n");
-    printf("4. Edit student \n");
-    printf("5. Remove student \n");
-    printf("6. Quit \n");
+    printf("1. Create plan\n");
+    printf("2. Show room\n");
+    printf("3. Show seats\n");
+    printf("4. Add student\n");
+    printf("5. Edit student\n");
+    printf("6. Remove student\n");
+    printf("7. Load CSV file\n");
+    printf("8. Contact tracing\n");
+    printf("9. Quit\n");
     printf("============\n");
     return;
 }
@@ -39,6 +42,15 @@ int menu_choice(){
 // insert function here
                 break;
             case 6:
+// insert function here
+                break;
+            case 7:
+// insert function here
+                break;
+            case 8:
+// insert function here
+                break;
+            case 9:
                 printf("Goodbye!\n");
                 break;
             default:
