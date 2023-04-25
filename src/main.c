@@ -4,6 +4,7 @@
 #include "structs/file.h"
 #include "structs/student.h"
 #include "menu.h"
+#include "csv_write.h"
 
 int main(int argc, char **argv)
 {
@@ -13,6 +14,10 @@ int main(int argc, char **argv)
 
   // saveCSV(file->name, file->content);
   // readCSV(file->name);
+
+    // Write the students array to a CSV file
+    //write_csv(students, num_students, "students.csv");
+
 
   menu_choice();
 
@@ -39,6 +44,7 @@ int main(int argc, char **argv)
     fprintf(stderr, "free_room failed\n");
   }
   free(file);
+  //free(students);
 
   return 0;
 }

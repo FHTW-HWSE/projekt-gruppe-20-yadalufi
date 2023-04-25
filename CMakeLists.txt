@@ -4,4 +4,4 @@ project(yadalufi C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(yadalufi
-        src/file.c src/menu.c src/main.c)
+        src/file.c src/menu.c src/main.c src/csv_write.h src/csv_write.c)
