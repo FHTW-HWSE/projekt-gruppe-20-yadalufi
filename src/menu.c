@@ -2,6 +2,17 @@
 #include "menu.h"
 #include "file.h"
 
+enum menu_elements {
+    create_plan = 1,
+    show_room,
+    show_seats,
+    add_student,
+    edit_student,
+    remove_student,
+    load_csv_file,
+    contact_tracing,
+    quit} choice;
+
 void display_menu() {
     printf("=== MENU ===\n");
     printf("1. Create plan\n");
@@ -20,37 +31,37 @@ void display_menu() {
 int menu_choice(){
     int choice = 0;
 
-    while (choice != 6) {
+    while (choice != quit) {
         display_menu();
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
         switch (choice) {
-            case 1:
+            case create_plan:
 // insert function here
                 break;
-            case 2:
+            case show_room:
 // insert function here
                 break;
-            case 3:
+            case show_seats:
 // insert function here
                 break;
-            case 4:
+            case add_student:
 // insert function here
                 break;
-            case 5:
+            case edit_student:
 // insert function here
                 break;
-            case 6:
+            case remove_student:
 // insert function here
                 break;
-            case 7:
+            case load_csv_file:
 // insert function here
                 break;
-            case 8:
+            case contact_tracing:
 // insert function here
                 break;
-            case 9:
+            case quit:
                 printf("Goodbye!\n");
                 break;
             default:
