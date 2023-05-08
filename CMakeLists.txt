@@ -1,7 +1,20 @@
-cmake_minimum_required(VERSION 3.18)
-project(yadalufi C)
+cmake_minimum_required(VERSION 3.10.0)
 
-set(CMAKE_C_STANDARD 11)
+# Name of the project and used language
+project(yadalufi LANGUAGES CXX)
 
 add_executable(yadalufi
-        src/file.c src/menu.c src/main.c)
+        src/main.cpp
+)
+# add_executable(yadalufi src/file.c src/menu.c src/main.c tests/test.cpp)
+
+find_package(Catch2 REQUIRED)
+
+include(CTest)
+include(Catch)
+
+add_executable(yadalufi_tests
+        tests/test_example.cpp
+)
+
+# add_executable(yadalufi src/main.cpp)
