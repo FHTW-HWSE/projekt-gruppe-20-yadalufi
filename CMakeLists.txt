@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.10.0)
 
 # Name of the project and used language
-project(yadalufi LANGUAGES CXX)
+project(yadalufi)
 
 add_executable(yadalufi
+        src/menu.cpp
+        src/file.cpp
         src/main.cpp
 )
 # add_executable(yadalufi src/file.c src/menu.c src/main.c tests/test.cpp)

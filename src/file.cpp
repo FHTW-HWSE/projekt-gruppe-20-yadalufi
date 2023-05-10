@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "structs/student.h"
 
 typedef struct
 {
@@ -46,19 +45,19 @@ int free_student(student *new_student);
 
 room *create_room()
 {
-    room *new_room = malloc(sizeof(room)); // Vor Beginn der Eingabe: allozieren des Speichers für
+    room *new_room = (room *)malloc(sizeof(room)); // Vor Beginn der Eingabe: allozieren des Speichers für
     if (new_room == NULL)
     { // das Struct und die 2 Strings
         perror("malloc");
     }
 
-    new_room->room_name = malloc(sizeof(char) * MAX_STRING);
+    new_room->room_name = (char *)malloc(sizeof(char) * MAX_STRING);
     if (new_room->room_name == NULL)
     {
         perror("malloc");
     }
 
-    new_room->exam_name = malloc(sizeof(char) * MAX_STRING);
+    new_room->exam_name = (char *)malloc(sizeof(char) * MAX_STRING);
     if (new_room->exam_name == NULL)
     {
         perror("malloc");
@@ -294,25 +293,25 @@ student *create_student()
     do
     { // Schleife zum Erstellen der students für die Liste
 
-        new_student = malloc(sizeof(student));
+        new_student = (student *)malloc(sizeof(student));
         if (new_student == NULL)
         {
             perror("malloc");
         }
 
-        new_student->first_name = malloc(sizeof(char) * MAX_STRING);
+        new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
         if (new_student->first_name == NULL)
         {
             perror("malloc");
         }
 
-        new_student->last_name = malloc(sizeof(char) * MAX_STRING);
+        new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
         if (new_student->last_name == NULL)
         {
             perror("malloc");
         }
 
-        new_student->student_id = malloc(sizeof(char) * MAX_STRING);
+        new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
         if (new_student->student_id == NULL)
         {
             perror("malloc");
