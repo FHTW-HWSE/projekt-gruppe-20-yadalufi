@@ -3,7 +3,6 @@
 #include <string.h>
 #include "file.h"
 #include "structs/file.h"
-#include "structs/student.h"
 #include "menu.h"
 
 int main(int argc, char **argv)
@@ -18,7 +17,7 @@ int main(int argc, char **argv)
   }
   else
   {
-    file_name = malloc(sizeof(argv[1]) * sizeof(char));
+    file_name = (char *)malloc(sizeof(argv[1]) * sizeof(char));
     strcpy(file_name, argv[1]);
   }
 
