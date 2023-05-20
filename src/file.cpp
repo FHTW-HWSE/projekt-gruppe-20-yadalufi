@@ -68,6 +68,8 @@ room *new_room()
     {
         perror("malloc");
     }
+
+    return new_room;
 }
 
 void set_room_name(room *p_room, char *name)
