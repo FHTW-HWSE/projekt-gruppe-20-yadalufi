@@ -40,6 +40,7 @@ typedef struct student
 
 room *new_room();
 void set_room_name(room *p_room, char *name);
+void set_exam_name(room *p_room, char *name);
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
@@ -74,6 +75,14 @@ void set_room_name(room *p_room, char *name)
     }
 }
 
+void set_exam_name(room *p_room, char *name)
+{
+    if ((strcpy(p_room->exam_name, name)) == NULL)
+    {
+        perror("strcpy");
+    }
+}
+
 room *create_room()
 {
     room *p_room = new_room();
@@ -91,11 +100,7 @@ room *create_room()
 
         printf("Please enter exam name\n");
         scanf(" %[^\n]", input);
-
-        if ((strcpy(p_room->exam_name, input)) == NULL)
-        {
-            perror("strcpy");
-        }
+        set_exam_name(p_room, input);
 
         printf("Exam date: please enter year 'yyyy'\n"); // für alle Integers: scan als String, parsen und Überprüfung, ob Zahl
         scanf(" %s", input);
