@@ -42,7 +42,7 @@ room *new_room();
 void set_room_name(room *p_room, char *name);
 void set_exam_name(room *p_room, char *name);
 int prompt_exam_date_year();
-int enter_exam_date_month();
+int prompt_exam_date_month();
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
@@ -117,7 +117,7 @@ int prompt_exam_date_year()
     return int_input;
 }
 
-int enter_exam_date_month()
+int prompt_exam_date_month()
 {
     char input[MAX_STRING];
     int int_input;
@@ -172,7 +172,7 @@ room *create_room()
         p_room->exam_date.year = prompt_exam_date_year(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
 
         printf("Exam date: please enter month 'mm'\n");
-        p_room->exam_date.month = enter_exam_date_month();
+        p_room->exam_date.month = prompt_exam_date_month();
 
         printf("Exam date: please enter day 'dd'\n"); // ev. zu tun: mögliche Tagesanzahl des Monats überprüfen
         scanf(" %s", input);
