@@ -39,6 +39,7 @@ typedef struct student
 #define MAX_YEAR 2100
 
 room *new_room();
+void set_room_name(room *p_room, char *name);
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
@@ -65,6 +66,14 @@ room *new_room()
     }
 }
 
+void set_room_name(room *p_room, char *name)
+{
+    if ((strcpy(p_room->room_name, name)) == NULL)
+    {
+        perror("strcpy");
+    }
+}
+
 room *create_room()
 {
     room *p_room = new_room();
@@ -78,10 +87,7 @@ room *create_room()
         printf("Please enter room name\n"); // Nacheinander werden die Room-Infos abgefragt und befüllt
 
         scanf(" %[^\n]", input);
-        if ((strcpy(p_room->room_name, input)) == NULL)
-        {
-            perror("strcpy");
-        }
+        set_room_name(p_room, input);
 
         printf("Please enter exam name\n");
         scanf(" %[^\n]", input);
