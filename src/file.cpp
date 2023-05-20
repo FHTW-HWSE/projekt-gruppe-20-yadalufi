@@ -149,6 +149,38 @@ int prompt_exam_date_month()
     return int_input;
 }
 
+int prompt_exam_date_day()
+{
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+    scanf(" %s", input);
+    while (1)
+    {
+        int_input = strtol(input, &ptr, 10);
+
+        if (int_input == 0)
+        {
+            printf("Please enter valid number\n");
+            scanf(" %s", input);
+            continue;
+        }
+        if (int_input < 1 || int_input > 31)
+        {
+            printf("Please enter valid number\n");
+            scanf(" %s", input);
+            continue;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return int_input;
+}
+
 room *create_room()
 {
     room *p_room = new_room();
@@ -175,29 +207,7 @@ room *create_room()
         p_room->exam_date.month = prompt_exam_date_month();
 
         printf("Exam date: please enter day 'dd'\n"); // ev. zu tun: mögliche Tagesanzahl des Monats überprüfen
-        scanf(" %s", input);
-        while (1)
-        {
-            int_input = strtol(input, &ptr, 10);
-
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            if (int_input < 1 || int_input > 31)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        }
-        p_room->exam_date.day = int_input;
+        p_room->exam_date.day = prompt_exam_date_day();
 
         printf("Please enter number of rows in the classroom\n");
         scanf(" %s", input);
