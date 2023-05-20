@@ -41,6 +41,7 @@ typedef struct student
 room *new_room();
 void set_room_name(room *p_room, char *name);
 void set_exam_name(room *p_room, char *name);
+int enter_exam_date();
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
@@ -83,6 +84,38 @@ void set_exam_name(room *p_room, char *name)
     }
 }
 
+int enter_exam_date()
+{
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+    scanf(" %s", input);
+    while (1)
+    {
+        int_input = strtol(input, &ptr, 10);
+
+        if (int_input == 0)
+        {
+            printf("Please enter valid number\n");
+            scanf(" %s", input);
+            continue;
+        }
+        if (int_input < MIN_YEAR || int_input > MAX_YEAR)
+        {
+            printf("Please enter valid number\n");
+            scanf(" %s", input);
+            continue;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return int_input;
+}
+
 room *create_room()
 {
     room *p_room = new_room();
@@ -103,29 +136,7 @@ room *create_room()
         set_exam_name(p_room, input);
 
         printf("Exam date: please enter year 'yyyy'\n"); // für alle Integers: scan als String, parsen und Überprüfung, ob Zahl
-        scanf(" %s", input);
-        while (1)
-        {
-            int_input = strtol(input, &ptr, 10);
-
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            if (int_input < MIN_YEAR || int_input > MAX_YEAR)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        }
-        p_room->exam_date.year = int_input; // ins Struct kopieren, die anderen Integers folgen demselben Schema
+        p_room->exam_date.year = enter_exam_date(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
 
         printf("Exam date: please enter month 'mm'\n");
         scanf(" %s", input);
