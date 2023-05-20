@@ -41,7 +41,7 @@ typedef struct student
 room *new_room();
 void set_room_name(room *p_room, char *name);
 void set_exam_name(room *p_room, char *name);
-int enter_exam_date();
+int enter_exam_date_year();
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
@@ -84,7 +84,7 @@ void set_exam_name(room *p_room, char *name)
     }
 }
 
-int enter_exam_date()
+int enter_exam_date_year()
 {
     char input[MAX_STRING];
     int int_input;
@@ -136,7 +136,7 @@ room *create_room()
         set_exam_name(p_room, input);
 
         printf("Exam date: please enter year 'yyyy'\n"); // für alle Integers: scan als String, parsen und Überprüfung, ob Zahl
-        p_room->exam_date.year = enter_exam_date(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
+        p_room->exam_date.year = enter_exam_date_year(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
 
         printf("Exam date: please enter month 'mm'\n");
         scanf(" %s", input);
