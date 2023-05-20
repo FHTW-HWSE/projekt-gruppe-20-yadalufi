@@ -38,12 +38,13 @@ typedef struct student
 #define MIN_YEAR 2023
 #define MAX_YEAR 2100
 
+room *new_room();
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
 int free_student(student *new_student);
 
-room *create_room()
+room *new_room()
 {
     room *new_room = (room *)malloc(sizeof(room)); // Vor Beginn der Eingabe: allozieren des Speichers für
     if (new_room == NULL)
@@ -62,6 +63,11 @@ room *create_room()
     {
         perror("malloc");
     }
+}
+
+room *create_room()
+{
+    room *p_room = new_room();
 
     char input[MAX_STRING];
     int int_input; // Input-Variable für die Eingabeüberprüfung bei Zahlen
@@ -72,7 +78,7 @@ room *create_room()
         printf("Please enter room name\n"); // Nacheinander werden die Room-Infos abgefragt und befüllt
 
         scanf(" %[^\n]", input);
-        if ((strcpy(new_room->room_name, input)) == NULL)
+        if ((strcpy(p_room->room_name, input)) == NULL)
         {
             perror("strcpy");
         }
@@ -80,7 +86,7 @@ room *create_room()
         printf("Please enter exam name\n");
         scanf(" %[^\n]", input);
 
-        if ((strcpy(new_room->exam_name, input)) == NULL)
+        if ((strcpy(p_room->exam_name, input)) == NULL)
         {
             perror("strcpy");
         }
@@ -108,7 +114,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->exam_date.year = int_input; // ins Struct kopieren, die anderen Integers folgen demselben Schema
+        p_room->exam_date.year = int_input; // ins Struct kopieren, die anderen Integers folgen demselben Schema
 
         printf("Exam date: please enter month 'mm'\n");
         scanf(" %s", input);
@@ -133,7 +139,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->exam_date.month = int_input;
+        p_room->exam_date.month = int_input;
 
         printf("Exam date: please enter day 'dd'\n"); // ev. zu tun: mögliche Tagesanzahl des Monats überprüfen
         scanf(" %s", input);
@@ -158,7 +164,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->exam_date.day = int_input;
+        p_room->exam_date.day = int_input;
 
         printf("Please enter number of rows in the classroom\n");
         scanf(" %s", input);
@@ -183,7 +189,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->row = int_input;
+        p_room->row = int_input;
 
         printf("Please enter number of seats per row\n");
         scanf(" %s", input);
@@ -208,7 +214,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->col = int_input;
+        p_room->col = int_input;
 
         printf("Please enter occupancy rate:"); // Auslastung des Raumes
         printf("\n(1) for 100%%");
@@ -240,22 +246,22 @@ room *create_room()
         switch (int_input)
         {
         case 1:
-            new_room->occupancy = 100;
+            p_room->occupancy = 100;
             break;
         case 2:
-            new_room->occupancy = 50;
+            p_room->occupancy = 50;
             break;
         case 3:
-            new_room->occupancy = 25;
+            p_room->occupancy = 25;
             break;
         }
 
-        printf("\nRoom name is: %s\n", new_room->room_name);
-        printf("Exam: %s\n", new_room->exam_name);
-        printf("Date of the exam: %d/%d/%d\n", new_room->exam_date.day, new_room->exam_date.month, new_room->exam_date.year);
-        printf("Classroom size: %d x %d\n", new_room->row, new_room->col);
-        printf("You want an occupancy rate of %d%%\n", new_room->occupancy);
-        int num_seats = (new_room->row * new_room->col) * (new_room->occupancy * 0.01);
+        printf("\nRoom name is: %s\n", p_room->room_name);
+        printf("Exam: %s\n", p_room->exam_name);
+        printf("Date of the exam: %d/%d/%d\n", p_room->exam_date.day, p_room->exam_date.month, p_room->exam_date.year);
+        printf("Classroom size: %d x %d\n", p_room->row, p_room->col);
+        printf("You want an occupancy rate of %d%%\n", p_room->occupancy);
+        int num_seats = (p_room->row * p_room->col) * (p_room->occupancy * 0.01);
         printf("You can fit %d students in the classroom\n", num_seats);
 
         // Hier die Möglichkeit, von Neuem zu beginnen
@@ -269,7 +275,7 @@ room *create_room()
 
     } while (strcmp(input, "y") != 0);
 
-    return new_room;
+    return p_room;
 }
 
 int free_room(room *new_room)
