@@ -42,6 +42,7 @@ room *new_room();
 void set_room_name(room *p_room, char *name);
 void set_exam_name(room *p_room, char *name);
 int enter_exam_date_year();
+int enter_exam_date_month();
 room *create_room();
 int free_room(room *new_room);
 student *create_student();
@@ -116,6 +117,38 @@ int enter_exam_date_year()
     return int_input;
 }
 
+int enter_exam_date_month()
+{
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+    scanf(" %s", input);
+    while (1)
+    {
+        int_input = strtol(input, &ptr, 10);
+
+        if (int_input == 0)
+        {
+            printf("Please enter valid number\n");
+            scanf(" %s", input);
+            continue;
+        }
+        if (int_input < 1 || int_input > 12)
+        {
+            printf("Please enter valid number\n");
+            scanf(" %s", input);
+            continue;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return int_input;
+}
+
 room *create_room()
 {
     room *p_room = new_room();
@@ -139,29 +172,7 @@ room *create_room()
         p_room->exam_date.year = enter_exam_date_year(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
 
         printf("Exam date: please enter month 'mm'\n");
-        scanf(" %s", input);
-        while (1)
-        {
-            int_input = strtol(input, &ptr, 10);
-
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            if (int_input < 1 || int_input > 12)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        }
-        p_room->exam_date.month = int_input;
+        p_room->exam_date.month = enter_exam_date_month();
 
         printf("Exam date: please enter day 'dd'\n"); // ev. zu tun: mögliche Tagesanzahl des Monats überprüfen
         scanf(" %s", input);
