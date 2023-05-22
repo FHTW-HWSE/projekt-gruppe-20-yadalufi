@@ -41,8 +41,6 @@ int main(int argc, char **argv)
 
   menu_choice();
 
-  room *Room = create_room();
-  student *Student = create_student();
 
   /*
     struct student *student = malloc(sizeof(struct student));
@@ -52,17 +50,6 @@ int main(int argc, char **argv)
     }
   */
 
-  int error = free_student(Student);
-  if (error != 0)
-  {
-    fprintf(stderr, "free_student failed");
-  }
-
-  error = free_room(Room);
-  if (error != 0)
-  {
-    fprintf(stderr, "free_room failed\n");
-  }
 
   return 0;
 }

@@ -35,7 +35,7 @@ int prompt_exam_date_month();
 int free_room(room *new_room);
 student* create_student();
 int free_student(student *new_student);
-
+int show_room(room *rm, student *head);
 
 
 #endif /* FILE_H_ */
