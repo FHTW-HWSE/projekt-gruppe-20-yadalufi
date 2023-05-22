@@ -48,6 +48,7 @@
 //int free_room(room *new_room);
 //student *create_student();
 //int free_student(student *new_student);
+//int show_room(room *rm, student *head);
 
 room *new_room()
 {
@@ -446,5 +447,59 @@ int free_student(student *new_student)
         new_student = new_student->next;
         free(temp);
     }
+    return EXIT_SUCCESS;
+}
+
+int show_room(room *rm, student *head)
+{
+    student *temp = head;
+    int printed = 0;                                        // boolean for printing of "<empty>"
+    printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
+
+    for (int i = rm->row - 1; i >= 0; i--)                  // prints the rows from back to front
+    {
+        printf("%-10d", i + 1);
+        for (int j = 0; j < rm->col; j++)                   // prints the name from left to right
+        {
+            for (temp = head; temp != NULL; temp = temp->next)
+            {
+                if (temp != NULL && temp->row == i && temp->col == j)
+                {
+                    char initial[3];
+                    initial[0] = temp->first_name[0];
+                    initial[1] = '.';
+                    initial[2] = '\0';
+                    printf("%2s %-30s", initial, temp->last_name);
+                    printed = 1;
+                }
+            }
+            if (printed == 0)
+            {
+                printf("%-32s", "<empty>");
+            }
+            printed = 0;
+        }
+        printf("\n%-10c", ' ');
+
+        for (int j = 0; j < rm->col; j++)                   // prints the student id number from left to right
+        {
+            for (temp = head; temp != NULL; temp = temp->next)
+            {
+                if (temp != NULL && temp->row == i && temp->col == j)
+                {
+                    printf("%-30s %2c", temp->student_id, ' ');
+                    printed = 1;
+                }
+            }
+            if (printed == 0)
+            {
+                printf("%-32s", "       ");
+            }
+            printed = 0;
+        }
+        printf("\n\n");
+    }
+    printf("\n");
+
     return EXIT_SUCCESS;
 }
