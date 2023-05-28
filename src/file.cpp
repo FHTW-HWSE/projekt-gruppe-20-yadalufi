@@ -250,6 +250,9 @@ room *create_room()
             break;
         }
 
+        // Create matrix (assign a seat to a student based on the classroom occupancy)
+        // new_room = create_matrix(new_room);
+
         printf("\nRoom name is: %s\n", new_room->room_name);
         printf("Exam: %s\n", new_room->exam_name);
         printf("Date of the exam: %d/%d/%d\n", new_room->exam_date.day, new_room->exam_date.month, new_room->exam_date.year);

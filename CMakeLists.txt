@@ -6,6 +6,7 @@ project(yadalufi)
 add_executable(yadalufi
         src/menu.cpp
         src/file.cpp
+        src/matrix.cpp
         src/main.cpp
 )
 # add_executable(yadalufi src/file.c src/menu.c src/main.c tests/test.cpp)

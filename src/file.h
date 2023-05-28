@@ -24,6 +24,7 @@ typedef struct student {
     int col;
     int row;
     struct student *next;
+    struct student **students; // struct student *students[]
 } student;
 
 room* create_room ();
