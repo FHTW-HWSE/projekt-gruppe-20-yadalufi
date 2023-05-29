@@ -182,6 +182,27 @@ int prompt_exam_date_month()
     return int_input;
 }
 
+// checks if day is valid
+// returns 1 if day is valid
+// returns 0 if day is invalid
+int valid_input_day(int input){
+    if (input == 0)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    if (input < 1 || input > 31)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// reads input for day and checks if input is valid
 int prompt_exam_date_day()
 {
     char input[MAX_STRING];
@@ -192,23 +213,7 @@ int prompt_exam_date_day()
     while (1)
     {
         int_input = strtol(input, &ptr, 10);
-
-        if (int_input == 0)
-        {
-            printf("Please enter valid number\n");
-            scanf(" %s", input);
-            continue;
-        }
-        if (int_input < 1 || int_input > 31)
-        {
-            printf("Please enter valid number\n");
-            scanf(" %s", input);
-            continue;
-        }
-        else
-        {
-            break;
-        }
+        valid_input_day(int_input);
     }
 
     return int_input;
@@ -364,7 +369,6 @@ int free_room(room *new_room)
 
 student *create_student()
 {
-
     student *new_student;
     char input[MAX_STRING];
     int int_input;
