@@ -50,25 +50,43 @@
 //int free_student(student *new_student);
 //int show_room(room *rm, student *head);
 
-room *new_room()
-{
-    room *new_room = (room *)malloc(sizeof(room)); // Vor Beginn der Eingabe: allozieren des Speichers für
-    if (new_room == NULL)
-    { // das Struct und die 2 Strings
+// allocates memory for exam_name
+char * allocate_exam_name(room * new_room){
+    new_room->exam_name = (char*)malloc(sizeof(char) * MAX_STRING);
+    if (new_room->exam_name == NULL) {
         perror("malloc");
     }
+}
 
+// allocates memory for room_name
+char * allocate_room_name(room * new_room){
     new_room->room_name = (char *)malloc(sizeof(char) * MAX_STRING);
     if (new_room->room_name == NULL)
     {
         perror("malloc");
     }
+}
 
-    new_room->exam_name = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_room->exam_name == NULL)
+// allocates memory for new_room (struct room)
+char * allocate_new_room(room * new_room){
+    room *new_room = (room *)malloc(sizeof(room));
+    if (new_room == NULL)
     {
         perror("malloc");
     }
+}
+
+/* allocates memory for new_room (Struct room)
+*  allocates memory for room_name and exam_name
+*  returns new_room
+*/
+room *new_room()
+{
+    room * new_room = allocate_new_room(new_room);
+
+    new_room->room_name = allocate_room_name(new_room);
+
+    new_room->exam_name = allocate_exam_name(new_room);
 
     return new_room;
 }
