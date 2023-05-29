@@ -378,24 +378,25 @@ char * allocate_new_student_first_name(student * new_student)
 
     return new_student->first_name;
 }
+
+//allocates memory for a new student_last_name
+char * allocate_new_student_last_name(student * new_student)
+{
+    new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->last_name == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student->last_name;
+}
+
 //allocates memory for a new student
 student * allocate_new_student()
 {
     student *new_student;
     new_student = (student *)malloc(sizeof(student));
     if (new_student == NULL)
-    {
-        perror("malloc");
-    }
-
-    new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_student->first_name == NULL)
-    {
-        perror("malloc");
-    }
-
-    new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_student->last_name == NULL)
     {
         perror("malloc");
     }
@@ -424,6 +425,7 @@ student *create_student()
 
         new_student = allocate_new_student();
         new_student->first_name = allocate_new_student_first_name(new_student);
+        new_student->last_name = allocate_new_student_last_name(new_student);
 
         new_student->next = NULL;
 
