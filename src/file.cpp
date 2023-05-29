@@ -145,6 +145,27 @@ int prompt_exam_date_year()
     return int_input;
 }
 
+// checks if month is valid
+// returns 1 if month is valid
+// returns 0 if month is invalid
+int valid_input_month(int input){
+    if (input == 0)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    if (input < 1 || input > 12)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// reads input for month and checks if input is valid
 int prompt_exam_date_month()
 {
     char input[MAX_STRING];
@@ -155,23 +176,7 @@ int prompt_exam_date_month()
     while (1)
     {
         int_input = strtol(input, &ptr, 10);
-
-        if (int_input == 0)
-        {
-            printf("Please enter valid number\n");
-            scanf(" %s", input);
-            continue;
-        }
-        if (int_input < 1 || int_input > 12)
-        {
-            printf("Please enter valid number\n");
-            scanf(" %s", input);
-            continue;
-        }
-        else
-        {
-            break;
-        }
+        valid_input_month(int_input);
     }
 
     return int_input;
