@@ -367,6 +367,17 @@ int free_room(room *new_room)
     return EXIT_SUCCESS;
 }
 
+//allocates memory for a new student_first_name
+char * allocate_new_student_first_name(student * new_student)
+{
+    new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->first_name == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student->first_name;
+}
 //allocates memory for a new student
 student * allocate_new_student()
 {
@@ -412,6 +423,7 @@ student *create_student()
     { // Schleife zum Erstellen der students für die Liste
 
         new_student = allocate_new_student();
+        new_student->first_name = allocate_new_student_first_name(new_student);
 
         new_student->next = NULL;
 
