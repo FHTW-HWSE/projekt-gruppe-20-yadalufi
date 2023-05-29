@@ -367,6 +367,38 @@ int free_room(room *new_room)
     return EXIT_SUCCESS;
 }
 
+//allocates memory for a new student
+student * allocate_new_student()
+{
+    student *new_student;
+    new_student = (student *)malloc(sizeof(student));
+    if (new_student == NULL)
+    {
+        perror("malloc");
+    }
+
+    new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->first_name == NULL)
+    {
+        perror("malloc");
+    }
+
+    new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->last_name == NULL)
+    {
+        perror("malloc");
+    }
+
+    new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->student_id == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student;
+}
+
+//creates a new student and returns a pointer to it
 student *create_student()
 {
     student *new_student;
@@ -379,29 +411,7 @@ student *create_student()
     do
     { // Schleife zum Erstellen der students für die Liste
 
-        new_student = (student *)malloc(sizeof(student));
-        if (new_student == NULL)
-        {
-            perror("malloc");
-        }
-
-        new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
-        if (new_student->first_name == NULL)
-        {
-            perror("malloc");
-        }
-
-        new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
-        if (new_student->last_name == NULL)
-        {
-            perror("malloc");
-        }
-
-        new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
-        if (new_student->student_id == NULL)
-        {
-            perror("malloc");
-        }
+        new_student = allocate_new_student();
 
         new_student->next = NULL;
 
