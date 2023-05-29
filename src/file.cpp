@@ -107,6 +107,27 @@ void set_exam_name(room *p_room, char *name)
     }
 }
 
+// checks if year is valid
+// returns 1 if year is valid
+// returns 0 if year is invalid
+int valid_input_year(int input){
+    if (input == 0)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    if (input < MIN_YEAR || input > MAX_YEAR)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// reads input for year and checks if input is valid
 int prompt_exam_date_year()
 {
     char input[MAX_STRING];
@@ -117,23 +138,8 @@ int prompt_exam_date_year()
     while (1)
     {
         int_input = strtol(input, &ptr, 10);
+        valid_input_year(int_input);
 
-        if (int_input == 0)
-        {
-            printf("Please enter valid number\n");
-            scanf(" %s", input);
-            continue;
-        }
-        if (int_input < MIN_YEAR || int_input > MAX_YEAR)
-        {
-            printf("Please enter valid number\n");
-            scanf(" %s", input);
-            continue;
-        }
-        else
-        {
-            break;
-        }
     }
 
     return int_input;
