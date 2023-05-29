@@ -56,6 +56,7 @@ char * allocate_exam_name(room * new_room){
     if (new_room->exam_name == NULL) {
         perror("malloc");
     }
+    return new_room->exam_name;
 }
 
 // allocates memory for room_name
@@ -65,15 +66,17 @@ char * allocate_room_name(room * new_room){
     {
         perror("malloc");
     }
+    return new_room->room_name;
 }
 
 // allocates memory for new_room (struct room)
-char * allocate_new_room(room * new_room){
-    room *new_room = (room *)malloc(sizeof(room));
+room * allocate_new_room(room){
+    room * new_room = (room *)malloc(sizeof(room));
     if (new_room == NULL)
     {
         perror("malloc");
     }
+    return new_room;
 }
 
 /* allocates memory for new_room (Struct room)
@@ -82,7 +85,7 @@ char * allocate_new_room(room * new_room){
 */
 room *new_room()
 {
-    room * new_room = allocate_new_room(new_room);
+    room * new_room = allocate_new_room(* new_room);
 
     new_room->room_name = allocate_room_name(new_room);
 
