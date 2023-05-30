@@ -340,12 +340,17 @@ room *create_room()
             break;
         }
 
+
         printf("\nRoom name is: %s\n", p_room->room_name);
         printf("Exam: %s\n", p_room->exam_name);
         printf("Date of the exam: %d/%d/%d\n", p_room->exam_date.day, p_room->exam_date.month, p_room->exam_date.year);
         printf("Classroom size: %d x %d\n", p_room->row, p_room->col);
         printf("You want an occupancy rate of %d%%\n", p_room->occupancy);
         int num_seats = (p_room->row * p_room->col) * (p_room->occupancy * 0.01);
+
+        // Create matrix (assign a seat to a student based on the classroom occupancy)
+        // new_room = create_matrix(new_room);
+
         printf("You can fit %d students in the classroom\n", num_seats);
 
         // Hier die Möglichkeit, von Neuem zu beginnen
