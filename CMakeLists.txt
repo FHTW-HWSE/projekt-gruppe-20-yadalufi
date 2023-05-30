@@ -18,7 +18,11 @@ include(Catch)
 
 add_executable(yadalufi_tests
         tests/test_example.cpp
+        src/menu.cpp
+        src/file.cpp
+        src/matrix.cpp
 )
 
+catch_discover_tests(yadalufi_tests)
 # add_executable(yadalufi src/main.cpp)
 

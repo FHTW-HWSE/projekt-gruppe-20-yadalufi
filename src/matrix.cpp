@@ -2,23 +2,20 @@
 #include <stdlib.h>
 #include "file.h"
 
-int *create_array_classroom ();
+int number_seats (int row, int col);
 
-int *create_array_classroom(int rows, int cols) {
+    int number_seats(int row, int col) {
+    int seats = 0;
 
-    room *classroom = (room *)malloc(sizeof(room));
-    if(room == NULL){
-        perror("Error allocating memory for array_classroom");
-    }
-
-    classroom->col = cols;
-    classroom->row = rows;
-    int used_seats = 0;
-
-    for (int i = 0; i < cols; i++) {
-        for (int j = 0; j < rows; j++) {
-            used_seats++;
+    for (int i = 0; i < col; i++) {
+        for (int j = 0; j < row; j++) {
+            seats++;
         }
     }
-    return classroom;
+
+    if (row < 1 || col < 1) {
+        seats = -1;
+    }
+    return seats;
 }
+

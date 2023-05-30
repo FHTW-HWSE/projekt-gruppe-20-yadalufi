@@ -1,6 +1,6 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-int *create_array_classroom ();
+int number_seats(int row, int col);
 
 #endif //MATRIX_H

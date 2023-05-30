@@ -34,9 +34,11 @@ void set_exam_name(room *p_room, char *name);
 int prompt_exam_date_year();
 int prompt_exam_date_month();
 int free_room(room *new_room);
-student* create_student();
+student* create_student(student *st_head);
 int free_student(student *new_student);
 int show_room(room *rm, student *head);
+int available_seats(int num_seats, int occupancy);
+int valid_input_year(int input);
 
 
 #endif /* FILE_H_ */

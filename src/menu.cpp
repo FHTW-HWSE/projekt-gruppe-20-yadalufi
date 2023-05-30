@@ -30,8 +30,9 @@ void display_menu() {
 
 int menu_choice(){
     int choice = 0;
-    room *Room;
-    student *Student;
+    room *Room = NULL;                      // hier mit fp: wenn kein File da, dann room/student neu, sonst aus File laden
+    student *Student = NULL;
+
 
     while (choice != quit) {
         display_menu();
@@ -43,13 +44,17 @@ int menu_choice(){
                 Room = create_room();
                 break;
             case show_rm:
+                if (Room == NULL) {
+                    printf("No room to show\n");
+                } else {
                 show_room(Room, Student);
+                }
                 break;
             case show_seats:
 // insert function here
                 break;
             case add_student:
-                Student = create_student();
+                Student = create_student(Student);
                 break;
             case edit_student:
 // insert function here

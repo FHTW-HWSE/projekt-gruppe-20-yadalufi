@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "file.h"
+#include "matrix.h"
 
 //typedef struct
 //{
@@ -136,14 +137,14 @@ int prompt_exam_date_year()
     char input[MAX_STRING];
     int int_input;
     char *ptr;
+    int valid; 
 
-    scanf(" %s", input);
-    while (1)
-    {
+    do {
+        scanf(" %s", input);
         int_input = strtol(input, &ptr, 10);
-        valid_input_year(int_input);
+        valid = valid_input_year(int_input);
 
-    }
+    } while (valid == 0);
 
     return int_input;
 }
@@ -175,12 +176,14 @@ int prompt_exam_date_month()
     int int_input;
     char *ptr;
 
-    scanf(" %s", input);
-    while (1)
-    {
+    int valid; 
+
+    do {
+        scanf(" %s", input);
         int_input = strtol(input, &ptr, 10);
-        valid_input_month(int_input);
-    }
+        valid = valid_input_month(int_input);
+
+    } while (valid == 0);
 
     return int_input;
 }
@@ -212,12 +215,14 @@ int prompt_exam_date_day()
     int int_input;
     char *ptr;
 
-    scanf(" %s", input);
-    while (1)
-    {
+    int valid; 
+
+    do {
+        scanf(" %s", input);
         int_input = strtol(input, &ptr, 10);
-        valid_input_day(int_input);
-    }
+        valid = valid_input_day(int_input);
+
+    } while (valid == 0);
 
     return int_input;
 }
@@ -346,12 +351,9 @@ room *create_room()
         printf("Date of the exam: %d/%d/%d\n", p_room->exam_date.day, p_room->exam_date.month, p_room->exam_date.year);
         printf("Classroom size: %d x %d\n", p_room->row, p_room->col);
         printf("You want an occupancy rate of %d%%\n", p_room->occupancy);
-        int num_seats = (p_room->row * p_room->col) * (p_room->occupancy * 0.01);
-
-        // Create matrix (assign a seat to a student based on the classroom occupancy)
-        // new_room = create_matrix(new_room);
-
-        printf("You can fit %d students in the classroom\n", num_seats);
+        int num_seats = number_seats(p_room->row, p_room->col);
+        int av_seats = available_seats(num_seats, p_room->occupancy);
+        printf("You can fit %d students in the classroom\n", av_seats);
 
         // Hier die Möglichkeit, von Neuem zu beginnen
         printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
@@ -424,15 +426,33 @@ student * allocate_new_student()
     return new_student;
 }
 
+int available_seats(int num_seats, int occupancy) {
+    int av_seats = num_seats * (occupancy * 0.01);
+    if (num_seats < 1 || occupancy < 1) {
+        av_seats = -1;
+    }
+    if (num_seats < 4 && occupancy == 25) {
+        av_seats = 1;
+    }
+    return av_seats;
+}
+
 //creates a new student and returns a pointer to it
-student *create_student()
+student *create_student(student *st_head)
 {
     student *new_student;
     char input[MAX_STRING];
     int int_input;
     char *ptr;
-    student *head = NULL;
+    student *head = NULL;    
     student *current = NULL;
+        if (st_head != NULL) {                          // If the student list has already been started, we append the new students
+        head = st_head;
+        current = head;
+        while(current->next != NULL) {
+            current = current->next;
+        }
+    }
 
     do
     { // Schleife zum Erstellen der students für die Liste
