@@ -6,62 +6,225 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "file.h"
 
-typedef struct
-{
-    int year;
-    int month;
-    int day;
-} date;
-
-typedef struct
-{
-    char *room_name;
-    char *exam_name;
-    date exam_date;
-    int row;
-    int col;
-    int occupancy;
-} room;
-
-typedef struct student
-{
-    char *first_name;
-    char *last_name;
-    char *student_id;
-    int col;
-    int row;
-    struct student *next;
-} student;
+//typedef struct
+//{
+//    int year;
+//    int month;
+//    int day;
+//} date;
+//
+//typedef struct
+//{
+//    char *room_name;
+//    char *exam_name;
+//    date exam_date;
+//    int row;
+//    int col;
+//    int occupancy;
+//} room;
+//
+//typedef struct student
+//{
+//    char *first_name;
+//    char *last_name;
+//    char *student_id;
+//    int col;
+//    int row;
+//    struct student *next;
+//} student;
 
 #define MAX_STRING 250
 #define MIN_YEAR 2023
 #define MAX_YEAR 2100
 
-room *create_room();
-int free_room(room *new_room);
-student *create_student();
-int free_student(student *new_student);
+//room *new_room();
+//void set_room_name(room *p_room, char *name);
+//void set_exam_name(room *p_room, char *name);
+//int prompt_exam_date_year();
+//int prompt_exam_date_month();
+//room *create_room();
+//int free_room(room *new_room);
+//student *create_student();
+//int free_student(student *new_student);
+//int show_room(room *rm, student *head);
 
-room *create_room()
-{
-    room *new_room = (room *)malloc(sizeof(room)); // Vor Beginn der Eingabe: allozieren des Speichers für
-    if (new_room == NULL)
-    { // das Struct und die 2 Strings
+// allocates memory for exam_name
+char * allocate_exam_name(room * new_room){
+    new_room->exam_name = (char*)malloc(sizeof(char) * MAX_STRING);
+    if (new_room->exam_name == NULL) {
         perror("malloc");
     }
+    return new_room->exam_name;
+}
 
+// allocates memory for room_name
+char * allocate_room_name(room * new_room){
     new_room->room_name = (char *)malloc(sizeof(char) * MAX_STRING);
     if (new_room->room_name == NULL)
     {
         perror("malloc");
     }
+    return new_room->room_name;
+}
 
-    new_room->exam_name = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_room->exam_name == NULL)
+// allocates memory for new_room (struct room)
+room * allocate_new_room(room){
+    room * new_room = (room *)malloc(sizeof(room));
+    if (new_room == NULL)
     {
         perror("malloc");
     }
+    return new_room;
+}
+
+/* allocates memory for new_room (Struct room)
+*  allocates memory for room_name and exam_name
+*  returns new_room
+*/
+room *new_room()
+{
+    room * new_room = allocate_new_room(* new_room);
+
+    new_room->room_name = allocate_room_name(new_room);
+
+    new_room->exam_name = allocate_exam_name(new_room);
+
+    return new_room;
+}
+
+void set_room_name(room *p_room, char *name)
+{
+    if ((strcpy(p_room->room_name, name)) == NULL)
+    {
+        perror("strcpy");
+    }
+}
+
+void set_exam_name(room *p_room, char *name)
+{
+    if ((strcpy(p_room->exam_name, name)) == NULL)
+    {
+        perror("strcpy");
+    }
+}
+
+// checks if year is valid
+// returns 1 if year is valid
+// returns 0 if year is invalid
+int valid_input_year(int input){
+    if (input == 0)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    if (input < MIN_YEAR || input > MAX_YEAR)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// reads input for year and checks if input is valid
+int prompt_exam_date_year()
+{
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+    scanf(" %s", input);
+    while (1)
+    {
+        int_input = strtol(input, &ptr, 10);
+        valid_input_year(int_input);
+
+    }
+
+    return int_input;
+}
+
+// checks if month is valid
+// returns 1 if month is valid
+// returns 0 if month is invalid
+int valid_input_month(int input){
+    if (input == 0)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    if (input < 1 || input > 12)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// reads input for month and checks if input is valid
+int prompt_exam_date_month()
+{
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+    scanf(" %s", input);
+    while (1)
+    {
+        int_input = strtol(input, &ptr, 10);
+        valid_input_month(int_input);
+    }
+
+    return int_input;
+}
+
+// checks if day is valid
+// returns 1 if day is valid
+// returns 0 if day is invalid
+int valid_input_day(int input){
+    if (input == 0)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    if (input < 1 || input > 31)
+    {
+        printf("Please enter valid number\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// reads input for day and checks if input is valid
+int prompt_exam_date_day()
+{
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+
+    scanf(" %s", input);
+    while (1)
+    {
+        int_input = strtol(input, &ptr, 10);
+        valid_input_day(int_input);
+    }
+
+    return int_input;
+}
+
+room *create_room()
+{
+    room *p_room = new_room();
 
     char input[MAX_STRING];
     int int_input; // Input-Variable für die Eingabeüberprüfung bei Zahlen
@@ -72,93 +235,20 @@ room *create_room()
         printf("Please enter room name\n"); // Nacheinander werden die Room-Infos abgefragt und befüllt
 
         scanf(" %[^\n]", input);
-        if ((strcpy(new_room->room_name, input)) == NULL)
-        {
-            perror("strcpy");
-        }
+        set_room_name(p_room, input);
 
         printf("Please enter exam name\n");
         scanf(" %[^\n]", input);
-
-        if ((strcpy(new_room->exam_name, input)) == NULL)
-        {
-            perror("strcpy");
-        }
+        set_exam_name(p_room, input);
 
         printf("Exam date: please enter year 'yyyy'\n"); // für alle Integers: scan als String, parsen und Überprüfung, ob Zahl
-        scanf(" %s", input);
-        while (1)
-        {
-            int_input = strtol(input, &ptr, 10);
-
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            if (int_input < MIN_YEAR || int_input > MAX_YEAR)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        }
-        new_room->exam_date.year = int_input; // ins Struct kopieren, die anderen Integers folgen demselben Schema
+        p_room->exam_date.year = prompt_exam_date_year(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
 
         printf("Exam date: please enter month 'mm'\n");
-        scanf(" %s", input);
-        while (1)
-        {
-            int_input = strtol(input, &ptr, 10);
-
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            if (int_input < 1 || int_input > 12)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        }
-        new_room->exam_date.month = int_input;
+        p_room->exam_date.month = prompt_exam_date_month();
 
         printf("Exam date: please enter day 'dd'\n"); // ev. zu tun: mögliche Tagesanzahl des Monats überprüfen
-        scanf(" %s", input);
-        while (1)
-        {
-            int_input = strtol(input, &ptr, 10);
-
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            if (int_input < 1 || int_input > 31)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
-            else
-            {
-                break;
-            }
-        }
-        new_room->exam_date.day = int_input;
+        p_room->exam_date.day = prompt_exam_date_day();
 
         printf("Please enter number of rows in the classroom\n");
         scanf(" %s", input);
@@ -183,7 +273,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->row = int_input;
+        p_room->row = int_input;
 
         printf("Please enter number of seats per row\n");
         scanf(" %s", input);
@@ -208,7 +298,7 @@ room *create_room()
                 break;
             }
         }
-        new_room->col = int_input;
+        p_room->col = int_input;
 
         printf("Please enter occupancy rate:"); // Auslastung des Raumes
         printf("\n(1) for 100%%");
@@ -240,25 +330,27 @@ room *create_room()
         switch (int_input)
         {
         case 1:
-            new_room->occupancy = 100;
+            p_room->occupancy = 100;
             break;
         case 2:
-            new_room->occupancy = 50;
+            p_room->occupancy = 50;
             break;
         case 3:
-            new_room->occupancy = 25;
+            p_room->occupancy = 25;
             break;
         }
+
+
+        printf("\nRoom name is: %s\n", p_room->room_name);
+        printf("Exam: %s\n", p_room->exam_name);
+        printf("Date of the exam: %d/%d/%d\n", p_room->exam_date.day, p_room->exam_date.month, p_room->exam_date.year);
+        printf("Classroom size: %d x %d\n", p_room->row, p_room->col);
+        printf("You want an occupancy rate of %d%%\n", p_room->occupancy);
+        int num_seats = (p_room->row * p_room->col) * (p_room->occupancy * 0.01);
 
         // Create matrix (assign a seat to a student based on the classroom occupancy)
         // new_room = create_matrix(new_room);
 
-        printf("\nRoom name is: %s\n", new_room->room_name);
-        printf("Exam: %s\n", new_room->exam_name);
-        printf("Date of the exam: %d/%d/%d\n", new_room->exam_date.day, new_room->exam_date.month, new_room->exam_date.year);
-        printf("Classroom size: %d x %d\n", new_room->row, new_room->col);
-        printf("You want an occupancy rate of %d%%\n", new_room->occupancy);
-        int num_seats = (new_room->row * new_room->col) * (new_room->occupancy * 0.01);
         printf("You can fit %d students in the classroom\n", num_seats);
 
         // Hier die Möglichkeit, von Neuem zu beginnen
@@ -272,7 +364,7 @@ room *create_room()
 
     } while (strcmp(input, "y") != 0);
 
-    return new_room;
+    return p_room;
 }
 
 int free_room(room *new_room)
@@ -283,9 +375,58 @@ int free_room(room *new_room)
     return EXIT_SUCCESS;
 }
 
+//allocates memory for a new student_first_name
+char * allocate_new_student_first_name(student * new_student)
+{
+    new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->first_name == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student->first_name;
+}
+
+//allocates memory for a new student_last_name
+char * allocate_new_student_last_name(student * new_student)
+{
+    new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->last_name == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student->last_name;
+}
+
+//allocates memory for a new student_id
+char * allocate_new_student_id(student * new_student)
+{
+    new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
+    if (new_student->student_id == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student->student_id;
+}
+
+//allocates memory for a new student
+student * allocate_new_student()
+{
+    student *new_student;
+    new_student = (student *)malloc(sizeof(student));
+    if (new_student == NULL)
+    {
+        perror("malloc");
+    }
+
+    return new_student;
+}
+
+//creates a new student and returns a pointer to it
 student *create_student()
 {
-
     student *new_student;
     char input[MAX_STRING];
     int int_input;
@@ -296,29 +437,10 @@ student *create_student()
     do
     { // Schleife zum Erstellen der students für die Liste
 
-        new_student = (student *)malloc(sizeof(student));
-        if (new_student == NULL)
-        {
-            perror("malloc");
-        }
-
-        new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
-        if (new_student->first_name == NULL)
-        {
-            perror("malloc");
-        }
-
-        new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
-        if (new_student->last_name == NULL)
-        {
-            perror("malloc");
-        }
-
-        new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
-        if (new_student->student_id == NULL)
-        {
-            perror("malloc");
-        }
+        new_student = allocate_new_student();
+        new_student->first_name = allocate_new_student_first_name(new_student);
+        new_student->last_name = allocate_new_student_last_name(new_student);
+        new_student->student_id = allocate_new_student_id(new_student);
 
         new_student->next = NULL;
 
@@ -397,5 +519,59 @@ int free_student(student *new_student)
         new_student = new_student->next;
         free(temp);
     }
+    return EXIT_SUCCESS;
+}
+
+int show_room(room *rm, student *head)
+{
+    student *temp = head;
+    int printed = 0;                                        // boolean for printing of "<empty>"
+    printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
+
+    for (int i = rm->row - 1; i >= 0; i--)                  // prints the rows from back to front
+    {
+        printf("%-10d", i + 1);
+        for (int j = 0; j < rm->col; j++)                   // prints the name from left to right
+        {
+            for (temp = head; temp != NULL; temp = temp->next)
+            {
+                if (temp != NULL && temp->row == i && temp->col == j)
+                {
+                    char initial[3];
+                    initial[0] = temp->first_name[0];
+                    initial[1] = '.';
+                    initial[2] = '\0';
+                    printf("%2s %-30s", initial, temp->last_name);
+                    printed = 1;
+                }
+            }
+            if (printed == 0)
+            {
+                printf("%-32s", "<empty>");
+            }
+            printed = 0;
+        }
+        printf("\n%-10c", ' ');
+
+        for (int j = 0; j < rm->col; j++)                   // prints the student id number from left to right
+        {
+            for (temp = head; temp != NULL; temp = temp->next)
+            {
+                if (temp != NULL && temp->row == i && temp->col == j)
+                {
+                    printf("%-30s %2c", temp->student_id, ' ');
+                    printed = 1;
+                }
+            }
+            if (printed == 0)
+            {
+                printf("%-32s", "       ");
+            }
+            printed = 0;
+        }
+        printf("\n\n");
+    }
+    printf("\n");
+
     return EXIT_SUCCESS;
 }

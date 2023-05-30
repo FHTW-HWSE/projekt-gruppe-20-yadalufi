@@ -20,8 +20,8 @@ then the system should validate the input values to ensure that they are within 
 
 ### 3.
 ---
-Given that the input values for the room's height and width have been validated<br />
-when the user hits enter<br />
+Given that the input values for the room's height and width have been saved<br />
+when the user selects "show room"<br />
 then the system should display a graphical representation of the defined room size as a table that matches the actual classroom.
 
 ### 4.

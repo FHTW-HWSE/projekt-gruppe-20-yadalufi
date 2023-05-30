@@ -4,7 +4,7 @@
 
 enum menu_elements {
     create_plan = 1,
-    show_room,
+    show_rm,
     show_seats,
     add_student,
     edit_student,
@@ -30,6 +30,8 @@ void display_menu() {
 
 int menu_choice(){
     int choice = 0;
+    room *Room;
+    student *Student;
 
     while (choice != quit) {
         display_menu();
@@ -38,16 +40,16 @@ int menu_choice(){
 
         switch (choice) {
             case create_plan:
-// insert function here
+                Room = create_room();
                 break;
-            case show_room:
-// insert function here
+            case show_rm:
+                show_room(Room, Student);
                 break;
             case show_seats:
 // insert function here
                 break;
             case add_student:
-// insert function here
+                Student = create_student();
                 break;
             case edit_student:
 // insert function here
@@ -63,6 +65,18 @@ int menu_choice(){
                 break;
             case quit:
                 printf("Goodbye!\n");
+                int error;
+                error = free_student(Student);
+                if (error != 0)
+                {
+                    fprintf(stderr, "free_student failed");
+                }
+
+                error = free_room(Room);
+                if (error != 0)
+                {
+                    fprintf(stderr, "free_room failed\n");
+                }
                 break;
             default:
                 printf("Invalid choice, please try again.\n");
