@@ -6,7 +6,7 @@ project(yadalufi)
 add_executable(yadalufi
         src/menu.cpp
         src/file.cpp
-        src/matrix.cpp
+        src/student.cpp
         src/main.cpp
 )
 # add_executable(yadalufi src/file.c src/menu.c src/main.c tests/test.cpp)
@@ -20,7 +20,7 @@ add_executable(yadalufi_tests
         tests/test_example.cpp
         src/menu.cpp
         src/file.cpp
-        src/matrix.cpp
+        src/student.cpp
 )
 
 catch_discover_tests(yadalufi_tests)

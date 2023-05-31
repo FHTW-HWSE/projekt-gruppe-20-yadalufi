@@ -1,13 +1,8 @@
-///@brief This function creates the struct 'room' and allows the user
-/// to fill in the data. It prompts the input of room name, exam name, exam date, rows, columns and occupancy rate
-///@param void
-///@return struct room
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "file.h"
-#include "matrix.h"
+#include "student.h"
 
 //typedef struct
 //{
@@ -71,8 +66,8 @@ char * allocate_room_name(room * new_room){
 }
 
 // allocates memory for new_room (struct room)
-room * allocate_new_room(room){
-    room * new_room = (room *)malloc(sizeof(room));
+room * allocate_new_room(room * new_room){
+    new_room = (room *)malloc(sizeof(room));
     if (new_room == NULL)
     {
         perror("malloc");
@@ -86,7 +81,7 @@ room * allocate_new_room(room){
 */
 room *new_room()
 {
-    room * new_room = allocate_new_room(* new_room);
+    room * new_room = allocate_new_room(new_room);
 
     new_room->room_name = allocate_room_name(new_room);
 
@@ -227,9 +222,9 @@ int prompt_exam_date_day()
     return int_input;
 }
 
-room *create_room()
+room *create_room(room * r_room, student * r_head)
 {
-    room *p_room = new_room();
+    room *p_room = r_room;
 
     char input[MAX_STRING];
     int int_input; // Input-Variable für die Eingabeüberprüfung bei Zahlen
@@ -237,9 +232,13 @@ room *create_room()
 
     do
     {
-        printf("Please enter room name\n"); // Nacheinander werden die Room-Infos abgefragt und befüllt
+        printf("Please enter room name\nor (q) to cancel\n"); // Nacheinander werden die Room-Infos abgefragt und befüllt
 
         scanf(" %[^\n]", input);
+        if (strcmp(input, "q") == 0) {
+            return p_room;
+        }
+        p_room = new_room();
         set_room_name(p_room, input);
 
         printf("Please enter exam name\n");
@@ -352,8 +351,20 @@ room *create_room()
         printf("Classroom size: %d x %d\n", p_room->row, p_room->col);
         printf("You want an occupancy rate of %d%%\n", p_room->occupancy);
         int num_seats = number_seats(p_room->row, p_room->col);
-        int av_seats = available_seats(num_seats, p_room->occupancy);
+        int av_seats = available_seats(p_room->row, p_room->col, p_room->occupancy);
         printf("You can fit %d students in the classroom\n", av_seats);
+
+        // Falls es schon students gibt und die Platzanzahl zu gering wäre, muss man nochmal beginnen/aussteigen
+
+        if (r_head != NULL) {
+            int num_students = number_students(r_head);
+            if (num_students > av_seats) {
+                printf("\nThe room you created does not have enough seats for the students.\nPlease create an adequate room.\n");
+                free_room(p_room);
+                p_room = NULL;
+                continue;
+            }
+        }
 
         // Hier die Möglichkeit, von Neuem zu beginnen
         printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
@@ -377,170 +388,51 @@ int free_room(room *new_room)
     return EXIT_SUCCESS;
 }
 
-//allocates memory for a new student_first_name
-char * allocate_new_student_first_name(student * new_student)
-{
-    new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_student->first_name == NULL)
-    {
-        perror("malloc");
+int number_seats(int row, int col) {
+    int seats = 0;
+
+    for (int i = 0; i < col; i++) {
+        for (int j = 0; j < row; j++) {
+            seats++;
+        }
     }
 
-    return new_student->first_name;
+    if (row < 1 || col < 1) {
+        seats = -1;
+    }
+    return seats;
 }
 
-//allocates memory for a new student_last_name
-char * allocate_new_student_last_name(student * new_student)
-{
-    new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_student->last_name == NULL)
-    {
-        perror("malloc");
+int available_seats(int row, int col, int occupancy) {
+    int av_seats = 0;
+    switch (occupancy) {
+        case 100: 
+            av_seats = row * col;
+            break;
+        case 50: 
+            av_seats = (row *col) / 2;
+            if ((row * col) % 2 == 1) {
+                av_seats++;
+            }
+            break;
+        case 25: 
+            for (int i = 0; i < row; i+=2) {
+                for (int j = 0; j < col; j+=2) {
+                    av_seats++;
+                }
+            }
+            break;
+        default: 
+            return -1;
     }
-
-    return new_student->last_name;
-}
-
-//allocates memory for a new student_id
-char * allocate_new_student_id(student * new_student)
-{
-    new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
-    if (new_student->student_id == NULL)
-    {
-        perror("malloc");
-    }
-
-    return new_student->student_id;
-}
-
-//allocates memory for a new student
-student * allocate_new_student()
-{
-    student *new_student;
-    new_student = (student *)malloc(sizeof(student));
-    if (new_student == NULL)
-    {
-        perror("malloc");
-    }
-
-    return new_student;
-}
-
-int available_seats(int num_seats, int occupancy) {
-    int av_seats = num_seats * (occupancy * 0.01);
-    if (num_seats < 1 || occupancy < 1) {
-        av_seats = -1;
-    }
-    if (num_seats < 4 && occupancy == 25) {
-        av_seats = 1;
-    }
+    if (av_seats < 1) {
+        return -1;
+    } else {
     return av_seats;
-}
-
-//creates a new student and returns a pointer to it
-student *create_student(student *st_head)
-{
-    student *new_student;
-    char input[MAX_STRING];
-    int int_input;
-    char *ptr;
-    student *head = NULL;    
-    student *current = NULL;
-        if (st_head != NULL) {                          // If the student list has already been started, we append the new students
-        head = st_head;
-        current = head;
-        while(current->next != NULL) {
-            current = current->next;
-        }
     }
-
-    do
-    { // Schleife zum Erstellen der students für die Liste
-
-        new_student = allocate_new_student();
-        new_student->first_name = allocate_new_student_first_name(new_student);
-        new_student->last_name = allocate_new_student_last_name(new_student);
-        new_student->student_id = allocate_new_student_id(new_student);
-
-        new_student->next = NULL;
-
-        do
-        {
-            printf("Please enter student's first name(s)\n");
-            scanf(" %[^\n]", input);
-            if ((strcpy(new_student->first_name, input)) == NULL)
-            {
-                perror("strcpy");
-            }
-
-            printf("Please enter student's last name(s)\n");
-            scanf(" %[^\n]", input);
-            if ((strcpy(new_student->last_name, input)) == NULL)
-            {
-                perror("strcpy");
-            }
-
-            printf("Please enter student's ID number\n");
-            scanf(" %[^\n]", input);
-            if ((strcpy(new_student->student_id, input)) == NULL)
-            {
-                perror("strcpy");
-            }
-
-            /* Here comes the function that assigns the seat (row/col) to the student*/
-
-            printf("\nThe student's name is: %s %s\n", new_student->first_name, new_student->last_name);
-            printf("Their ID is: %s\n", new_student->student_id);
-
-            printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
-            scanf(" %s", input);
-            while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
-            {
-                printf("Input invalid, please enter (y) or (n)\n");
-                scanf(" %s", input);
-            }
-
-        } while (strcmp(input, "y") != 0);
-
-        if (head == NULL)
-        {
-            head = new_student;
-            current = new_student;
-        }
-        else
-        {
-            current->next = new_student;
-            current = new_student;
-        }
-
-        printf("\nDo you want to add another student?\nEnter (y) or (n)\n");
-        scanf(" %s", input);
-        while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
-        {
-            printf("Input invalid, please enter (y) or (n)\n");
-            scanf(" %s", input);
-        }
-
-    } while (strcmp(input, "n") != 0);
-
-    return head;
 }
 
-int free_student(student *new_student)
-{
-    student *temp = new_student;
 
-    while (new_student != NULL)
-    {
-        free(new_student->first_name);
-        free(new_student->last_name);
-        free(new_student->student_id);
-        temp = new_student;
-        new_student = new_student->next;
-        free(temp);
-    }
-    return EXIT_SUCCESS;
-}
 
 int show_room(room *rm, student *head)
 {

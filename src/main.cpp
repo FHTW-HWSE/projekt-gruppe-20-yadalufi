@@ -32,6 +32,9 @@ int main(int argc, char **argv)
     if (fp == NULL)
       fprintf(stderr, "The file could not be created.\n");
   }
+  
+  menu_choice(fp);
+  
   fclose(fp);                                         // hier nicht schließen, sondern fp ins Menü (menu_choice) mitgeben
 
   // create matrix
@@ -39,7 +42,7 @@ int main(int argc, char **argv)
   // saveCSV(file->name, file->content);
   // readCSV(file->name);
 
-  menu_choice();
+  
 
 
   /*
