@@ -1,7 +1,8 @@
 #define CATCH_CONFIG_MAIN // This tells Catch2 to generate a main function for the tests
 #include <catch2/catch.hpp>
-#include "../src/matrix.h"
+#include "../src/student.h"
 #include "../src/file.h"
+#include "../src/student.h"
 /*
 SCENARIO("mathematical addition") {
     GIVEN("are 1 & 2") {
@@ -113,39 +114,42 @@ TEST_CASE("number_seats invalid input") {
 }
 
 TEST_CASE("available_seats valid input") {
-    GIVEN("num_seats = 20, occupancy = 50") {
-        int num_seats = 20;
-        room *p;
+    GIVEN("number of seats: 25, occupancy = 50") {
+        room *p = (room *)malloc(sizeof(room));
+        p->row = 5;
+        p->col = 5;
         p->occupancy = 50;
     //    int occupancy = 50;
 
         WHEN("call available_seats") {
-            int result = available_seats(num_seats, p->occupancy);
+            int result = available_seats(p->row, p->col, p->occupancy);
 
-            THEN("result should be 10") {
-                REQUIRE(result == 10);
+            THEN("result should be 13") {
+                REQUIRE(result == 13);
             }
         }
     }
-    GIVEN("num_seats = 234, occupancy = 25") {
-        int num_seats = 234;
+    GIVEN("number of seats: 221, occupancy = 25") {
+        int row = 17;
+        int col = 13;
         int occupancy = 25;
 
         WHEN("call available_seats") {
-            int result = available_seats(num_seats, occupancy);
+            int result = available_seats(row, col, occupancy);
 
-            THEN("result should be 58") {
-                REQUIRE(result == 58);
+            THEN("result should be 60") {
+                REQUIRE(result == 63);
             }
         }
     }
 
-        GIVEN("num_seats = 32, occupancy = 100") {
-        int num_seats = 32;
+        GIVEN("number of seats: 32, occupancy = 100") {
+        int row = 8;
+        int col = 4;
         int occupancy = 100;
 
         WHEN("call available_seats") {
-            int result = available_seats(num_seats, occupancy);
+            int result = available_seats(row, col, occupancy);
 
             THEN("result should be 32") {
                 REQUIRE(result == 32);
@@ -153,12 +157,13 @@ TEST_CASE("available_seats valid input") {
         }
     }
 
-        GIVEN("num_seats = 2, occupancy = 25") {
-        int num_seats = 2;
+        GIVEN("number of seats: 2, occupancy = 25") {
+        int row = 1;
+        int col = 2;
         int occupancy = 25;
 
         WHEN("call available_seats") {
-            int result = available_seats(num_seats, occupancy);
+            int result = available_seats(row, col, occupancy);
 
             THEN("result should be 1") {
                 REQUIRE(result == 1);
@@ -168,12 +173,13 @@ TEST_CASE("available_seats valid input") {
 }
 
 TEST_CASE("available_seats invalid input") {
-    GIVEN("num_seats = 0, occupancy = 100") {
-        int num_seats = 0;
+    GIVEN("number of seats: 0, occupancy = 100") {
+        int row = 0;
+        int col = 0;
         int occupancy = 100; 
 
         WHEN ("call available_seats"){
-            int result = available_seats(num_seats, occupancy);
+            int result = available_seats(row, col, occupancy);
 
             THEN("result should be -1"){
                 REQUIRE(result == -1);
@@ -181,12 +187,13 @@ TEST_CASE("available_seats invalid input") {
         }
     }
 
-        GIVEN("num_seats = -5, occupancy = 100") {
-        int num_seats = -5;
+        GIVEN("number of seats: -5, occupancy = 100") {
+        int row = 1;
+        int col = -5;
         int occupancy = 100; 
 
         WHEN ("call available_seats"){
-            int result = available_seats(num_seats, occupancy);
+            int result = available_seats(row, col, occupancy);
 
             THEN("result should be -1"){
                 REQUIRE(result == -1);
@@ -195,11 +202,12 @@ TEST_CASE("available_seats invalid input") {
     }
 
             GIVEN("num_seats = 40, occupancy = 0") {
-        int num_seats = 40;
+        int row = 2;
+        int col = 20;
         int occupancy = 0; 
 
         WHEN ("call available_seats"){
-            int result = available_seats(num_seats, occupancy);
+            int result = available_seats(row, col, occupancy);
 
             THEN("result should be -1"){
                 REQUIRE(result == -1);
@@ -217,6 +225,57 @@ TEST_CASE("valid_input_year valid input") {
 
             THEN("result should be 1"){
                 REQUIRE(result == 1);
+            }
+        }
+    }
+}
+
+TEST_CASE ("seat_assignment valid input"){
+    GIVEN("3 students") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = NULL;
+
+        room * test_room = (room *)malloc(sizeof(room));
+        test_room->col = 3;
+        test_room->row = 3;
+        test_room->occupancy = 100;
+
+        WHEN("call seat_assignment") {
+            int result = seat_assignment(head, test_room);
+
+            THEN("result should be 0") {
+                REQUIRE(result == 0);
+            }
+        }
+    }
+
+    GIVEN("3 students") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = NULL;
+
+        room * test_room = (room *)malloc(sizeof(room));
+        test_room->col = 3;
+        test_room->row = 3;
+        test_room->occupancy = 100;
+
+        WHEN("call seat_assignment") {
+            seat_assignment(head, test_room);
+
+            THEN("students should be assigned seats in the first row") {
+                REQUIRE(head->row == 0);
+                REQUIRE(head->col == 0);
+                REQUIRE(two->row == 0);
+                REQUIRE(two->col == 1);
+                REQUIRE(three->row == 0);
+                REQUIRE(three->col == 2);
             }
         }
     }
