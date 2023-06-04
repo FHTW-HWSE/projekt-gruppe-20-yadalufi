@@ -271,15 +271,14 @@ room *create_room(room * r_room, student * r_head)
         p_room->row = int_input;
 
         printf("Please enter number of seats per row\n");
-        scanf(" %s", input);
         while (1)
         {
+            scanf(" %s", input);
             int_input = strtol(input, &ptr, 10);
 
             if (int_input < 1)
             {
                 printf("Please enter valid number\n");
-                scanf(" %s", input);
                 continue;
             }
 
@@ -292,15 +291,14 @@ room *create_room(room * r_room, student * r_head)
         printf("\n(2) for 50%%");
         printf("\n(3) for 25%%\n");
 
-        scanf(" %s", input);
         while (1)
         {
+            scanf(" %s", input);
             int_input = strtol(input, &ptr, 10);
 
             if (int_input < 1 || int_input > 3)
             {
                 printf("Please enter valid number\n");
-                scanf(" %s", input);
                 continue;
             }
 
