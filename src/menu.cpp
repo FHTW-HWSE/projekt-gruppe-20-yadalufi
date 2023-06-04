@@ -55,57 +55,50 @@ int menu_choice(FILE *fp)
         switch (choice)
         {
         case create_plan:
-            {
-            if (m_room == NULL)
-            {
+            if (m_room == NULL) {
                 m_room = create_room(m_room, m_student); //student head mitgeben 
-                    if (m_student != NULL && m_room != NULL) {
+                if (m_student != NULL && m_room != NULL) {
                     int seat_ass = seat_assignment(m_student, m_room);
-                if (seat_ass == 0) {
-                    printf("Seat assignment successful\n");
-                }   else if (seat_ass == 1) {
-                    printf("Seat assignment not succesful\n");
-                } else {
-                    printf("Seat ass...?\n");
-                }
+                    if (seat_ass == 0) {
+                        printf("Seat assignment successful\n");
+                    } else if (seat_ass == 1) {
+                        printf("Seat assignment not succesful\n");
+                    } else {
+                        printf("Seat ass...?\n");
                     }
                 }
-            else
+                break;
+            }
+
+            printf("\nDo you want to overwrite the existing plan?\n(y) or (n)\n");
+            scanf(" %s", input);
+            while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
             {
-                printf("\nDo you want to overwrite the existing plan?\n(y) or (n)\n");
+                printf("Input invalid, please enter (y) or (n)\n");
                 scanf(" %s", input);
-                while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
-                {
-                    printf("Input invalid, please enter (y) or (n)\n");
-                    scanf(" %s", input);
-                }
-                if (strcmp(input, "y") == 0)
-                {
-                    m_room = create_room(m_room, m_student);
-                    if (m_student != NULL && m_room != NULL) {
-                int seat_ass = seat_assignment(m_student, m_room);
-            if (seat_ass == 0) {
-                printf("Seat assignment successful\n");
-            }   else if (seat_ass == 1) {
-                printf("Seat assignment not succesful\n");
-            } else {
-                printf("Seat ass...?\n");
             }
+            if (strcmp(input, "y") == 0)
+            {
+                m_room = create_room(m_room, m_student);
+                if (m_student != NULL && m_room != NULL) {
+                    int seat_ass = seat_assignment(m_student, m_room);
+                    if (seat_ass == 0) {
+                        printf("Seat assignment successful\n");
+                    }   else if (seat_ass == 1) {
+                        printf("Seat assignment not succesful\n");
+                    } else {
+                        printf("Seat ass...?\n");
+                    }
                 }
             }
-                }
             break;
-            }
-        
         case show_rm:
-            if (m_room == NULL)
-            {
+            if (m_room == NULL) {
                 printf("No room to show\n");
+                break;
             }
-            else
-            {
-                show_room(m_room, m_student);
-            }
+
+            show_room(m_room, m_student);
             break;
         case show_seats:
             // insert function here
@@ -122,14 +115,14 @@ int menu_choice(FILE *fp)
                     break;
                 } else {
                     m_student = create_student(m_student, m_room);  // room mitgeben! 
-                int seat_ass = seat_assignment(m_student, m_room);
-                if (seat_ass == 0) {
-                    printf("Seat assignment successful\n");
-                }   else if (seat_ass == 1) {
-                    printf("Seat assignment not succesful\n");
-                } else {
-                    printf("Seat ass...?\n");
-                }
+                    int seat_ass = seat_assignment(m_student, m_room);
+                    if (seat_ass == 0) {
+                        printf("Seat assignment successful\n");
+                    } else if (seat_ass == 1) {
+                        printf("Seat assignment not succesful\n");
+                    } else {
+                        printf("Seat ass...?\n");
+                    }
                 }
             } else {
                 m_student = create_student(m_student, m_room);  // room mitgeben! 
