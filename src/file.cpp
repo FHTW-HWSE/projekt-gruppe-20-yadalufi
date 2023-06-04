@@ -255,15 +255,14 @@ room *create_room(room * r_room, student * r_head)
         p_room->exam_date.day = prompt_exam_date_day();
 
         printf("Please enter number of rows in the classroom\n");
-        scanf(" %s", input);
         while (1)
         {
+            scanf(" %s", input);
             int_input = strtol(input, &ptr, 10);
 
             if (int_input < 1)
             { // weniger als 1 Reihe/Spalte nicht möglich
                 printf("Please enter valid number\n");
-                scanf(" %s", input);
                 continue;
             }
 
