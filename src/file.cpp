@@ -285,22 +285,14 @@ room *create_room(room * r_room, student * r_head)
         {
             int_input = strtol(input, &ptr, 10);
 
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
             if (int_input < 1)
             {
                 printf("Please enter valid number\n");
                 scanf(" %s", input);
                 continue;
             }
-            else
-            {
-                break;
-            }
+
+            break;
         }
         p_room->col = int_input;
 
