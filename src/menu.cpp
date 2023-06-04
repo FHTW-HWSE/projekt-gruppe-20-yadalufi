@@ -155,16 +155,21 @@ int menu_choice(FILE *fp)
         case quit:
             printf("Goodbye!\n");
             int error;
-            error = free_student(m_student);
-            if (error != 0)
-            {
-                fprintf(stderr, "free_student failed");
+            if (m_student != NULL) {
+                error = free_student(m_student);
+                if (error != 0)
+                {
+                    fprintf(stderr, "free_student failed");
+                }
             }
 
-            error = free_room(m_room);
-            if (error != 0)
+            if (m_room != NULL)
             {
-                fprintf(stderr, "free_room failed\n");
+                error = free_room(m_room);
+                if (error != 0)
+                {
+                    fprintf(stderr, "free_room failed\n");
+                }
             }
             break;
         default:
