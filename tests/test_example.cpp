@@ -119,7 +119,6 @@ TEST_CASE("available_seats valid input") {
         p->row = 5;
         p->col = 5;
         p->occupancy = 50;
-    //    int occupancy = 50;
 
         WHEN("call available_seats") {
             int result = available_seats(p->row, p->col, p->occupancy);
@@ -129,6 +128,7 @@ TEST_CASE("available_seats valid input") {
             }
         }
     }
+
     GIVEN("number of seats: 221, occupancy = 25") {
         int row = 17;
         int col = 13;
@@ -143,7 +143,7 @@ TEST_CASE("available_seats valid input") {
         }
     }
 
-        GIVEN("number of seats: 32, occupancy = 100") {
+    GIVEN("number of seats: 32, occupancy = 100") {
         int row = 8;
         int col = 4;
         int occupancy = 100;
@@ -187,7 +187,7 @@ TEST_CASE("available_seats invalid input") {
         }
     }
 
-        GIVEN("number of seats: -5, occupancy = 100") {
+    GIVEN("number of seats: -5, occupancy = 100") {
         int row = 1;
         int col = -5;
         int occupancy = 100; 
@@ -201,7 +201,7 @@ TEST_CASE("available_seats invalid input") {
         }
     }
 
-            GIVEN("num_seats = 40, occupancy = 0") {
+    GIVEN("num_seats = 40, occupancy = 0") {
         int row = 2;
         int col = 20;
         int occupancy = 0; 

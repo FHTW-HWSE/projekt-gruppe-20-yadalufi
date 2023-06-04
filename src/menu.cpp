@@ -49,7 +49,7 @@ int menu_choice(FILE *fp)
     {
         display_menu();
         printf("Enter your choice: ");
-        scanf("%s", &choice_string);
+        scanf("%s", choice_string);
         choice = strtol(choice_string, &ptr, 10);
 
         switch (choice)
