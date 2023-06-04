@@ -314,36 +314,17 @@ room *create_room(room * r_room, student * r_head)
         {
             int_input = strtol(input, &ptr, 10);
 
-            if (int_input == 0)
-            {
-                printf("Please enter valid number\n");
-                scanf(" %s", input);
-                continue;
-            }
             if (int_input < 1 || int_input > 3)
             {
                 printf("Please enter valid number\n");
                 scanf(" %s", input);
                 continue;
             }
-            else
-            {
-                break;
-            }
-        }
-        switch (int_input)
-        {
-        case 1:
-            p_room->occupancy = 100;
-            break;
-        case 2:
-            p_room->occupancy = 50;
-            break;
-        case 3:
-            p_room->occupancy = 25;
+
             break;
         }
 
+        room_set_occupancy(p_room, int_input);
 
         printf("\nRoom name is: %s\n", p_room->room_name);
         printf("Exam: %s\n", p_room->exam_name);
@@ -378,6 +359,23 @@ room *create_room(room * r_room, student * r_head)
     } while (strcmp(input, "y") != 0);
 
     return p_room;
+}
+
+int room_set_occupancy(room * p_room, int selection) {
+    switch (selection)
+    {
+        case 1:
+            p_room->occupancy = 100;
+            return 1;
+        case 2:
+            p_room->occupancy = 50;
+            return 1;
+        case 3:
+            p_room->occupancy = 25;
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 int free_room(room *new_room)
