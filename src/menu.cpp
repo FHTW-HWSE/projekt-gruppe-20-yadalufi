@@ -107,7 +107,9 @@ int menu_choice(FILE *fp)
             if (m_room == NULL) {
                 printf("Please create a room plan first.\n");
                 break;
-            } else if (m_student != NULL) {
+            }
+
+            if (m_student != NULL) {
                 int seats = available_seats(m_room->row, m_room->col, m_room->occupancy);
                 int num_students = number_students(m_student);
                 if (num_students >= seats) {
@@ -128,7 +130,8 @@ int menu_choice(FILE *fp)
             }
 
             m_student = create_student(m_student, m_room);  // room mitgeben!
-            int seat_ass = seat_assignment(m_student, m_room);
+            int seat_ass;
+            seat_ass = seat_assignment(m_student, m_room);
             if (seat_ass == 0) {
                 printf("Seat assignment successful\n");
             }   else if (seat_ass == 1) {
