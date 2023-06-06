@@ -17,7 +17,7 @@ include(CTest)
 include(Catch)
 
 add_executable(yadalufi_tests
-        tests/test_example.cpp
+        tests/test.cpp
         src/menu.cpp
         src/file.cpp
         src/student.cpp
