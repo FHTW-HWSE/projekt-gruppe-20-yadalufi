@@ -53,9 +53,10 @@ int menu_choice(FILE *fp)
         switch (choice)
         {
         case create_plan:
-            int return_value;
-            return_value = menu_create_plan(m_room, m_student);
-            break;
+        {
+            int return_value = menu_create_plan(m_room, m_student);
+        }
+        break;
         case show_rm:
             if (m_room == NULL)
             {
