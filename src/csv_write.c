@@ -11,11 +11,11 @@ void write_csv(struct student *student, int num_students, const char *filename) 
     }
 
     // Write header row
-    fprintf(fp, "ID;Name;Seat\n");
+    fprintf(fp, "ID;First Name;Last Name;Seat\n");
 
     // Write data rows
     for (int i = 0; i < num_students; i++) {
-        fprintf(fp, "%s,%s,%s,%d,%d,\n",student[i].first_name, student[i].last_name,student[i].student_id, student[i].col,student[i].row);
+        fprintf(fp, "%s,%s,%s,%d,%d,\n", student[i].student_id, student[i].first_name, student[i].last_name, student[i].row, student[i].col);
     }
 
     fclose(fp);
