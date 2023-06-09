@@ -50,13 +50,15 @@ student *find_student(student *head, int selection) {
     temp = head;
 
     // Traverse the list to find the selected student
-    for (int i = 0; i < selection; i++) {
+    for (int i = 0; i < counter; i++) {
         temp = temp->next;
+        if (i == selection -1) {
+            break;
+        }
     }
 
     return temp;
 }
-
 
 int trace_contacts(int selection, room *rm, student *head){
 
@@ -132,11 +134,21 @@ int trace_contacts(int selection, room *rm, student *head){
 
 int select_student (room *rm, student *head){
 
+    if (head == NULL){
+        printf("No students in list.\n");
+        return 0;
+    }
+    if (rm == NULL){
+        printf("No rooms in list.\n");
+        return 0;
+    }
+
     student *temp = head;
     char selected_student_string[MAX_STRING];
     char *ptr_student = NULL;
     int selection = 0;
     int counter = 0;
+
     printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
     printf("Students in room:\n");
 
@@ -144,6 +156,8 @@ int select_student (room *rm, student *head){
         counter++;
         temp = temp->next;
     }
+
+    temp = head;
 
     for (int i = 1; i <= counter; i++){
         printf("%d. %s %s, %s\n", i, temp->first_name, temp->last_name, temp->student_id);
