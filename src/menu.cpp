@@ -13,7 +13,6 @@ enum menu_elements
     show_rm,
     show_seats,
     add_student,
-    edit_student,
     remove_student,
     load_csv_file,
     contact_tracing,
@@ -27,11 +26,10 @@ void display_menu()
     printf("2. Show room\n");
     printf("3. Show seats\n");
     printf("4. Add student\n");
-    printf("5. Edit student\n");
-    printf("6. Remove student\n");
-    printf("7. Load CSV file\n");
-    printf("8. Contact tracing\n");
-    printf("9. Quit\n");
+    printf("5. Remove student\n");
+    printf("6. Load CSV file\n");
+    printf("7. Contact tracing\n");
+    printf("8. Quit\n");
     printf("============\n");
     return;
 }
@@ -72,9 +70,6 @@ int menu_choice(FILE *fp)
             break;
         case add_student:
             menu_add_student(m_room, m_student);
-            break;
-        case edit_student:
-            // insert function here
             break;
         case remove_student:
             // insert function here
