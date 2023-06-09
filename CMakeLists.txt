@@ -7,6 +7,7 @@ add_executable(yadalufi
         src/menu.cpp
         src/menu/create_plan.cpp
         src/menu/add_student.cpp
+        src/menu/quit.cpp
         src/file.cpp
         src/student.cpp
         src/main.cpp
@@ -20,6 +21,7 @@ include(Catch)
 add_executable(yadalufi_tests
         src/menu/create_plan.cpp
         src/menu/add_student.cpp
+        src/menu/quit.cpp
         tests/test.cpp
         src/menu.cpp
         src/file.cpp

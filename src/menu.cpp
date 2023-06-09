@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "menu/create_plan.h"
 #include "menu/add_student.h"
+#include "menu/quit.h"
 #include "menu.h"
 #include "file.h"
 #include "student.h"
@@ -81,25 +82,7 @@ int menu_choice(FILE *fp)
             // insert function here
             break;
         case quit:
-            printf("Goodbye!\n");
-            int error;
-            if (m_student != NULL)
-            {
-                error = free_student(m_student);
-                if (error != 0)
-                {
-                    fprintf(stderr, "free_student failed");
-                }
-            }
-
-            if (m_room != NULL)
-            {
-                error = free_room(m_room);
-                if (error != 0)
-                {
-                    fprintf(stderr, "free_room failed\n");
-                }
-            }
+            menu_quit(m_room, m_student);
             break;
         default:
             printf("Invalid choice, please try again.\n");
