@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "file.h"
-#include "structs/file.h"
 #include "menu.h"
 
 int main(int argc, char **argv)
@@ -32,18 +31,15 @@ int main(int argc, char **argv)
     if (fp == NULL)
       fprintf(stderr, "The file could not be created.\n");
   }
-  
+
   menu_choice(fp);
-  
-  fclose(fp);                                         // hier nicht schließen, sondern fp ins Menü (menu_choice) mitgeben
+
+  fclose(fp); // hier nicht schließen, sondern fp ins Menü (menu_choice) mitgeben
 
   // create matrix
 
   // saveCSV(file->name, file->content);
   // readCSV(file->name);
-
-  
-
 
   /*
     struct student *student = malloc(sizeof(struct student));
@@ -52,7 +48,6 @@ int main(int argc, char **argv)
         exit(1);
     }
   */
-
 
   return 0;
 }
