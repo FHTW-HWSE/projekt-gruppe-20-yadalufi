@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include "menu/create_plan.h"
+#include "menu/add_student.h"
 #include "file.h"
 
 #define MAX_STRING 250
