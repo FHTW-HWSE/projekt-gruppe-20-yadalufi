@@ -4,6 +4,7 @@
 #include "file.h"
 #include "structs/file.h"
 #include "menu.h"
+#include "contact_tracing.h"
 
 int main(int argc, char **argv)
 {

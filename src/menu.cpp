@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "file.h"
 #include "student.h"
+#include "contact_tracing.h"
 
 #define MAX_STRING 250
 
@@ -44,6 +45,7 @@ int menu_choice(FILE *fp)
     char *ptr;
     room *m_room = NULL; // hier mit fp: wenn kein File da, dann room/student neu, sonst aus File laden
     student *m_student = NULL;
+    int selection = 0;
 
     while (choice != quit)
     {
@@ -154,7 +156,8 @@ int menu_choice(FILE *fp)
             // insert function here
             break;
         case contact_tracing:
-            // insert function here
+            select_student(m_room, m_student);
+            //trace_contacts(selection, m_room, m_student);
             break;
         case quit:
             printf("Goodbye!\n");
