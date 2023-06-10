@@ -16,7 +16,7 @@ int reset_counter_vars(int *i, int *j){
 }
 
 void print_student_info(student *temp){
-    printf("Name: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\tName: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 }
 
 // Count the number of students in the list
@@ -38,8 +38,7 @@ student *find_student(student *head, int selection) {
 
     // Check if selection is valid
     if (selection < 1 || selection > counter) {
-        // Invalid selection value
-        // You can choose to handle the error here, such as printing an error message
+        printf("Invalid selection!\n");
         return NULL;
     }
 
@@ -80,9 +79,6 @@ int trace_contacts(int selection, room *rm, student *head){
     int row_seat = 0;
     int col_seat = 0;
 
-    printf("Row_mx: %d\n", row_max);
-    printf("Col_mx: %d\n", col_max);
-    printf("Selection: %d\n", selection);
     temp = find_student(head, selection);
     reset_counter_vars(&i, &j);
     printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
@@ -90,31 +86,25 @@ int trace_contacts(int selection, room *rm, student *head){
     row_seat = temp->row;
     col_seat = temp->col;
 
-    printf("Row in plan: %d\n", row_seat +1);
-    printf("Col in plan: %d\n", col_seat +1);
-
-    printf("Row in temp: %d\n", row_seat);
-    printf("Col in temp: %d\n", col_seat);
-    temp = head;
-    // find direct neighbors and print to console
-
-    printf("row in room: %d\n", rm->row);
-    printf("col in room: %d\n", rm->col);
-
     reset_counter_vars(&i, &j);
     temp = head;
+    // find direct neighbors and print to console
+    // iterate through room (rows and columns) and check if student is in range
     for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
         for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
+            // row in front of selected student
             if(temp->row == row_seat -1){
                 if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
                     print_student_info(temp);
                 }
             }
+            // row of selected student
             if(temp->row == row_seat){
                 if(temp->col == col_seat -1 || temp->col == col_seat +1){
                     print_student_info(temp);
                 }
             }
+            // row behind selected student
             if(temp->row == row_seat +1){
                 if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
                     print_student_info(temp);
@@ -124,45 +114,39 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
-/*
+
+    temp = head;
     find_student(head, selection);
-    printf("Indirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
-
+    temp = head;
     // find indirect neighbours and print to console
-    // indirect neighbors in front
-    for(i = rm->row -2; ; ){
-        for(j = rm->col -2; j <= rm->col + 2; j++){
-            print_student_info(temp);
+    // iterate through room (rows and columns) and check if student is in range
+    for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
+        for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
+            // row two in front of selected student
+            if(temp->row == row_seat -2){
+                if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
+                    print_student_info(temp);
+                }
+            }
+            // row in front of selected student + row of selected student + row behind selected student
+            if(temp->row == row_seat -1 || temp->row == row_seat || temp->row == row_seat +1){
+                if(temp->col == col_seat -2 || temp->col == col_seat +2){
+                    print_student_info(temp);
+                }
+            }
+            // row two behind selected student
+            if(temp->row == row_seat +2){
+                if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
+                    print_student_info(temp);
+                }
+            }
+            temp = temp->next;
         }
     }
-    reset_counter_vars(&i, &j);
-
-    // indirect neighbors behind
-    for(i = rm->row +2; ; ){
-        for(j = rm->col -2; j <= rm->col + 2; j++){
-            print_student_info(temp);
-        }
-    }
-    reset_counter_vars(&i, &j);
-
-    // indirect neighbors to the left
-    for(i = rm->col -2; ; ){
-        for(j = rm->row -1; j <= rm->row + 1; j++){
-            print_student_info(temp);
-        }
-    }
-    reset_counter_vars(&i, &j);
-
-    // indirect neighbors to the right
-    for(i = rm->col +2; ; ){
-        for(j = rm->row -1; j <= rm->row + 1; j++){
-            print_student_info(temp);
-        }
-    }
-    reset_counter_vars(&i, &j);
-*/
+    printf("\n");
     return 0;
 }
 
@@ -183,7 +167,7 @@ int select_student (room *rm, student *head){
     int selection = 0;
     int counter = 0;
 
-    printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
+    printf("\n%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
     printf("Students in room:\n");
 
     counter = count_students_in_list(head);
