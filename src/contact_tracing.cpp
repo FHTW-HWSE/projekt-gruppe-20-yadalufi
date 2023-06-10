@@ -9,12 +9,29 @@
 
 #define MAX_STRING 250
 
+/*
+ * Function: trace_contacts
+ * ------------------------
+ *  This function is called when the user selects the contact tracing option from the menu.
+ *  It prompts the user to select a student from the list of students in the room.
+ *  It then prints the student's information and the information of the students sitting
+ *  around the selected student. Direct neighbours are students sitting one seat away from
+ *  the selected student. Indirect neighbours are students sitting two seats away from the
+ *  selected student.
+ *
+ *  selection: the student selected by the user
+ *  rm: the room selected by the user
+ *  head: the head of the list of students in the room
+ *
+ *  returns: 0 if successful
+ */
 int reset_counter_vars(int *i, int *j){
     *i = 0;
     *j = 0;
     return 0;
 }
 
+// Print the student's information
 void print_student_info(student *temp){
     printf("\tName: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 }
@@ -30,6 +47,7 @@ int count_students_in_list(student *head){
     return counter;
 }
 
+// Find the selected student in the list
 student *find_student(student *head, int selection) {
     student *temp = head;
     int counter = 0;
@@ -56,6 +74,7 @@ student *find_student(student *head, int selection) {
     return temp;
 }
 
+// Search for the selected student's direct and indirect neighbours and print their information
 int trace_contacts(int selection, room *rm, student *head){
 
     student *temp = head;
@@ -150,6 +169,7 @@ int trace_contacts(int selection, room *rm, student *head){
     return 0;
 }
 
+// Prompt the user to select a student from the list
 int select_student (room *rm, student *head){
 
     if (head == NULL){
@@ -173,6 +193,7 @@ int select_student (room *rm, student *head){
     counter = count_students_in_list(head);
     temp = head;
 
+    // print all students in list
     for (int i = 1; i <= counter; i++){
         printf("%d. %s %s, %s\n", i, temp->first_name, temp->last_name, temp->student_id);
         temp = temp->next;
