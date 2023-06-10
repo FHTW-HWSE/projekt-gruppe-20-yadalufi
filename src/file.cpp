@@ -411,7 +411,7 @@ student *create_student(student *st_head)
     char *ptr;
     student *head = NULL;    
     student *current = NULL;
-        if (st_head != NULL) {                          // If the student list has already been started, we append the new students
+        if (st_head != NULL) {              // If the student list has already been started, we append the new students
         head = st_head;
         current = head;
         while(current->next != NULL) {
