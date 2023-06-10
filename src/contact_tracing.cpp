@@ -60,6 +60,7 @@ student *find_student(student *head, int selection) {
 int trace_contacts(int selection, room *rm, student *head){
 
     student *temp = head;
+    room *m_room = rm;
     int i = 0;
     int j = 0;
     int row_min = 1;
@@ -76,29 +77,58 @@ int trace_contacts(int selection, room *rm, student *head){
     }
     reset_counter_vars(&i, &j);
 
+    int row_seat = 0;
+    int col_seat = 0;
+
     printf("Row_mx: %d\n", row_max);
     printf("Col_mx: %d\n", col_max);
     printf("Selection: %d\n", selection);
     temp = find_student(head, selection);
+    reset_counter_vars(&i, &j);
     printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    //Sitzplatz des Studenten (lt. Liste - beginnt bei 0 zu zaehlen)
+    row_seat = temp->row;
+    col_seat = temp->col;
 
-    // find direct neighbors and print to console
+    printf("Row in plan: %d\n", row_seat +1);
+    printf("Col in plan: %d\n", col_seat +1);
+
+    printf("Row in temp: %d\n", row_seat);
+    printf("Col in temp: %d\n", col_seat);
     temp = head;
-    for(i = rm->row -1; i <= rm->row + 1; i++){
-        for(j = rm->col -1; j <= rm->col + 1; j++){
-            if(temp->student_id == find_student(head, selection)->student_id){
-                continue;
+    // find direct neighbors and print to console
+
+    printf("row in room: %d\n", rm->row);
+    printf("col in room: %d\n", rm->col);
+
+    reset_counter_vars(&i, &j);
+    temp = head;
+    for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
+        for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
+            if(temp->row == row_seat -1){
+                if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
+                    print_student_info(temp);
+                }
             }
-            print_student_info(temp);
+            if(temp->row == row_seat){
+                if(temp->col == col_seat -1 || temp->col == col_seat +1){
+                    print_student_info(temp);
+                }
+            }
+            if(temp->row == row_seat +1){
+                if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
+                    print_student_info(temp);
+                }
+            }
+            temp = temp->next;
         }
     }
     reset_counter_vars(&i, &j);
 /*
-    temp = find_student(head, selection);
+    find_student(head, selection);
     printf("Indirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
-    temp = head;
 
     // find indirect neighbours and print to console
     // indirect neighbors in front
@@ -108,7 +138,6 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
-    temp = head;
 
     // indirect neighbors behind
     for(i = rm->row +2; ; ){
@@ -117,7 +146,6 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
-    temp = head;
 
     // indirect neighbors to the left
     for(i = rm->col -2; ; ){
@@ -126,7 +154,6 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
-    temp = head;
 
     // indirect neighbors to the right
     for(i = rm->col +2; ; ){
@@ -134,6 +161,7 @@ int trace_contacts(int selection, room *rm, student *head){
             print_student_info(temp);
         }
     }
+    reset_counter_vars(&i, &j);
 */
     return 0;
 }
