@@ -156,7 +156,7 @@ int menu_choice(FILE *fp)
             // insert function here
             break;
         case contact_tracing:
-            select_student(m_room, m_student);
+            selection = select_student(m_room, m_student);
             //trace_contacts(selection, m_room, m_student);
             break;
         case quit:

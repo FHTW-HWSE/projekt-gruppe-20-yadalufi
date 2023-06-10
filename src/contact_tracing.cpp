@@ -18,29 +18,26 @@ int reset_counter_vars(int *i, int *j){
 void print_student_info(student *temp){
     printf("Name: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 }
-/*
-// Traverse the linked list to find the selected student
-student *find_student(student *head, int selection){
-    student *temp = head;
-    for (int i = 1; i < selection; i++) {
-        temp = temp->next;
-    }
-    return temp;
-}
- */
-student *find_student(student *head, int selection) {
+
+// Count the number of students in the list
+int count_students_in_list(student *head){
     student *temp = head;
     int counter = 0;
-
-    // Count the number of students in the list
     while (temp != NULL) {
         counter++;
         temp = temp->next;
     }
-    printf("counter: %d\n", counter);
+    return counter;
+}
+
+student *find_student(student *head, int selection) {
+    student *temp = head;
+    int counter = 0;
+
+    counter = count_students_in_list(head);
 
     // Check if selection is valid
-    if (selection < 0 || selection > counter) {
+    if (selection < 1 || selection > counter) {
         // Invalid selection value
         // You can choose to handle the error here, such as printing an error message
         return NULL;
@@ -51,10 +48,10 @@ student *find_student(student *head, int selection) {
 
     // Traverse the list to find the selected student
     for (int i = 0; i < counter; i++) {
-        temp = temp->next;
         if (i == selection -1) {
             break;
         }
+        temp = temp->next;
     }
 
     return temp;
@@ -72,7 +69,8 @@ int trace_contacts(int selection, room *rm, student *head){
         row_max = i;
     }
 
-    find_student(head, selection);
+    printf("Selection: %d\n", selection);
+    temp = find_student(head, selection);
     printf("Direct neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     // find direct neighbors and print to console
@@ -82,6 +80,9 @@ int trace_contacts(int selection, room *rm, student *head){
     if(rm->row +1 > row_max){
         rm->row = row_max;
     }
+
+    reset_counter_vars(&i, &j);
+    temp = head;
     for(i = rm->row -1; i <= rm->row + 1; i++){
         for(j = rm->col -1; j <= rm->col + 1; j++){
             if(temp->student_id == find_student(head, selection)->student_id){
@@ -152,17 +153,14 @@ int select_student (room *rm, student *head){
     printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
     printf("Students in room:\n");
 
-    while (temp->next != NULL){
-        counter++;
-        temp = temp->next;
-    }
-
+    counter = count_students_in_list(head);
     temp = head;
 
     for (int i = 1; i <= counter; i++){
         printf("%d. %s %s, %s\n", i, temp->first_name, temp->last_name, temp->student_id);
         temp = temp->next;
     }
+    temp = head;
 
     printf("\nSelect student: \n");
     scanf("%s", selected_student_string);
@@ -170,11 +168,13 @@ int select_student (room *rm, student *head){
 
     while (selection < 1 || selection > counter){
         printf("Invalid selection. Please try again: \n");
+        selection = 0;
         scanf("%s", selected_student_string);
+        selection = strtol(selected_student_string, &ptr_student, 10);
     }
 
-    printf("Selection: %d\n", selection);
-    find_student(head, selection);
+    printf("Selection: %d.\n", selection);
+    temp = find_student(head, selection);
     printf("Selected student: %s %s, %s\n", temp->first_name, temp->last_name, temp->student_id);
     return selection;
 }
