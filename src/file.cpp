@@ -9,47 +9,9 @@
 #include "file.h"
 #include "matrix.h"
 
-//typedef struct
-//{
-//    int year;
-//    int month;
-//    int day;
-//} date;
-//
-//typedef struct
-//{
-//    char *room_name;
-//    char *exam_name;
-//    date exam_date;
-//    int row;
-//    int col;
-//    int occupancy;
-//} room;
-//
-//typedef struct student
-//{
-//    char *first_name;
-//    char *last_name;
-//    char *student_id;
-//    int col;
-//    int row;
-//    struct student *next;
-//} student;
-
 #define MAX_STRING 250
 #define MIN_YEAR 2023
 #define MAX_YEAR 2100
-
-//room *new_room();
-//void set_room_name(room *p_room, char *name);
-//void set_exam_name(room *p_room, char *name);
-//int prompt_exam_date_year();
-//int prompt_exam_date_month();
-//room *create_room();
-//int free_room(room *new_room);
-//student *create_student();
-//int free_student(student *new_student);
-//int show_room(room *rm, student *head);
 
 // allocates memory for exam_name
 char * allocate_exam_name(room * new_room){
@@ -111,9 +73,10 @@ void set_exam_name(room *p_room, char *name)
     }
 }
 
-// checks if year is valid
-// returns 1 if year is valid
-// returns 0 if year is invalid
+/* checks if year is valid
+*  returns 1 if year is valid
+*  returns 0 if year is invalid
+*/
 int valid_input_year(int input){
     if (input == 0)
     {
@@ -149,9 +112,10 @@ int prompt_exam_date_year()
     return int_input;
 }
 
-// checks if month is valid
-// returns 1 if month is valid
-// returns 0 if month is invalid
+/* checks if month is valid
+* returns 1 if month is valid
+* returns 0 if month is invalid
+*/
 int valid_input_month(int input){
     if (input == 0)
     {
@@ -188,9 +152,10 @@ int prompt_exam_date_month()
     return int_input;
 }
 
-// checks if day is valid
-// returns 1 if day is valid
-// returns 0 if day is invalid
+/* checks if day is valid
+* returns 1 if day is valid
+* returns 0 if day is invalid
+*/
 int valid_input_day(int input){
     if (input == 0)
     {
@@ -232,12 +197,12 @@ room *create_room()
     room *p_room = new_room();
 
     char input[MAX_STRING];
-    int int_input; // Input-Variable für die Eingabeüberprüfung bei Zahlen
-    char *ptr;     // benötigt fürs Parsen v. String nach Integer
+    int int_input; // Input variable for checking numeric input
+    char *ptr;     // used for parsing string to int
 
     do
     {
-        printf("Please enter room name\n"); // Nacheinander werden die Room-Infos abgefragt und befüllt
+        printf("Please enter room name\n"); // Room-infos are prompted one after another and written to room
 
         scanf(" %[^\n]", input);
         set_room_name(p_room, input);
@@ -246,8 +211,8 @@ room *create_room()
         scanf(" %[^\n]", input);
         set_exam_name(p_room, input);
 
-        printf("Exam date: please enter year 'yyyy'\n"); // für alle Integers: scan als String, parsen und Überprüfung, ob Zahl
-        p_room->exam_date.year = prompt_exam_date_year(); // ins Struct kopieren, die anderen Integers folgen demselben Schema
+        printf("Exam date: please enter year 'yyyy'\n"); // for all int: scan as string, parsed and checked if numeric
+        p_room->exam_date.year = prompt_exam_date_year(); // copy into struct - other ints follow the same pattern
 
         printf("Exam date: please enter month 'mm'\n");
         p_room->exam_date.month = prompt_exam_date_month();
@@ -268,7 +233,7 @@ room *create_room()
                 continue;
             }
             if (int_input < 1)
-            { // weniger als 1 Reihe/Spalte nicht möglich
+            {   // less than 1 row/col not possible
                 printf("Please enter valid number\n");
                 scanf(" %s", input);
                 continue;
@@ -355,7 +320,7 @@ room *create_room()
         int av_seats = available_seats(num_seats, p_room->occupancy);
         printf("You can fit %d students in the classroom\n", av_seats);
 
-        // Hier die Möglichkeit, von Neuem zu beginnen
+        // here the possibility to start over
         printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
         scanf(" %s", input);
         while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
@@ -370,7 +335,7 @@ room *create_room()
 }
 
 int free_room(room *new_room)
-{ // gibt zuerst den Speicher der Strings frei, dann jenen des Structs
+{   // free memory of strings first, then of struct
     free(new_room->room_name);
     free(new_room->exam_name);
     free(new_room);
@@ -455,7 +420,7 @@ student *create_student(student *st_head)
     }
 
     do
-    { // Schleife zum Erstellen der students für die Liste
+    {   // loop to create students for the list
 
         new_student = allocate_new_student();
         new_student->first_name = allocate_new_student_first_name(new_student);

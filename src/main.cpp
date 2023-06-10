@@ -5,6 +5,11 @@
 #include "structs/file.h"
 #include "menu.h"
 
+/// @brief Main function
+///
+/// @param argc
+/// @param argv
+///@return int
 int main(int argc, char **argv)
 {
   char *file_name = NULL;
@@ -40,16 +45,6 @@ int main(int argc, char **argv)
   // readCSV(file->name);
 
   menu_choice();
-
-
-  /*
-    struct student *student = malloc(sizeof(struct student));
-    if (student == NULL){
-        fprintf(stderr, "Out of memory\n");
-        exit(1);
-    }
-  */
-
 
   return 0;
 }

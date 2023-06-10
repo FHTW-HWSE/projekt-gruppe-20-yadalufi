@@ -18,4 +18,3 @@ int number_seats (int row, int col);
     }
     return seats;
 }
-

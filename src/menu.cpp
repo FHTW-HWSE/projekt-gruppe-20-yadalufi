@@ -2,6 +2,7 @@
 #include "menu.h"
 #include "file.h"
 
+/// @brief Display menu
 enum menu_elements {
     create_plan = 1,
     show_rm,
@@ -24,7 +25,7 @@ void display_menu() {
     printf("7. Load CSV file\n");
     printf("8. Contact tracing\n");
     printf("9. Quit\n");
-    printf("============\n");
+    printf("============\n\n");
     return;
 }
 
