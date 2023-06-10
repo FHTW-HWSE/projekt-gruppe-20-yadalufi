@@ -68,20 +68,21 @@ int trace_contacts(int selection, room *rm, student *head){
     for (int i = 0; i <= rm->row; i++){
         row_max = i;
     }
+    int col_min = 1;
+    int col_max = 0;
+    //find the max col number
+    for (int j = 0; j <= rm->col; j++){
+        col_max = j;
+    }
+    reset_counter_vars(&i, &j);
 
+    printf("Row_mx: %d\n", row_max);
+    printf("Col_mx: %d\n", col_max);
     printf("Selection: %d\n", selection);
     temp = find_student(head, selection);
-    printf("Direct neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     // find direct neighbors and print to console
-    if(rm->row -1 < row_min){
-        rm->row = row_min;
-    }
-    if(rm->row +1 > row_max){
-        rm->row = row_max;
-    }
-
-    reset_counter_vars(&i, &j);
     temp = head;
     for(i = rm->row -1; i <= rm->row + 1; i++){
         for(j = rm->col -1; j <= rm->col + 1; j++){
@@ -92,11 +93,12 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
-
-    find_student(head, selection);
+/*
+    temp = find_student(head, selection);
     printf("Indirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
+    temp = head;
 
     // find indirect neighbours and print to console
     // indirect neighbors in front
@@ -106,6 +108,7 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
+    temp = head;
 
     // indirect neighbors behind
     for(i = rm->row +2; ; ){
@@ -114,6 +117,7 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
+    temp = head;
 
     // indirect neighbors to the left
     for(i = rm->col -2; ; ){
@@ -122,6 +126,7 @@ int trace_contacts(int selection, room *rm, student *head){
         }
     }
     reset_counter_vars(&i, &j);
+    temp = head;
 
     // indirect neighbors to the right
     for(i = rm->col +2; ; ){
@@ -129,7 +134,7 @@ int trace_contacts(int selection, room *rm, student *head){
             print_student_info(temp);
         }
     }
-
+*/
     return 0;
 }
 

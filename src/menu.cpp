@@ -157,7 +157,7 @@ int menu_choice(FILE *fp)
             break;
         case contact_tracing:
             selection = select_student(m_room, m_student);
-            //trace_contacts(selection, m_room, m_student);
+            trace_contacts(selection, m_room, m_student);
             break;
         case quit:
             printf("Goodbye!\n");
