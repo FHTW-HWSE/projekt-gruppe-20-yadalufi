@@ -5,11 +5,14 @@ project(yadalufi)
 
 add_executable(yadalufi
         src/menu.cpp
+        src/menu/create_plan.cpp
+        src/menu/add_student.cpp
+        src/menu/quit.cpp
         src/file.cpp
         src/student.cpp
         src/main.cpp
-        src/contact_tracing.cpp src/contact_tracing.h)
-# add_executable(yadalufi src/file.c src/menu.c src/main.c tests/test.cpp)
+        src/contact_tracing.cpp
+)
 
 find_package(Catch2 REQUIRED)
 
@@ -17,7 +20,10 @@ include(CTest)
 include(Catch)
 
 add_executable(yadalufi_tests
-        tests/test_example.cpp
+        src/menu/create_plan.cpp
+        src/menu/add_student.cpp
+        src/menu/quit.cpp
+        tests/test.cpp
         src/menu.cpp
         src/file.cpp
         src/student.cpp

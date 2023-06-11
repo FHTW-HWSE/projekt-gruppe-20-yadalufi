@@ -2,10 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 #include "file.h"
-#include "structs/file.h"
 #include "menu.h"
 #include "contact_tracing.h"
 
+/// @brief Main function
+///
+/// @param argc
+/// @param argv
+/// @return int
 int main(int argc, char **argv)
 {
   char *file_name = NULL;
@@ -25,7 +29,7 @@ int main(int argc, char **argv)
   FILE *fp;
   fp = fopen(file_name, "r");
 
-  // create room if 'fp' is NULL -> file not probably not found
+  // create room if 'fp' is NULL -> file probably not found
   if (fp == NULL)
   {
     fp = fopen(file_name, "w"); // Try to create a file
@@ -33,27 +37,15 @@ int main(int argc, char **argv)
     if (fp == NULL)
       fprintf(stderr, "The file could not be created.\n");
   }
-  
+
   menu_choice(fp);
-  
-  fclose(fp);                                         // hier nicht schließen, sondern fp ins Menü (menu_choice) mitgeben
+
+  fclose(fp); // hier nicht schließen, sondern fp ins Menü (menu_choice) mitgeben
 
   // create matrix
 
   // saveCSV(file->name, file->content);
   // readCSV(file->name);
-
-  
-
-
-  /*
-    struct student *student = malloc(sizeof(struct student));
-    if (student == NULL){
-        fprintf(stderr, "Out of memory\n");
-        exit(1);
-    }
-  */
-
 
   return 0;
 }

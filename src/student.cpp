@@ -154,8 +154,7 @@ student *create_student(student *st_head, room *st_room)
                 scanf(" %s", input);
             }
         }
-        while (strcmp(input, "n") != 0)
-            ;
+        while (strcmp(input, "n") != 0);
 
         return head;
     }
