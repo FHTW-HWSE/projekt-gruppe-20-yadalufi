@@ -4,16 +4,16 @@
 #include "../file.h"
 #include "../student.h"
 
-int menu_create_plan(room *m_room, student *m_student)
+int menu_create_plan(room **m_room, student **m_student)
 {
     char input[MAX_STRING];
 
-    if (m_room == NULL)
+    if (*m_room == NULL)
     {
-        m_room = create_room(m_room, m_student); // student head mitgeben
-        if (m_student != NULL && m_room != NULL)
+        *m_room = create_room(*m_room, *m_student); // student head mitgeben
+        if (*m_student != NULL && *m_room != NULL)
         {
-            int seat_ass = seat_assignment(m_student, m_room);
+            int seat_ass = seat_assignment(*m_student, *m_room);
             if (seat_ass == 0)
             {
                 printf("Seat assignment successful\n");
@@ -39,10 +39,10 @@ int menu_create_plan(room *m_room, student *m_student)
     }
     if (strcmp(input, "y") == 0)
     {
-        m_room = create_room(m_room, m_student);
-        if (m_student != NULL && m_room != NULL)
+        *m_room = create_room(*m_room, *m_student);
+        if (*m_student != NULL && *m_room != NULL)
         {
-            int seat_ass = seat_assignment(m_student, m_room);
+            int seat_ass = seat_assignment(*m_student, *m_room);
             if (seat_ass == 0)
             {
                 printf("Seat assignment successful\n");
