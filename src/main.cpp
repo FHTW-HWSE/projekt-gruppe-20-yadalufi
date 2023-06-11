@@ -5,11 +5,13 @@
 #include "menu.h"
 #include "contact_tracing.h"
 
-/// @brief Main function
-///
-/// @param argc
-/// @param argv
-/// @return int
+/**
+ * @brief Main function - entry point
+ *
+ * @param argc
+ * @param argv
+ * @return int
+ */
 int main(int argc, char **argv)
 {
   char *file_name = NULL;
@@ -29,7 +31,7 @@ int main(int argc, char **argv)
   FILE *fp;
   fp = fopen(file_name, "r");
 
-  // create room if 'fp' is NULL -> file probably not found
+  // if 'fp' is NULL create room
   if (fp == NULL)
   {
     fp = fopen(file_name, "w"); // Try to create a file
@@ -40,12 +42,7 @@ int main(int argc, char **argv)
 
   menu_choice(fp);
 
-  fclose(fp); // hier nicht schließen, sondern fp ins Menü (menu_choice) mitgeben
-
-  // create matrix
-
-  // saveCSV(file->name, file->content);
-  //  read_csv(filename, &examRoom, &studentList);
+  fclose(fp);
 
   return 0;
 }
