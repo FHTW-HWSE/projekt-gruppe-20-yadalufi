@@ -11,6 +11,7 @@ add_executable(yadalufi
         src/file.cpp
         src/student.cpp
         src/main.cpp
+        src/contact_tracing.cpp
 )
 
 find_package(Catch2 REQUIRED)

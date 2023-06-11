@@ -3,6 +3,7 @@
 #include <string.h>
 #include "file.h"
 #include "menu.h"
+#include "contact_tracing.h"
 
 /// @brief Main function
 ///
