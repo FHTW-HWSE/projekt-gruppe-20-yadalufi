@@ -6,11 +6,11 @@
 #include "contact_tracing.h"
 
 /**
- * @brief Main function - entry point
+ * @brief       Main function - entry point
  *
- * @param argc
- * @param argv
- * @return int
+ * @param       argc
+ * @param       argv
+ * @return      int
  */
 int main(int argc, char **argv)
 {
