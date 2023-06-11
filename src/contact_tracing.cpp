@@ -32,7 +32,7 @@ int reset_counter_vars(int *i, int *j){
  * @return     void
  */
 void print_student_info(student *temp){
-    printf("\tName: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\tName: %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
 }
 
 /**
@@ -118,7 +118,7 @@ int trace_contacts(int selection, room *rm, student *head){
 
     temp = find_student(head, selection);
     reset_counter_vars(&i, &j);
-    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
     // Seat of selected student as in list (starts at 0)
     // used in if statements to find neighbours by comparing to row and col
     row_seat = temp->row;
@@ -156,7 +156,7 @@ int trace_contacts(int selection, room *rm, student *head){
 
     temp = head;
     temp = find_student(head, selection);
-    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
     temp = head;
@@ -224,7 +224,7 @@ int select_student (room *rm, student *head){
 
     // print all students in list
     for (int i = 1; i <= counter; i++){
-        printf("%d. %s %s, %s\n", i, temp->first_name, temp->last_name, temp->student_id);
+        printf("%d. %s %s, %s\n", i, temp->last_name, temp->first_name, temp->student_id);
         students_in_room++;
         temp = temp->next;
     }
@@ -247,6 +247,6 @@ int select_student (room *rm, student *head){
 
     printf("Selection: %d.\n", selection);
     temp = find_student(head, selection);
-    printf("Selected student: %s %s, %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("Selected student: %s %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
     return selection;
 }
