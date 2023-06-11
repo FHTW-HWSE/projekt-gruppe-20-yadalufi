@@ -9,40 +9,54 @@
 
 #define MAX_STRING 250
 
+/*
+ * Function: trace_contacts
+ * ------------------------
+ *  This function is called when the user selects the contact tracing option from the menu.
+ *  It prompts the user to select a student from the list of students in the room.
+ *  It then prints the student's information and the information of the students sitting
+ *  around the selected student. Direct neighbours are students sitting one seat away from
+ *  the selected student. Indirect neighbours are students sitting two seats away from the
+ *  selected student.
+ *
+ *  selection: the student selected by the user
+ *  rm: the room selected by the user
+ *  head: the head of the list of students in the room
+ *
+ *  returns: 0 if successful
+ */
 int reset_counter_vars(int *i, int *j){
     *i = 0;
     *j = 0;
     return 0;
 }
 
+// Print the student's information
 void print_student_info(student *temp){
-    printf("Name: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\tName: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 }
-/*
-// Traverse the linked list to find the selected student
-student *find_student(student *head, int selection){
-    student *temp = head;
-    for (int i = 1; i < selection; i++) {
-        temp = temp->next;
-    }
-    return temp;
-}
- */
-student *find_student(student *head, int selection) {
+
+// Count the number of students in the list
+int count_students_in_list(student *head){
     student *temp = head;
     int counter = 0;
-
-    // Count the number of students in the list
     while (temp != NULL) {
         counter++;
         temp = temp->next;
     }
-    printf("counter: %d\n", counter);
+    return counter;
+}
+
+// Find the selected student in the list
+student *find_student(student *head, int selection) {
+    student *temp = head;
+    int counter = 0;
+
+    counter = count_students_in_list(head);
 
     // Check if selection is valid
-    if (selection < 0 || selection > counter) {
-        // Invalid selection value
-        // You can choose to handle the error here, such as printing an error message
+    if (selection < 1 || selection > counter) {
+        printf("Invalid selection!\n");
         return NULL;
     }
 
@@ -51,87 +65,98 @@ student *find_student(student *head, int selection) {
 
     // Traverse the list to find the selected student
     for (int i = 0; i < counter; i++) {
-        temp = temp->next;
         if (i == selection -1) {
             break;
         }
+        temp = temp->next;
     }
 
     return temp;
 }
 
+// Search for the selected student's direct and indirect neighbours and print their information
 int trace_contacts(int selection, room *rm, student *head){
 
     student *temp = head;
+    room *m_room = rm;
     int i = 0;
     int j = 0;
-    int row_min = 1;
     int row_max = 0;
     //find the max row number
     for (int i = 0; i <= rm->row; i++){
         row_max = i;
     }
+    int col_max = 0;
+    //find the max col number
+    for (int j = 0; j <= rm->col; j++){
+        col_max = j;
+    }
+    reset_counter_vars(&i, &j);
 
-    find_student(head, selection);
-    printf("Direct neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    int row_seat = 0;
+    int col_seat = 0;
 
+    temp = find_student(head, selection);
+    reset_counter_vars(&i, &j);
+    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    // Seat of selected student as in list (starts at 0)
+    // used in if statements to find neighbours by comparing to row and col
+    row_seat = temp->row;
+    col_seat = temp->col;
+
+    reset_counter_vars(&i, &j);
+    temp = head;
     // find direct neighbors and print to console
-    if(rm->row -1 < row_min){
-        rm->row = row_min;
-    }
-    if(rm->row +1 > row_max){
-        rm->row = row_max;
-    }
-    for(i = rm->row -1; i <= rm->row + 1; i++){
-        for(j = rm->col -1; j <= rm->col + 1; j++){
-            if(temp->student_id == find_student(head, selection)->student_id){
-                continue;
+    // iterate through room (rows and columns) and check if student is in range
+    for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
+        for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
+            // row in front of selected student + row behind selected student
+            if(temp->row == row_seat -1 || temp->row == row_seat +1){
+                if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
+                    print_student_info(temp);
+                }
             }
-            print_student_info(temp);
+            // row of selected student
+            if(temp->row == row_seat){
+                if(temp->col == col_seat -1 || temp->col == col_seat +1){
+                    print_student_info(temp);
+                }
+            }
+            temp = temp->next;
         }
     }
     reset_counter_vars(&i, &j);
 
-    find_student(head, selection);
-    printf("Indirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    temp = head;
+    temp = find_student(head, selection);
+    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
-
+    temp = head;
     // find indirect neighbours and print to console
-    // indirect neighbors in front
-    for(i = rm->row -2; ; ){
-        for(j = rm->col -2; j <= rm->col + 2; j++){
-            print_student_info(temp);
+    // iterate through room (rows and columns) and check if student is in range
+    for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
+        for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
+            // row two in front of selected student + row two behind selected student
+            if(temp->row == row_seat -2 || temp->row == row_seat +2){
+                if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
+                    print_student_info(temp);
+                }
+            }
+            // row in front of selected student + row of selected student + row behind selected student
+            if(temp->row == row_seat -1 || temp->row == row_seat || temp->row == row_seat +1){
+                if(temp->col == col_seat -2 || temp->col == col_seat +2){
+                    print_student_info(temp);
+                }
+            }
+            temp = temp->next;
         }
     }
-    reset_counter_vars(&i, &j);
-
-    // indirect neighbors behind
-    for(i = rm->row +2; ; ){
-        for(j = rm->col -2; j <= rm->col + 2; j++){
-            print_student_info(temp);
-        }
-    }
-    reset_counter_vars(&i, &j);
-
-    // indirect neighbors to the left
-    for(i = rm->col -2; ; ){
-        for(j = rm->row -1; j <= rm->row + 1; j++){
-            print_student_info(temp);
-        }
-    }
-    reset_counter_vars(&i, &j);
-
-    // indirect neighbors to the right
-    for(i = rm->col +2; ; ){
-        for(j = rm->row -1; j <= rm->row + 1; j++){
-            print_student_info(temp);
-        }
-    }
-
+    printf("\n");
     return 0;
 }
 
+// Prompt the user to select a student from the list
 int select_student (room *rm, student *head){
 
     if (head == NULL){
@@ -149,20 +174,18 @@ int select_student (room *rm, student *head){
     int selection = 0;
     int counter = 0;
 
-    printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
+    printf("\n%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
     printf("Students in room:\n");
 
-    while (temp->next != NULL){
-        counter++;
-        temp = temp->next;
-    }
-
+    counter = count_students_in_list(head);
     temp = head;
 
+    // print all students in list
     for (int i = 1; i <= counter; i++){
         printf("%d. %s %s, %s\n", i, temp->first_name, temp->last_name, temp->student_id);
         temp = temp->next;
     }
+    temp = head;
 
     printf("\nSelect student: \n");
     scanf("%s", selected_student_string);
@@ -170,11 +193,13 @@ int select_student (room *rm, student *head){
 
     while (selection < 1 || selection > counter){
         printf("Invalid selection. Please try again: \n");
+        selection = 0;
         scanf("%s", selected_student_string);
+        selection = strtol(selected_student_string, &ptr_student, 10);
     }
 
-    printf("Selection: %d\n", selection);
-    find_student(head, selection);
+    printf("Selection: %d.\n", selection);
+    temp = find_student(head, selection);
     printf("Selected student: %s %s, %s\n", temp->first_name, temp->last_name, temp->student_id);
     return selection;
 }
