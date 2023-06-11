@@ -6,7 +6,13 @@
 
 #define MAX_STRING 250
 
-// allocates memory for a new student_first_name
+/**
+ * @brief       Allocates memory for a new student_first_name
+ *
+ * @param       new_student Pointer to the new student
+ *
+ * @return      char*
+ */
 char *allocate_new_student_first_name(student *new_student)
 {
     new_student->first_name = (char *)malloc(sizeof(char) * MAX_STRING);
@@ -18,7 +24,13 @@ char *allocate_new_student_first_name(student *new_student)
     return new_student->first_name;
 }
 
-// allocates memory for a new student_last_name
+/**
+ * @brief       Allocates memory for a new student_last_name
+ *
+ * @param       new_student Pointer to the new student
+ *
+ * @return      char*
+ */
 char *allocate_new_student_last_name(student *new_student)
 {
     new_student->last_name = (char *)malloc(sizeof(char) * MAX_STRING);
@@ -30,7 +42,13 @@ char *allocate_new_student_last_name(student *new_student)
     return new_student->last_name;
 }
 
-// allocates memory for a new student_id
+/**
+ * @brief       Allocates memory for a new student_id
+ *
+ * @param       new_student Pointer to the new student
+ *
+ * @return      char*
+ */
 char *allocate_new_student_id(student *new_student)
 {
     new_student->student_id = (char *)malloc(sizeof(char) * MAX_STRING);
@@ -42,7 +60,11 @@ char *allocate_new_student_id(student *new_student)
     return new_student->student_id;
 }
 
-// allocates memory for a new student
+/**
+ * @brief       Allocates memory for a new student
+ *
+ * @return      student*
+ */
 student *allocate_new_student()
 {
     student *new_student;
@@ -55,7 +77,14 @@ student *allocate_new_student()
     return new_student;
 }
 
-// creates a new student and returns a pointer to it
+/**
+ * @brief       Creates a new student
+ *
+ * @param       st_head Pointer to the head of the student list
+ * @param       st_room Pointer to the room of the student
+ *
+ * @return      student*
+ */
 student *create_student(student *st_head, room *st_room)
 {
     student *new_student;
@@ -159,82 +188,68 @@ student *create_student(student *st_head, room *st_room)
         return head;
     }
 
-    int free_student(student * new_student)
-    {
-        student *temp = new_student;
+/**
+ * @brief       Frees the memory of the student list
+ *
+ * @param       head Pointer to the head of the student list
+ *
+ * @return      int
+ */
+int free_student(student * new_student)
+{
+    student *temp = new_student;
 
-        while (new_student != NULL)
-        {
-            free(new_student->first_name);
-            free(new_student->last_name);
-            free(new_student->student_id);
-            temp = new_student;
-            new_student = new_student->next;
-            free(temp);
-        }
-        return EXIT_SUCCESS;
+    while (new_student != NULL)
+    {
+        free(new_student->first_name);
+        free(new_student->last_name);
+        free(new_student->student_id);
+        temp = new_student;
+        new_student = new_student->next;
+        free(temp);
     }
+    return EXIT_SUCCESS;
+}
 
-    int seat_assignment(student * head, room * sa_room)
+/**
+ * @brief       Assigns a seat to students in the student list
+ *
+ * @param       head Pointer to the head of the student list
+ * @param       room Pointer to the room of the student
+ *
+ * @return      int
+ */
+int seat_assignment(student * head, room * sa_room)
+{
+    if (head == NULL)
     {
-        if (head == NULL)
+        printf("Empty student list\n");
+        return EXIT_FAILURE;
+    }
+    student *current = head;
+
+    switch (sa_room->occupancy)
+    {
+    case 100:
+        for (int sa_row = 0; sa_row < sa_room->row; sa_row++)
         {
-            printf("Empty student list\n");
-            return EXIT_FAILURE;
+            for (int sa_col = 0; sa_col < sa_room->col; sa_col++)
+            {
+                current->row = sa_row;
+                current->col = sa_col;
+                current = current->next;
+                if (current == NULL)
+                {
+                    return EXIT_SUCCESS;
+                }
+            }
         }
-        student *current = head;
+        break;
 
-        switch (sa_room->occupancy)
+    case 50:
+        for (int sa_row = 0; sa_row < sa_room->row; sa_row++)
         {
-        case 100:
-            for (int sa_row = 0; sa_row < sa_room->row; sa_row++)
-            {
-                for (int sa_col = 0; sa_col < sa_room->col; sa_col++)
-                {
-                    current->row = sa_row;
-                    current->col = sa_col;
-                    current = current->next;
-                    if (current == NULL)
-                    {
-                        return EXIT_SUCCESS;
-                    }
-                }
-            }
-            break;
-
-        case 50:
-            for (int sa_row = 0; sa_row < sa_room->row; sa_row++)
-            {
-                if (sa_row % 2 == 0)
-                {
-                    for (int sa_col = 0; sa_col < sa_room->col; sa_col += 2)
-                    {
-                        current->row = sa_row;
-                        current->col = sa_col;
-                        current = current->next;
-                        if (current == NULL)
-                        {
-                            return EXIT_SUCCESS;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int sa_col = 1; sa_col < sa_room->col; sa_col += 2)
-                    {
-                        current->row = sa_row;
-                        current->col = sa_col;
-                        current = current->next;
-                        if (current == NULL)
-                        {
-                            return EXIT_SUCCESS;
-                        }
-                    }
-                }
-            }
-            break;
-        case 25:
-            for (int sa_row = 0; sa_row < sa_room->row; sa_row += 2)
+            if (sa_row % 2 == 0)
             {
                 for (int sa_col = 0; sa_col < sa_room->col; sa_col += 2)
                 {
@@ -247,22 +262,58 @@ student *create_student(student *st_head, room *st_room)
                     }
                 }
             }
-            break;
-        default:
-            return EXIT_FAILURE;
-            break;
+            else
+            {
+                for (int sa_col = 1; sa_col < sa_room->col; sa_col += 2)
+                {
+                    current->row = sa_row;
+                    current->col = sa_col;
+                    current = current->next;
+                    if (current == NULL)
+                    {
+                        return EXIT_SUCCESS;
+                    }
+                }
+            }
         }
-        return EXIT_FAILURE;
-    }
-
-    int number_students(student * head)
-    {
-        student *current = head;
-        int num_students = 0;
-        while (current != NULL)
+        break;
+    case 25:
+        for (int sa_row = 0; sa_row < sa_room->row; sa_row += 2)
         {
-            num_students++;
-            current = current->next;
+            for (int sa_col = 0; sa_col < sa_room->col; sa_col += 2)
+            {
+                current->row = sa_row;
+                current->col = sa_col;
+                current = current->next;
+                if (current == NULL)
+                {
+                    return EXIT_SUCCESS;
+                }
+            }
         }
-        return num_students;
+        break;
+    default:
+        return EXIT_FAILURE;
+        break;
     }
+    return EXIT_FAILURE;
+}
+
+/**
+ * @brief       Counts the number of students in the student list
+ *
+ * @param       head Pointer to the head of the student list
+ *
+ * @return      int
+ */
+int number_students(student * head)
+{
+    student *current = head;
+    int num_students = 0;
+    while (current != NULL)
+    {
+        num_students++;
+        current = current->next;
+    }
+    return num_students;
+}

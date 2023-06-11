@@ -9,34 +9,39 @@
 
 #define MAX_STRING 250
 
-/*
- * Function: trace_contacts
- * ------------------------
- *  This function is called when the user selects the contact tracing option from the menu.
- *  It prompts the user to select a student from the list of students in the room.
- *  It then prints the student's information and the information of the students sitting
- *  around the selected student. Direct neighbours are students sitting one seat away from
- *  the selected student. Indirect neighbours are students sitting two seats away from the
- *  selected student.
+/**
+ * @brief      Resets the counter variables
  *
- *  selection: the student selected by the user
- *  rm: the room selected by the user
- *  head: the head of the list of students in the room
+ * @param      i  Pointer to the index
+ * @param      j  Pointer to the index
  *
- *  returns: 0 if successful
+ * @return     0 if successful
  */
+
 int reset_counter_vars(int *i, int *j){
     *i = 0;
     *j = 0;
     return 0;
 }
 
-// Print the student's information
+/**
+ * @brief      Prints the student's information to console
+ *
+ * @param      temp  Pointer to the student structure
+ *
+ * @return     void
+ */
 void print_student_info(student *temp){
-    printf("\tName: %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\tName: %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
 }
 
-// Count the number of students in the list
+/**
+ * @brief      Counts the number of students in the list
+ *
+ * @param      head  Pointer to the head of the student list
+ *
+ * @return     The number of students in the list
+ */
 int count_students_in_list(student *head){
     student *temp = head;
     int counter = 0;
@@ -47,7 +52,14 @@ int count_students_in_list(student *head){
     return counter;
 }
 
-// Find the selected student in the list
+/**
+ * @brief      Finds selected student in list
+ *
+ * @param      head       Pointer to the head of the student list
+ * @param      selection  The selection index
+ *
+ * @return     Pointer to the selected student, or NULL if not found
+ */
 student *find_student(student *head, int selection) {
     student *temp = head;
     int counter = 0;
@@ -74,7 +86,15 @@ student *find_student(student *head, int selection) {
     return temp;
 }
 
-// Search for the selected student's direct and indirect neighbours and print their information
+/**
+* @brief      Print direct and indirect neighbours of a selected student within a room to console
+*
+* @param      selection  The selection index of the student
+* @param      rm         Pointer to the room structure
+* @param      head       Pointer to the head of the student list
+*
+* @return     0 if successful
+*/
 int trace_contacts(int selection, room *rm, student *head){
 
     student *temp = head;
@@ -98,7 +118,7 @@ int trace_contacts(int selection, room *rm, student *head){
 
     temp = find_student(head, selection);
     reset_counter_vars(&i, &j);
-    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
     // Seat of selected student as in list (starts at 0)
     // used in if statements to find neighbours by comparing to row and col
     row_seat = temp->row;
@@ -136,7 +156,7 @@ int trace_contacts(int selection, room *rm, student *head){
 
     temp = head;
     temp = find_student(head, selection);
-    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
     temp = head;
@@ -170,7 +190,14 @@ int trace_contacts(int selection, room *rm, student *head){
     return 0;
 }
 
-// Prompt the user to select a student from the list
+/**
+ * @brief   Selects a student from the list according to the user input
+ *
+ * @param   rm   The room
+ * @param   head The head of the student list
+ *
+ * @return  int
+ */
 int select_student (room *rm, student *head){
 
     if (head == NULL){
@@ -197,7 +224,7 @@ int select_student (room *rm, student *head){
 
     // print all students in list
     for (int i = 1; i <= counter; i++){
-        printf("%d. %s %s, %s\n", i, temp->first_name, temp->last_name, temp->student_id);
+        printf("%d. %s %s, %s\n", i, temp->last_name, temp->first_name, temp->student_id);
         students_in_room++;
         temp = temp->next;
     }
@@ -220,6 +247,6 @@ int select_student (room *rm, student *head){
 
     printf("Selection: %d.\n", selection);
     temp = find_student(head, selection);
-    printf("Selected student: %s %s, %s\n", temp->first_name, temp->last_name, temp->student_id);
+    printf("Selected student: %s %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
     return selection;
 }

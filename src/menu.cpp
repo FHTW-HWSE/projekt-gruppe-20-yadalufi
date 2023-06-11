@@ -9,7 +9,6 @@
 #include "student.h"
 #include "contact_tracing.h"
 
-/// @brief Display menu
 enum menu_elements
 {
     create_plan = 1,
@@ -22,6 +21,11 @@ enum menu_elements
     quit
 } choice;
 
+/**
+ * @brief       Displays the menu
+ *
+ * @return      void
+ */
 void display_menu()
 {
     printf("=== MENU ===\n");
@@ -37,6 +41,13 @@ void display_menu()
     return;
 }
 
+/**
+ * @brief       Displays the menu and asks for user input
+ *
+ * @param       fp    Pointer to the file
+ *
+ * @return      int
+ */
 int menu_choice(FILE *fp)
 {
     int choice = 0;
