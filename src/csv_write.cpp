@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "structs/student.h"
+#include "student.h"
 
 void write_csv(struct student *student, int num_students, const char *filename) {
     FILE *fp = fopen("test.csv", "w+");

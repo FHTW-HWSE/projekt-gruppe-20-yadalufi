@@ -41,7 +41,7 @@ int main(int argc, char **argv)
   // create matrix
 
   // saveCSV(file->name, file->content);
-  // readCSV(file->name);
+  //  read_csv(filename, &examRoom, &studentList);
 
   
 
