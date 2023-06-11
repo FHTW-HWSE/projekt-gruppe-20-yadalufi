@@ -111,8 +111,8 @@ int trace_contacts(int selection, room *rm, student *head){
     // iterate through room (rows and columns) and check if student is in range
     for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
         for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
-            // row in front of selected student
-            if(temp->row == row_seat -1){
+            // row in front of selected student + row behind selected student
+            if(temp->row == row_seat -1 || temp->row == row_seat +1){
                 if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
                     print_student_info(temp);
                 }
@@ -120,12 +120,6 @@ int trace_contacts(int selection, room *rm, student *head){
             // row of selected student
             if(temp->row == row_seat){
                 if(temp->col == col_seat -1 || temp->col == col_seat +1){
-                    print_student_info(temp);
-                }
-            }
-            // row behind selected student
-            if(temp->row == row_seat +1){
-                if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
                     print_student_info(temp);
                 }
             }
@@ -144,8 +138,8 @@ int trace_contacts(int selection, room *rm, student *head){
     // iterate through room (rows and columns) and check if student is in range
     for(i = 0 ; temp != NULL && i <= rm->row -1; i++){
         for(j = 0 ; temp != NULL && j <= rm->col -1; j++){
-            // row two in front of selected student
-            if(temp->row == row_seat -2){
+            // row two in front of selected student + row two behind selected student
+            if(temp->row == row_seat -2 || temp->row == row_seat +2){
                 if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
                     print_student_info(temp);
                 }
@@ -153,12 +147,6 @@ int trace_contacts(int selection, room *rm, student *head){
             // row in front of selected student + row of selected student + row behind selected student
             if(temp->row == row_seat -1 || temp->row == row_seat || temp->row == row_seat +1){
                 if(temp->col == col_seat -2 || temp->col == col_seat +2){
-                    print_student_info(temp);
-                }
-            }
-            // row two behind selected student
-            if(temp->row == row_seat +2){
-                if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
                     print_student_info(temp);
                 }
             }
