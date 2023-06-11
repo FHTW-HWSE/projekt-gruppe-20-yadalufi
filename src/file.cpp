@@ -3,7 +3,6 @@
 #include <string.h>
 #include "file.h"
 #include "student.h"
-#include "matrix.h"
 
 #define MAX_STRING 250
 #define MIN_YEAR 2023
@@ -401,86 +400,66 @@ int available_seats(int row, int col, int occupancy)
     {
         return av_seats;
     }
+}
 
-    // creates a new student and returns a pointer to it
-    student *create_student(student * st_head)
-    {
-        student *new_student;
-        char input[MAX_STRING];
-        int int_input;
-        char *ptr;
-        student *head = NULL;
-        student *current = NULL;
-        if (st_head != NULL)
-        { // If the student list has already been started, we append the new students
-            head = st_head;
-            current = head;
-            while (current->next != NULL)
-            {
-                current = current->next;
-            }
+// creates a new student and returns a pointer to it
+student *create_student(student *st_head)
+{
+    student *new_student;
+    char input[MAX_STRING];
+    int int_input;
+    char *ptr;
+    student *head = NULL;
+    student *current = NULL;
+    if (st_head != NULL)
+    { // If the student list has already been started, we append the new students
+        head = st_head;
+        current = head;
+        while (current->next != NULL)
+        {
+            current = current->next;
         }
+    }
+
+    do
+    { // loop to create students for the list
+
+        new_student = allocate_new_student();
+        new_student->first_name = allocate_new_student_first_name(new_student);
+        new_student->last_name = allocate_new_student_last_name(new_student);
+        new_student->student_id = allocate_new_student_id(new_student);
+
+        new_student->next = NULL;
 
         do
-        { // loop to create students for the list
-
-            new_student = allocate_new_student();
-            new_student->first_name = allocate_new_student_first_name(new_student);
-            new_student->last_name = allocate_new_student_last_name(new_student);
-            new_student->student_id = allocate_new_student_id(new_student);
-
-            new_student->next = NULL;
-
-            do
+        {
+            printf("Please enter student's first name(s)\n");
+            scanf(" %[^\n]", input);
+            if ((strcpy(new_student->first_name, input)) == NULL)
             {
-                printf("Please enter student's first name(s)\n");
-                scanf(" %[^\n]", input);
-                if ((strcpy(new_student->first_name, input)) == NULL)
-                {
-                    perror("strcpy");
-                }
-
-                printf("Please enter student's last name(s)\n");
-                scanf(" %[^\n]", input);
-                if ((strcpy(new_student->last_name, input)) == NULL)
-                {
-                    perror("strcpy");
-                }
-
-                printf("Please enter student's ID number\n");
-                scanf(" %[^\n]", input);
-                if ((strcpy(new_student->student_id, input)) == NULL)
-                {
-                    perror("strcpy");
-                }
-
-                /* Here comes the function that assigns the seat (row/col) to the student*/
-
-                printf("\nThe student's name is: %s %s\n", new_student->first_name, new_student->last_name);
-                printf("Their ID is: %s\n", new_student->student_id);
-
-                printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
-                scanf(" %s", input);
-                while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
-                {
-                    printf("Input invalid, please enter (y) or (n)\n");
-                    scanf(" %s", input);
-                }
-
-            } while (strcmp(input, "y") != 0);
-
-            if (head == NULL)
-            {
-                head = new_student;
-                current = new_student;
-            }
-            else
-            {
-                current->next = new_student;
-                current = new_student;
+                perror("strcpy");
             }
 
-            printf("\nDo you want to add another student?\nEnter (y) or (n)\n");
+            printf("Please enter student's last name(s)\n");
+            scanf(" %[^\n]", input);
+            if ((strcpy(new_student->last_name, input)) == NULL)
+            {
+                perror("strcpy");
+            }
+
+            printf("Please enter student's ID number\n");
+            scanf(" %[^\n]", input);
+            if ((strcpy(new_student->student_id, input)) == NULL)
+            {
+                perror("strcpy");
+            }
+
+            /* Here comes the function that assigns the seat (row/col) to the student*/
+
+            printf("\nThe student's name is: %s %s\n", new_student->first_name, new_student->last_name);
+            printf("Their ID is: %s\n", new_student->student_id);
+
+            printf("\n\nAre you happy with your input?\nIf you want to delete your input and start again, enter (n)\nIf your input is correct, enter (y)\n");
             scanf(" %s", input);
             while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
             {
@@ -488,61 +467,82 @@ int available_seats(int row, int col, int occupancy)
                 scanf(" %s", input);
             }
 
-        } while (strcmp(input, "n") != 0);
+        } while (strcmp(input, "y") != 0);
 
-        return head;
-    }
-
-    int show_room(room * rm, student * head)
-    {
-        student *temp = head;
-        int printed = 0; // boolean for printing of "<empty>"
-        printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
-
-        for (int i = rm->row - 1; i >= 0; i--) // prints the rows from back to front
+        if (head == NULL)
         {
-            printf("%-10d", i + 1);
-            for (int j = 0; j < rm->col; j++) // prints the name from left to right
-            {
-                for (temp = head; temp != NULL; temp = temp->next)
-                {
-                    if (temp != NULL && temp->row == i && temp->col == j)
-                    {
-                        char initial[3];
-                        initial[0] = temp->first_name[0];
-                        initial[1] = '.';
-                        initial[2] = '\0';
-                        printf("%2s %-30s", initial, temp->last_name);
-                        printed = 1;
-                    }
-                }
-                if (printed == 0)
-                {
-                    printf("%-32s", "<empty>");
-                }
-                printed = 0;
-            }
-            printf("\n%-10c", ' ');
-
-            for (int j = 0; j < rm->col; j++) // prints the student id number from left to right
-            {
-                for (temp = head; temp != NULL; temp = temp->next)
-                {
-                    if (temp != NULL && temp->row == i && temp->col == j)
-                    {
-                        printf("%-30s %2c", temp->student_id, ' ');
-                        printed = 1;
-                    }
-                }
-                if (printed == 0)
-                {
-                    printf("%-32s", "       ");
-                }
-                printed = 0;
-            }
-            printf("\n\n");
+            head = new_student;
+            current = new_student;
         }
-        printf("\n");
+        else
+        {
+            current->next = new_student;
+            current = new_student;
+        }
 
-        return EXIT_SUCCESS;
+        printf("\nDo you want to add another student?\nEnter (y) or (n)\n");
+        scanf(" %s", input);
+        while (strcmp(input, "y") != 0 && strcmp(input, "n") != 0)
+        {
+            printf("Input invalid, please enter (y) or (n)\n");
+            scanf(" %s", input);
+        }
+
+    } while (strcmp(input, "n") != 0);
+
+    return head;
+}
+
+int show_room(room *rm, student *head)
+{
+    student *temp = head;
+    int printed = 0; // boolean for printing of "<empty>"
+    printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
+
+    for (int i = rm->row - 1; i >= 0; i--) // prints the rows from back to front
+    {
+        printf("%-10d", i + 1);
+        for (int j = 0; j < rm->col; j++) // prints the name from left to right
+        {
+            for (temp = head; temp != NULL; temp = temp->next)
+            {
+                if (temp != NULL && temp->row == i && temp->col == j)
+                {
+                    char initial[3];
+                    initial[0] = temp->first_name[0];
+                    initial[1] = '.';
+                    initial[2] = '\0';
+                    printf("%2s %-30s", initial, temp->last_name);
+                    printed = 1;
+                }
+            }
+            if (printed == 0)
+            {
+                printf("%-32s", "<empty>");
+            }
+            printed = 0;
+        }
+        printf("\n%-10c", ' ');
+
+        for (int j = 0; j < rm->col; j++) // prints the student id number from left to right
+        {
+            for (temp = head; temp != NULL; temp = temp->next)
+            {
+                if (temp != NULL && temp->row == i && temp->col == j)
+                {
+                    printf("%-30s %2c", temp->student_id, ' ');
+                    printed = 1;
+                }
+            }
+            if (printed == 0)
+            {
+                printf("%-32s", "       ");
+            }
+            printed = 0;
+        }
+        printf("\n\n");
     }
+    printf("\n");
+
+    return EXIT_SUCCESS;
+}
