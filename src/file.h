@@ -33,17 +33,18 @@ room * allocate_new_room(room * new_room);
 room *new_room();
 void set_room_name(room *p_room, char *name);
 void set_exam_name(room *p_room, char *name);
-int valid_input_year(int input);
+int valid_input_year(int input);   
 int prompt_exam_date_year();
-int valid_input_month(int input);
+int valid_input_month(int input);  
 int prompt_exam_date_month();
-int valid_input_day(int input);
+int valid_input_day(int input);   
 int prompt_exam_date_day();
 room* create_room(room * r_room, student * r_head);
 int free_room(room *new_room);
 int number_seats (int row, int col);
 int available_seats(int row, int col, int occupancy);
 int show_room(room *rm, student *head);
+int room_set_occupancy(room *p_room, int selection);
 
 
 #endif /* FILE_H_ */
