@@ -6,6 +6,10 @@ Participants:
 - Oberleitner, David (ic22b011)
 - Petrovic, Filip (ic22b071)
 
+## Contributing
+
+The contribution guide can be found [here](contribution.md)
+
 ## Functional requirements
 
 1. The system has to provide a user interface that allows users to enter the number of rows and columns in the lecture hall.
