@@ -27,6 +27,7 @@ add_executable(yadalufi_tests
         src/menu.cpp
         src/file.cpp
         src/student.cpp
+        src/contact_tracing.cpp
 )
 
 catch_discover_tests(yadalufi_tests)
