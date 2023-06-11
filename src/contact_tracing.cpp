@@ -81,13 +81,11 @@ int trace_contacts(int selection, room *rm, student *head){
     room *m_room = rm;
     int i = 0;
     int j = 0;
-    int row_min = 1;
     int row_max = 0;
     //find the max row number
     for (int i = 0; i <= rm->row; i++){
         row_max = i;
     }
-    int col_min = 1;
     int col_max = 0;
     //find the max col number
     for (int j = 0; j <= rm->col; j++){
@@ -101,7 +99,8 @@ int trace_contacts(int selection, room *rm, student *head){
     temp = find_student(head, selection);
     reset_counter_vars(&i, &j);
     printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
-    //Sitzplatz des Studenten (lt. Liste - beginnt bei 0 zu zaehlen)
+    // Seat of selected student as in list (starts at 0)
+    // used in if statements to find neighbours by comparing to row and col
     row_seat = temp->row;
     col_seat = temp->col;
 
@@ -129,7 +128,7 @@ int trace_contacts(int selection, room *rm, student *head){
     reset_counter_vars(&i, &j);
 
     temp = head;
-    find_student(head, selection);
+    temp = find_student(head, selection);
     printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->first_name, temp->last_name, temp->student_id);
 
     reset_counter_vars(&i, &j);
