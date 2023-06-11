@@ -8,7 +8,13 @@
 #define MIN_YEAR 2023
 #define MAX_YEAR 2100
 
-// allocates memory for exam_name
+/**
+ * @brief      Allocates memory for exam_name
+ *
+ * @param      new_room  Pointer to the room structure
+ *
+ * @return     char*
+ */
 char *allocate_exam_name(room *new_room)
 {
     new_room->exam_name = (char *)malloc(sizeof(char) * MAX_STRING);
@@ -19,7 +25,13 @@ char *allocate_exam_name(room *new_room)
     return new_room->exam_name;
 }
 
-// allocates memory for room_name
+/**
+ * @brief      Allocates memory for room_name
+ *
+ * @param      new_room  Pointer to the room structure
+ *
+ * @return     char*
+ */
 char *allocate_room_name(room *new_room)
 {
     new_room->room_name = (char *)malloc(sizeof(char) * MAX_STRING);
@@ -30,7 +42,13 @@ char *allocate_room_name(room *new_room)
     return new_room->room_name;
 }
 
-// allocates memory for new_room (struct room)
+/**
+ * @brief      Allocates memory for new_room (Struct room)
+ *
+ * @param      new_room  Pointer to the room structure
+ *
+ * @return     room*
+ */
 room *allocate_new_room(room *new_room)
 {
     new_room = (room *)malloc(sizeof(room));
@@ -41,9 +59,11 @@ room *allocate_new_room(room *new_room)
     return new_room;
 }
 
-/* allocates memory for new_room (Struct room)
- *  allocates memory for room_name and exam_name
- *  returns new_room
+/**
+ * @brief       Allocates memory for new_room (Struct room)
+ *              Allocates memory for room_name and exam_name
+ *
+ * @return      room*
  */
 room *new_room()
 {
@@ -56,6 +76,14 @@ room *new_room()
     return new_room;
 }
 
+/**
+* @brief        Set the room name for a given room.
+*
+* @param        p_room Pointer to the room structure.
+* @param        name   Pointer to the string containing the room name
+ *
+* @return       void
+*/
 void set_room_name(room *p_room, char *name)
 {
     if ((strcpy(p_room->room_name, name)) == NULL)
@@ -64,6 +92,14 @@ void set_room_name(room *p_room, char *name)
     }
 }
 
+/**
+ * @brief       Sets the exam name for a given room.
+ *
+ * @param        p_room Pointer to the room structure.
+ * @param        name   Pointer to the string containing the room name
+ *
+ * @return       void
+ */
 void set_exam_name(room *p_room, char *name)
 {
     if ((strcpy(p_room->exam_name, name)) == NULL)
@@ -72,9 +108,12 @@ void set_exam_name(room *p_room, char *name)
     }
 }
 
-/* checks if year is valid
- *  returns 1 if year is valid
- *  returns 0 if year is invalid
+/**
+ * @brief      Checks if year is valid
+ *
+ * @param      input  The input
+ *
+ * @return     int
  */
 int valid_input_year(int input)
 {
@@ -94,7 +133,11 @@ int valid_input_year(int input)
     }
 }
 
-// reads input for year and checks if input is valid
+/**
+ * @brief      Reads input for year and checks if input is valid
+ *
+ * @return     int
+ */
 int prompt_exam_date_year()
 {
     char input[MAX_STRING];
@@ -113,9 +156,12 @@ int prompt_exam_date_year()
     return int_input;
 }
 
-/* checks if month is valid
- * returns 1 if month is valid
- * returns 0 if month is invalid
+/**
+ * @brief      Checks if month is valid
+ *
+ * @param      input  The input
+ *
+ * @return     int
  */
 int valid_input_month(int input)
 {
@@ -135,7 +181,11 @@ int valid_input_month(int input)
     }
 }
 
-// reads input for month and checks if input is valid
+/**
+ * @brief      Reads input for month and checks if input is valid
+ *
+ * @return     int
+ */
 int prompt_exam_date_month()
 {
     char input[MAX_STRING];
@@ -155,9 +205,12 @@ int prompt_exam_date_month()
     return int_input;
 }
 
-/* checks if day is valid
- * returns 1 if day is valid
- * returns 0 if day is invalid
+/**
+ * @brief      Checks if day is valid
+ *
+ * @param      input  The input
+ *
+ * @return     int
  */
 int valid_input_day(int input)
 {
@@ -177,7 +230,11 @@ int valid_input_day(int input)
     }
 }
 
-// reads input for day and checks if input is valid
+/**
+ * @brief      Reads input for day and checks if input is valid
+ *
+ * @return     int
+ */
 int prompt_exam_date_day()
 {
     char input[MAX_STRING];
@@ -197,6 +254,14 @@ int prompt_exam_date_day()
     return int_input;
 }
 
+/**
+ * @brief       Creates a new room with user input for room details.
+ *
+ * @param       r_room   Pointer to an existing room structure to be updated or NULL to create a new room.
+ * @param       r_head   Pointer to the head of the student list.
+ *
+ * @return      room*
+ */
 room *create_room(room *r_room, student *r_head)
 {
     room *p_room = r_room;
@@ -320,6 +385,14 @@ room *create_room(room *r_room, student *r_head)
     return p_room;
 }
 
+/**
+ * @brief       Sets the occupancy rate of a room based on user input.
+ *
+ * @param       p_room     Pointer to the room structure.
+ * @param       selection  The selection for the occupancy rate.
+ *
+ * @return      int
+ */
 int room_set_occupancy(room *p_room, int selection)
 {
     switch (selection)
@@ -338,6 +411,13 @@ int room_set_occupancy(room *p_room, int selection)
     }
 }
 
+/**
+ * @brief       Frees the memory occupied by a room structure.
+ *
+ * @param       new_room  Pointer to the room structure to free.
+ *
+ * @return      int
+ */
 int free_room(room *new_room)
 { // free memory of strings first, then of struct
     free(new_room->room_name);
@@ -346,6 +426,14 @@ int free_room(room *new_room)
     return EXIT_SUCCESS;
 }
 
+/**
+ * @brief       Calculates the number of seats in a room.
+ *
+ * @param       row  Number of rows in the room.
+ * @param       col  Number of seats per row.
+ *
+ * @return      int
+ */
 int number_seats(int row, int col)
 {
     int seats = 0;
@@ -365,6 +453,15 @@ int number_seats(int row, int col)
     return seats;
 }
 
+/**
+ * @brief       Calculates the number of available seats in a room, according to user input for occupancy rate.
+ *
+ * @param       row        Number of rows in the room.
+ * @param       col        Number of seats per row.
+ * @param       occupancy  The occupancy rate of the room.
+ *
+ * @return      int
+ */
 int available_seats(int row, int col, int occupancy)
 {
     int av_seats = 0;
@@ -402,7 +499,13 @@ int available_seats(int row, int col, int occupancy)
     }
 }
 
-// creates a new student and returns a pointer to it
+/**
+ * @brief       Creates a new student structure.
+ *
+ * @param       st_head  Pointer to the head of the student list.
+ *
+ * @return      student*
+ */
 student *create_student(student *st_head)
 {
     student *new_student;
@@ -493,6 +596,18 @@ student *create_student(student *st_head)
     return head;
 }
 
+/**
+ * @brief       Displays the seating arrangement of a room along with student information.
+ *
+ * This function prints the room name, exam name, and exam date, followed by the seating arrangement
+ * with corresponding student information. It iterates through the rows and columns of the room,
+ * matching the coordinates with the students' positions. If a student is found at a particular position,
+ * their initials and last name are printed. If a position is empty, "<empty>" is displayed.
+ *
+ * @param       rm    Pointer to the room structure.
+ * @param       head  Pointer to the head of the student list.
+ * @return      int
+ */
 int show_room(room *rm, student *head)
 {
     student *temp = head;
