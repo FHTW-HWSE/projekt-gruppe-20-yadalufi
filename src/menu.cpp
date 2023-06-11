@@ -55,7 +55,7 @@ int menu_choice(FILE *fp)
         {
         case create_plan:
         {
-            int return_value = menu_create_plan(m_room, m_student);
+            int return_value = menu_create_plan(&m_room, &m_student);
         }
         break;
         case show_rm:
@@ -71,7 +71,7 @@ int menu_choice(FILE *fp)
             // insert function here
             break;
         case add_student:
-            menu_add_student(m_room, m_student);
+            menu_add_student(&m_room, &m_student);
             break;
         case remove_student:
             // insert function here
@@ -83,7 +83,7 @@ int menu_choice(FILE *fp)
             // insert function here
             break;
         case quit:
-            menu_quit(m_room, m_student);
+            menu_quit(&m_room, &m_student);
             break;
         default:
             printf("Invalid choice, please try again.\n");
