@@ -15,7 +15,7 @@
  * @param      i  Pointer to the index
  * @param      j  Pointer to the index
  *
- * @return     0 if successful
+ * @return     int
  */
 
 int reset_counter_vars(int *i, int *j){
@@ -36,35 +36,18 @@ void print_student_info(student *temp){
 }
 
 /**
- * @brief      Counts the number of students in the list
- *
- * @param      head  Pointer to the head of the student list
- *
- * @return     The number of students in the list
- */
-int count_students_in_list(student *head){
-    student *temp = head;
-    int counter = 0;
-    while (temp != NULL) {
-        counter++;
-        temp = temp->next;
-    }
-    return counter;
-}
-
-/**
  * @brief      Finds selected student in list
  *
  * @param      head       Pointer to the head of the student list
  * @param      selection  The selection index
  *
- * @return     Pointer to the selected student, or NULL if not found
+ * @return     student*
  */
 student *find_student(student *head, int selection) {
     student *temp = head;
     int counter = 0;
 
-    counter = count_students_in_list(head);
+    counter = number_students(head);
 
     // Check if selection is valid
     if (selection < 1 || selection > counter) {
@@ -93,7 +76,7 @@ student *find_student(student *head, int selection) {
 * @param      rm         Pointer to the room structure
 * @param      head       Pointer to the head of the student list
 *
-* @return     0 if successful
+* @return     int
 */
 int trace_contacts(int selection, room *rm, student *head){
 
@@ -117,8 +100,19 @@ int trace_contacts(int selection, room *rm, student *head){
     int col_seat = 0;
 
     temp = find_student(head, selection);
+    char filename[MAX_STRING];
+    get_ct_filename(m_room, temp, filename);
+
+    FILE *fp = fopen(filename, "w+");
+    if (fp == NULL) {
+        printf("Error: Could not open file %s for writing\n", filename);
+        return 1;
+    }
+
     reset_counter_vars(&i, &j);
-    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    printf("\nDirect neighbours of student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    fprintf(fp, "%s, %s, %d/%d/%d\n", m_room->exam_name, m_room->room_name, m_room->exam_date.year, m_room->exam_date.month, m_room->exam_date.day);
+    fprintf(fp, "Contact tracing for\n%s, %s, %s\n\nDirect neighbours:\n", temp->last_name, temp->first_name, temp->student_id);
     // Seat of selected student as in list (starts at 0)
     // used in if statements to find neighbours by comparing to row and col
     row_seat = temp->row;
@@ -135,6 +129,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat -1 || temp->row == row_seat +1){
                 if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     direct_neighbours++;
                 }
             }
@@ -142,6 +137,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat){
                 if(temp->col == col_seat -1 || temp->col == col_seat +1){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     direct_neighbours++;
                 }
             }
@@ -151,12 +147,15 @@ int trace_contacts(int selection, room *rm, student *head){
     // if no direct neighbours print message
     if(direct_neighbours == 0){
         printf("\tNo direct neighbours\n");
+        fprintf(fp, "No direct neighbours\n");
     }
     reset_counter_vars(&i, &j);
 
     temp = head;
     temp = find_student(head, selection);
-    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    printf("\nIndirect neighbours of student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    fprintf(fp, "\nIndirect neighbours:\n");
+
 
     reset_counter_vars(&i, &j);
     temp = head;
@@ -169,6 +168,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat -2 || temp->row == row_seat +2){
                 if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     indirect_neighbours++;
                 }
             }
@@ -176,6 +176,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat -1 || temp->row == row_seat || temp->row == row_seat +1){
                 if(temp->col == col_seat -2 || temp->col == col_seat +2){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     indirect_neighbours++;
                 }
             }
@@ -185,18 +186,20 @@ int trace_contacts(int selection, room *rm, student *head){
     // if no indirect neighbours print message
     if(indirect_neighbours == 0){
         printf("\tNo indirect neighbours\n");
+        fprintf(fp, "No indirect neighbours\n");
     }
     printf("\n");
+    fclose(fp);
     return 0;
 }
 
 /**
- * @brief   Selects a student from the list according to the user input
+ * @brief       Selects a student from the list according to the user input
  *
- * @param   rm   The room
- * @param   head The head of the student list
+ * @param       rm   The room
+ * @param       head The head of the student list
  *
- * @return  int
+ * @return      int
  */
 int select_student (room *rm, student *head){
 
@@ -219,7 +222,7 @@ int select_student (room *rm, student *head){
     printf("\n%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
     printf("Students in room:\n");
 
-    counter = count_students_in_list(head);
+    counter = number_students(head);
     temp = head;
 
     // print all students in list
@@ -249,4 +252,41 @@ int select_student (room *rm, student *head){
     temp = find_student(head, selection);
     printf("Selected student: %s %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
     return selection;
+}
+
+/**
+ * @brief           Gets the filename for the contact tracing file
+ *
+ * @param           rm  The room
+ * @param           temp The student
+ * @param           fp The file pointer
+ *
+ * @return          int
+ */
+int get_ct_filename(room *rm, student *temp, char* filename) {
+    char datestr[8];
+    sprintf(datestr, "%d%d%d", rm->exam_date.year, rm->exam_date.month, rm->exam_date.day);
+
+    strcpy(filename, "contact_tracing_");
+    strcat(filename, rm->exam_name);
+    strcat(filename, "_");
+    strcat(filename, datestr);
+    strcat(filename, "_");
+    strcat(filename, temp->last_name);
+    strcat(filename, "_");
+    strcat(filename, temp->first_name);
+    strcat(filename, ".csv");
+    return 0;
+}
+
+/**
+ * @brief           Prints the student information to file
+ *
+ * @param           temp The student
+ * @param           fp The file pointer
+ *
+ * @return          void
+ */
+void print_student_info_file(student *temp, FILE *fp) {
+    fprintf(fp, "%s, %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
 }

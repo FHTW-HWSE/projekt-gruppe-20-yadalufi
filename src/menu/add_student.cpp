@@ -4,11 +4,24 @@
 #include "../file.h"
 #include "../student.h"
 
+/**
+ * @brief       Adds a student to the seating plan and performs seat assignment.
+ *
+ * This function is called when the user chooses to add a student to the seating plan. It checks
+ * if a room plan has been created first. If a room plan exists, the function allows the user to
+ * create a new student and assigns a seat to the student. If all seats are taken or if an error
+ * occurs during seat assignment, appropriate messages are displayed.
+ *
+ * @param       m_room    Pointer to the pointer of the room structure.
+ * @param       m_student Pointer to the pointer of the student structure.
+ *
+ * @return      void
+ */
 void menu_add_student(room **m_room, student **m_student)
 {
     if (*m_room == NULL)
     {
-        printf("Please create a room plan first.\n");
+        printf("\nPlease create a room plan first.\n\n");
         return;
     }
 
@@ -18,7 +31,7 @@ void menu_add_student(room **m_room, student **m_student)
         int num_students = number_students(*m_student);
         if (num_students >= seats)
         {
-            printf("All seats are taken.\n");
+            printf("\nAll seats are taken.\n\n");
             return;
         }
         else
@@ -27,15 +40,15 @@ void menu_add_student(room **m_room, student **m_student)
             int seat_ass = seat_assignment(*m_student, *m_room);
             if (seat_ass == 0)
             {
-                printf("Seat assignment successful\n");
+                printf("\nSeat assignment successful\n\n");
             }
             else if (seat_ass == 1)
             {
-                printf("Seat assignment not succesful\n");
+                printf("\nSeat assignment not successful\n\n");
             }
             else
             {
-                printf("Seat ass...?\n");
+                printf("\nSeat assignment error\n\n");
             }
         }
         return;
@@ -46,14 +59,14 @@ void menu_add_student(room **m_room, student **m_student)
     seat_ass = seat_assignment(*m_student, *m_room);
     if (seat_ass == 0)
     {
-        printf("Seat assignment successful\n");
+        printf("\nSeat assignment successful\n\n");
     }
     else if (seat_ass == 1)
     {
-        printf("Seat assignment not succesful\n");
+        printf("\nSeat assignment not successful\n\n");
     }
     else
     {
-        printf("Seat ass...?\n");
+        printf("\nSeat assignment error\n\n");
     }
 }
