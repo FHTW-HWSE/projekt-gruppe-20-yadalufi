@@ -185,6 +185,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat -2 || temp->row == row_seat +2){
                 if(temp->col == col_seat -2 || temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1|| temp->col == col_seat +2){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     indirect_neighbours++;
                 }
             }
