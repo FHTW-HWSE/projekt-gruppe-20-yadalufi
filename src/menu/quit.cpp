@@ -15,7 +15,6 @@
  *
  * @return      void
  */
-
 void menu_quit(room **m_room, student **m_student)
 {
     printf("Goodbye!\n");

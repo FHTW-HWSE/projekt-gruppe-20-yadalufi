@@ -36,23 +36,6 @@ void print_student_info(student *temp){
 }
 
 /**
- * @brief      Counts the number of students in the list
- *
- * @param      head  Pointer to the head of the student list
- *
- * @return     int
- */
-/*int count_students_in_list(student *head){
-    student *temp = head;
-    int counter = 0;
-    while (temp != NULL) {
-        counter++;
-        temp = temp->next;
-    }
-    return counter;
-}
-*/
-/**
  * @brief      Finds selected student in list
  *
  * @param      head       Pointer to the head of the student list
@@ -127,9 +110,9 @@ int trace_contacts(int selection, room *rm, student *head){
     }
 
     reset_counter_vars(&i, &j);
-    printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
-    fprintf(fp, "%s,%s,%d/%d/%d\n", m_room->exam_name, m_room->room_name, m_room->exam_date.year, m_room->exam_date.month, m_room->exam_date.day);
-    fprintf(fp, "Contact tracing for\n%s,%s,%s\n\nDirect neighbours:\n", temp->last_name, temp->first_name, temp->student_id);
+    printf("\nDirect neighbours of student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    fprintf(fp, "%s, %s, %d/%d/%d\n", m_room->exam_name, m_room->room_name, m_room->exam_date.year, m_room->exam_date.month, m_room->exam_date.day);
+    fprintf(fp, "Contact tracing for\n%s, %s, %s\n\nDirect neighbours:\n", temp->last_name, temp->first_name, temp->student_id);
     // Seat of selected student as in list (starts at 0)
     // used in if statements to find neighbours by comparing to row and col
     row_seat = temp->row;
@@ -170,7 +153,7 @@ int trace_contacts(int selection, room *rm, student *head){
 
     temp = head;
     temp = find_student(head, selection);
-    printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    printf("\nIndirect neighbours of student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
     fprintf(fp, "\nIndirect neighbours:\n");
 
 
@@ -305,5 +288,5 @@ int get_ct_filename(room *rm, student *temp, char* filename) {
  * @return          void
  */
 void print_student_info_file(student *temp, FILE *fp) {
-    fprintf(fp, "%s,%s,%s\n", temp->last_name, temp->first_name, temp->student_id);
+    fprintf(fp, "%s, %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
 }
