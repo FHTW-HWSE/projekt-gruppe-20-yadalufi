@@ -8,6 +8,8 @@
 #include "file.h"
 #include "student.h"
 #include "contact_tracing.h"
+#include "csv_read.h"
+
 
 enum menu_elements
 {
@@ -48,7 +50,7 @@ void display_menu()
  *
  * @return      int
  */
-int menu_choice(FILE *fp)
+int menu_choice(char *filename)
 {
     int choice = 0;
     char choice_string[MAX_STRING];
@@ -56,6 +58,11 @@ int menu_choice(FILE *fp)
     room *m_room = NULL; // hier mit fp: wenn kein File da, dann room/student neu, sonst aus File laden
     student *m_student = NULL;
     int selection = 0;
+    if (filename != NULL) {
+        m_student = read_csv(filename, &m_room, m_student);
+    }
+
+
 
     while (choice != quit)
     {

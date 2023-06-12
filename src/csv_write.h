@@ -1,7 +1,8 @@
 
-#ifndef YADALUFI_CSV_WRITE_H
-#define YADALUFI_CSV_WRITE_H
+#ifndef YADALUFI_CSV_WRITE_H_
+#define YADALUFI_CSV_WRITE_H_
 
-void write_csv();
-void read_csv();
-#endif //YADALUFI_CSV_WRITE_H
+#include "file.h"
+
+void write_csv(const char* filename, room* examRoom, student* students, int num_students);
+#endif //CSV_WRITE_H
