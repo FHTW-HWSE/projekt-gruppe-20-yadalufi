@@ -4,14 +4,16 @@ cmake_minimum_required(VERSION 3.10.0)
 project(yadalufi)
 
 add_executable(yadalufi
-        src/menu.cpp
-        src/menu/create_plan.cpp
         src/menu/add_student.cpp
+        src/menu/create_plan.cpp
         src/menu/quit.cpp
-        src/file.cpp
-        src/student.cpp
-        src/main.cpp
         src/contact_tracing.cpp
+        src/csv_read.cpp
+        src/csv_write.cpp
+        src/file.cpp
+        src/main.cpp
+        src/menu.cpp
+        src/student.cpp
 )
 
 find_package(Catch2 REQUIRED)
@@ -28,6 +30,7 @@ add_executable(yadalufi_tests
         src/file.cpp
         src/student.cpp
         src/contact_tracing.cpp
+        src/csv_read.cpp
 )
 
 catch_discover_tests(yadalufi_tests)
