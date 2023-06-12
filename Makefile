@@ -1,5 +1,7 @@
-compile:
-	if [ ! -d "./build" ]; then mkdir build; fi && rm -rf ./build/* && cd build && cmake ../CMakeLists.txt && make
+.PHONY: compile run
 
-run:
-	if [ ! -f "./build/yadalufi" ]; then echo "./build/yadalufi does not exist. Please run 'make compile' first."; fi && ./build/yadalufi
+compile:
+	mkdir -p build && cd build && cmake .. && make
+
+run: compile
+	./build/yadalufi
