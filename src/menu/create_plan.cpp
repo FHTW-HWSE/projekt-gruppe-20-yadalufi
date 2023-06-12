@@ -16,15 +16,15 @@ int menu_create_plan(room **m_room, student **m_student)
             int seat_ass = seat_assignment(*m_student, *m_room);
             if (seat_ass == 0)
             {
-                printf("Seat assignment successful\n");
+                printf("\nSeat assignment successful\n\n");
             }
             else if (seat_ass == 1)
             {
-                printf("Seat assignment not succesful\n");
+                printf("\nSeat assignment not succesful\n\n");
             }
             else
             {
-                printf("Seat assignment error\n");
+                printf("\nSeat assignment error\n\n");
             }
         }
         return 0;
@@ -45,15 +45,15 @@ int menu_create_plan(room **m_room, student **m_student)
             int seat_ass = seat_assignment(*m_student, *m_room);
             if (seat_ass == 0)
             {
-                printf("Seat assignment successful\n");
+                printf("\nSeat assignment successful\n\n");
             }
             else if (seat_ass == 1)
             {
-                printf("Seat assignment not succesful\n");
+                printf("\nSeat assignment not succesful\n\n");
             }
             else
             {
-                printf("Seat assignment error\n");
+                printf("\nSeat assignment error\n\n");
             }
         }
     }

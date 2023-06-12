@@ -8,7 +8,7 @@ void menu_add_student(room **m_room, student **m_student)
 {
     if (*m_room == NULL)
     {
-        printf("Please create a room plan first.\n");
+        printf("\nPlease create a room plan first.\n\n");
         return;
     }
 
@@ -18,7 +18,7 @@ void menu_add_student(room **m_room, student **m_student)
         int num_students = number_students(*m_student);
         if (num_students >= seats)
         {
-            printf("All seats are taken.\n");
+            printf("\nAll seats are taken.\n\n");
             return;
         }
         else
@@ -27,15 +27,15 @@ void menu_add_student(room **m_room, student **m_student)
             int seat_ass = seat_assignment(*m_student, *m_room);
             if (seat_ass == 0)
             {
-                printf("Seat assignment successful\n");
+                printf("\nSeat assignment successful\n\n");
             }
             else if (seat_ass == 1)
             {
-                printf("Seat assignment not succesful\n");
+                printf("\nSeat assignment not succesful\n\n");
             }
             else
             {
-                printf("Seat ass...?\n");
+                printf("\nSeat assignment error\n\n");
             }
         }
         return;
@@ -46,14 +46,14 @@ void menu_add_student(room **m_room, student **m_student)
     seat_ass = seat_assignment(*m_student, *m_room);
     if (seat_ass == 0)
     {
-        printf("Seat assignment successful\n");
+        printf("\nSeat assignment successful\n\n");
     }
     else if (seat_ass == 1)
     {
-        printf("Seat assignment not succesful\n");
+        printf("\nSeat assignment not succesful\n\n");
     }
     else
     {
-        printf("Seat ass...?\n");
+        printf("\nSeat assignment error\n\n");
     }
 }

@@ -74,7 +74,7 @@ int menu_choice(FILE *fp)
         case show_rm:
             if (m_room == NULL)
             {
-                printf("No room to show\n");
+                printf("\nNo room to show\n\n");
                 break;
             }
 
@@ -93,14 +93,18 @@ int menu_choice(FILE *fp)
             // insert function here
             break;
         case contact_tracing:
+            if (m_room != NULL && m_student != NULL) {
             selection = select_student(m_room, m_student);
             trace_contacts(selection, m_room, m_student);
+            } else {
+                printf("\nContact tracing not possible (no room/students)\n\n");
+            }
             break;
         case quit:
             menu_quit(&m_room, &m_student);
             break;
         default:
-            printf("Invalid choice, please try again.\n");
+            printf("\nInvalid choice, please try again.\n\n");
             break;
         }
     }
