@@ -3,6 +3,15 @@
 #include <string.h>
 #include "file.h"
 
+/**
+ * @brief      Reads the csv file and stores the information in the room and student structures
+ *
+ * @param      filename  The filename
+ * @param      examRoom  Pointer to the room structure
+ * @param      students  Pointer to the student list
+ *
+ * @return     void
+ */
 void read_csv(const char* filename, room* examRoom, student** students) {
     FILE* inputFile = fopen(filename, "r");
     if (inputFile == NULL) {

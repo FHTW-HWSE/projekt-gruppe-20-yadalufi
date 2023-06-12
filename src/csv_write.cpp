@@ -3,6 +3,16 @@
 #include <string.h>
 #include "file.h"
 
+/**
+ * @brief      Reads the student's information in the room and student structures and writes it to a csv file
+ *
+ * @param      filename  The filename
+ * @param      examRoom  Pointer to the room structure
+ * @param      students  Pointer to the student list
+ * @param      num_students  The number of students
+ *
+ * @return     void
+ */
 void write_csv(const char* filename, room* examRoom, student* students, int num_students) {
     FILE *fp = fopen(filename, "w+");
     if (fp == NULL) {
