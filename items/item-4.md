@@ -1,6 +1,6 @@
 # Description
 
-As a user I want to enter a student ID<br />
+As a user I want to enter a student (last name, first name, ID)<br />
 So that the corresponding student is assigned a seat (row-no./col.-no.)
 
 ## Acceptance criteria
@@ -8,37 +8,25 @@ So that the corresponding student is assigned a seat (row-no./col.-no.)
 ### 1.
 ---
 Given a basic plan has been created<br />
-(and) a pattern has been selected<br />
-when I enter a student ID<br />
-then the student is assigned an empty seat
+(and) an occupancy rate has been selected<br />
+when the user enters a student's data<br />
+then the student is assigned an empty seat.
 
 ### 2.
 ---
-Given a student ID has already been entered<br />
-when I enter it again<br />
-then I’m told that it is already in the plan<br />
-
-### 3.
----
 Given the plan is maxed out<br />
-When I enter a student ID<br />
-then I’m told that there’s no seat left
+When the user enters another student's data<br />
+then the user is told that there’s no seat left.
 
 ### 4.
 ---
-Given the plan including seating pattern has been created<br />
-when I open the project<br />
-then I can see the number of available seats
+Given the plan has been created<br />
+when the user selects "add student"<br />
+then the user can add a student to the plan.
 
 ### 5.
 ---
-Given the plan including seating pattern has been created<br />
-when I enter an input which does not correspond to a student<br />
-Then I’m told that the student data has not been entered yet
-
-### 6.
----
-Given I have made changes to the current project (i.e. assigned a seat to a student)
+Given the user has created a room (i.e. assigned a seat to a student)
 <br />
-when I want to end the project/take a break<br />
-then I can save the current project
+when the user wants to end the program/take a break<br />
+then the plan is saved to a file.
