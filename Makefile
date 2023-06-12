@@ -5,3 +5,6 @@ compile:
 
 run:
 	./build/yadalufi
+
+test:
+	./build/yadalufi_tests
