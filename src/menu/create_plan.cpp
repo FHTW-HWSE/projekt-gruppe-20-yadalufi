@@ -4,6 +4,19 @@
 #include "../file.h"
 #include "../student.h"
 
+/**
+ * @brief           Creates a seating plan and performs seat assignments.
+ *
+ * This function is called when the user chooses to create a seating plan. It allows the user to
+ * create a new room and perform seat assignments for the students. If an existing plan exists,
+ * the user has the option to overwrite it or cancel the operation. The function returns 0 upon
+ * successful completion.
+ *
+ * @param           m_room    Pointer to the pointer of the room structure.
+ * @param           m_student Pointer to the pointer of the student structure.
+ *
+ * @return          int
+ */
 int menu_create_plan(room **m_room, student **m_student)
 {
     char input[MAX_STRING];
@@ -20,7 +33,7 @@ int menu_create_plan(room **m_room, student **m_student)
             }
             else if (seat_ass == 1)
             {
-                printf("\nSeat assignment not succesful\n\n");
+                printf("\nSeat assignment not successful\n\n");
             }
             else
             {
@@ -49,7 +62,7 @@ int menu_create_plan(room **m_room, student **m_student)
             }
             else if (seat_ass == 1)
             {
-                printf("\nSeat assignment not succesful\n\n");
+                printf("\nSeat assignment not successful\n\n");
             }
             else
             {
