@@ -15,7 +15,7 @@
  * @param      i  Pointer to the index
  * @param      j  Pointer to the index
  *
- * @return     0 if successful
+ * @return     int
  */
 
 int reset_counter_vars(int *i, int *j){
@@ -40,7 +40,7 @@ void print_student_info(student *temp){
  *
  * @param      head  Pointer to the head of the student list
  *
- * @return     The number of students in the list
+ * @return     int
  */
 /*int count_students_in_list(student *head){
     student *temp = head;
@@ -58,7 +58,7 @@ void print_student_info(student *temp){
  * @param      head       Pointer to the head of the student list
  * @param      selection  The selection index
  *
- * @return     Pointer to the selected student, or NULL if not found
+ * @return     student*
  */
 student *find_student(student *head, int selection) {
     student *temp = head;
@@ -93,7 +93,7 @@ student *find_student(student *head, int selection) {
 * @param      rm         Pointer to the room structure
 * @param      head       Pointer to the head of the student list
 *
-* @return     0 if successful
+* @return     int
 */
 int trace_contacts(int selection, room *rm, student *head){
 
@@ -211,12 +211,12 @@ int trace_contacts(int selection, room *rm, student *head){
 }
 
 /**
- * @brief   Selects a student from the list according to the user input
+ * @brief       Selects a student from the list according to the user input
  *
- * @param   rm   The room
- * @param   head The head of the student list
+ * @param       rm   The room
+ * @param       head The head of the student list
  *
- * @return  int
+ * @return      int
  */
 int select_student (room *rm, student *head){
 
@@ -270,6 +270,16 @@ int select_student (room *rm, student *head){
     printf("Selected student: %s %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
     return selection;
 }
+
+/**
+ * @brief           Gets the filename for the contact tracing file
+ *
+ * @param           rm  The room
+ * @param           temp The student
+ * @param           fp The file pointer
+ *
+ * @return          int
+ */
 int get_ct_filename(room *rm, student *temp, char* filename) {
     char datestr[8];
     sprintf(datestr, "%d%d%d", rm->exam_date.year, rm->exam_date.month, rm->exam_date.day);
@@ -286,6 +296,14 @@ int get_ct_filename(room *rm, student *temp, char* filename) {
     return 0;
 }
 
+/**
+ * @brief           Prints the student information to file
+ *
+ * @param           temp The student
+ * @param           fp The file pointer
+ *
+ * @return          void
+ */
 void print_student_info_file(student *temp, FILE *fp) {
     fprintf(fp, "%s,%s,%s\n", temp->last_name, temp->first_name, temp->student_id);
 }
