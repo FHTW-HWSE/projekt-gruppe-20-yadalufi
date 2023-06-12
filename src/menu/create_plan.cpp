@@ -53,7 +53,7 @@ int menu_create_plan(room **m_room, student **m_student)
             }
             else
             {
-                printf("Seat ass...?\n");
+                printf("Seat assignment error\n");
             }
         }
     }

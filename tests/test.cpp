@@ -26,10 +26,16 @@ valid_input_year    ok
 valid_input_month   ok
 valid_input_day     ok
 number_seats        ok   
-available_seats
-
+available_seats     ok
 seat_assignment     ok
-number_students
+create_plan?
+room_set_occupancy
+
+reset_counter_vars
+count_students_in_list
+find_student
+
+
 */
 
 

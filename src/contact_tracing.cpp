@@ -42,7 +42,7 @@ void print_student_info(student *temp){
  *
  * @return     The number of students in the list
  */
-int count_students_in_list(student *head){
+/*int count_students_in_list(student *head){
     student *temp = head;
     int counter = 0;
     while (temp != NULL) {
@@ -51,7 +51,7 @@ int count_students_in_list(student *head){
     }
     return counter;
 }
-
+*/
 /**
  * @brief      Finds selected student in list
  *
@@ -64,7 +64,7 @@ student *find_student(student *head, int selection) {
     student *temp = head;
     int counter = 0;
 
-    counter = count_students_in_list(head);
+    counter = number_students(head);
 
     // Check if selection is valid
     if (selection < 1 || selection > counter) {
@@ -219,7 +219,7 @@ int select_student (room *rm, student *head){
     printf("\n%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
     printf("Students in room:\n");
 
-    counter = count_students_in_list(head);
+    counter = number_students(head);
     temp = head;
 
     // print all students in list
