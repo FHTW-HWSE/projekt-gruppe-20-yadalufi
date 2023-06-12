@@ -8,13 +8,13 @@ So that the plan matches the actual classroom
 
 ### 1.
 ---
-Given that I am on the room size configuration screen<br />
-when the user types in the values as integers only of the room's height and width in rows and columns<br />
-then the system should accept my input and save the values in a struct.
+Given that the user is on the room size configuration screen<br />
+when the user types in the values of the room's height and width in rows and columns as integers only<br />
+then the system should accept the input and save the values in a struct.
 
 ### 2.
 ---
-Given that I have entered the values of the room's height and width<br />
+Given that the user has entered the values of the room's height and width<br />
 when the user hits enter,<br />
 then the system should validate the input values to ensure that they are within an acceptable range and display an error message if the values are invalid.
 
@@ -26,6 +26,6 @@ then the system should display a graphical representation of the defined room si
 
 ### 4.
 ---
-Given that I am a user,<br />
-when the user puts negative/wrong values of the room’s height and width in,<br />
-then the system should refuse my values and display an error message.
+Given that the user puts in values for the room's height and width,<br />
+when the input values are negative/invalid,<br />
+then the system should refuse the values and display an error message.
