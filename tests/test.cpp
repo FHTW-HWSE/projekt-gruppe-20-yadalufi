@@ -3,41 +3,225 @@
 #include "../src/student.h"
 #include "../src/file.h"
 #include "../src/student.h"
-/*
-SCENARIO("mathematical addition") {
-    GIVEN("are 1 & 2") {
-        int a = 1;
-        int b = 2;
-
-        WHEN("adding 1 & 2") {
-            int result = a + b;
-
-            THEN("the sum should be 3") {
-                REQUIRE(result == 3);
-            }
-        }
-    }
-}
-*/
+#include "../src/contact_tracing.h"
 
 /*
 Tests for: 
+- contact_tracing.cpp
+reset_counter_vars  ok
+find_student        ok
+
+- file.cpp
 valid_input_year    ok
 valid_input_month   ok
 valid_input_day     ok
 number_seats        ok   
 available_seats     ok
+room_set_occupancy  ok
+
+- student.cpp
 seat_assignment     ok
-create_plan?
-room_set_occupancy
-
-reset_counter_vars
-count_students_in_list
-find_student
-
-
+number_students     ok
 */
 
+/*Tests for contact_tracing.cpp functions*/
+
+TEST_CASE("reset_counter_vars valid input") {
+    GIVEN("i = 5, j = 6") {
+        int i = 5;
+        int j = 6;
+
+        WHEN ("call reset_counter_vars"){
+            int result = reset_counter_vars(&i, &j);
+
+            THEN("result should be 0, i and j should be 0"){
+                REQUIRE(result == 0);
+                REQUIRE(i == 0);
+                REQUIRE(j == 0);
+            }
+        }
+    }
+}
+
+TEST_CASE("find_student valid input"){
+    GIVEN("3 students, selection 2") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = NULL;
+        int selection = 2;
+        student * result = NULL;
+
+        WHEN("call find_student") {
+            result = find_student(head, selection);
+
+            THEN("result should be student two"){
+                REQUIRE(result == two);
+                
+                free(head);
+                free(two);
+                free(three);
+            }
+        }
+    }
+
+        GIVEN("6 students, selection 6") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        student * four = (student *)malloc(sizeof(student));
+        student * five = (student *)malloc(sizeof(student));
+        student * six = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = four;
+        four->next = five;
+        five->next = six;
+        six->next = NULL;
+        int selection = 6;
+        student * result = NULL;
+
+        WHEN("call find_student") {
+            result = find_student(head, selection);
+
+            THEN("result should be student six"){
+                REQUIRE(result == six);
+                
+                free(head);
+                free(two);
+                free(three);
+                free(four);
+                free(five);
+                free(six);
+            }
+        }
+    }
+
+        GIVEN("6 students, selection 1") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        student * four = (student *)malloc(sizeof(student));
+        student * five = (student *)malloc(sizeof(student));
+        student * six = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = four;
+        four->next = five;
+        five->next = six;
+        six->next = NULL;
+        int selection = 1;
+        student * result = NULL;
+
+        WHEN("call find_student") {
+            result = find_student(head, selection);
+
+            THEN("result should be student head"){
+                REQUIRE(result == head);
+                
+                free(head);
+                free(two);
+                free(three);
+                free(four);
+                free(five);
+                free(six);
+            }
+        }
+    }
+}
+
+TEST_CASE("find_student invalid input"){
+    GIVEN("3 students, selection 0") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = NULL;
+        int selection = 0;
+        student * result = NULL;
+
+        WHEN("call find_student") {
+            result = find_student(head, selection);
+
+            THEN("result should be NULL"){
+                REQUIRE(result == NULL);
+                
+                free(head);
+                free(two);
+                free(three);
+            }
+        }
+    }
+
+        GIVEN("6 students, selection 7") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        student * four = (student *)malloc(sizeof(student));
+        student * five = (student *)malloc(sizeof(student));
+        student * six = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = four;
+        four->next = five;
+        five->next = six;
+        six->next = NULL;
+        int selection = 7;
+        student * result = NULL;
+
+        WHEN("call find_student") {
+            result = find_student(head, selection);
+
+            THEN("result should be NULL"){
+                REQUIRE(result == NULL);
+                
+                free(head);
+                free(two);
+                free(three);
+                free(four);
+                free(five);
+                free(six);
+            }
+        }
+    }
+
+        GIVEN("6 students, selection -1") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        student * four = (student *)malloc(sizeof(student));
+        student * five = (student *)malloc(sizeof(student));
+        student * six = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = four;
+        four->next = five;
+        five->next = six;
+        six->next = NULL;
+        int selection = -1;
+        student * result = NULL;
+
+        WHEN("call find_student") {
+            result = find_student(head, selection);
+
+            THEN("result should be NULL"){
+                REQUIRE(result == NULL);
+                
+                free(head);
+                free(two);
+                free(three);
+                free(four);
+                free(five);
+                free(six);
+            }
+        }
+    }
+}
+
+/*Tests for file.cpp functions*/
 
 TEST_CASE("valid_input_year valid input") {
     GIVEN("input = 2023") {
@@ -476,6 +660,104 @@ TEST_CASE("available_seats invalid input") {
     }
 }
 
+TEST_CASE("room_set_occupancy valid input") {
+    GIVEN("selection = 1") {
+        int selection = 1;
+        room * test_room = (room *)malloc(sizeof(room));
+
+        WHEN("call room_set_occupancy") {
+            int result = room_set_occupancy(test_room, selection);
+
+            THEN("result should be 1, occupancy should be 100") {
+                REQUIRE(result == 1);
+                REQUIRE(test_room->occupancy == 100);
+
+                free(test_room);
+            }
+        }
+    }
+
+        GIVEN("selection = 2") {
+        int selection = 2;
+        room * test_room = (room *)malloc(sizeof(room));
+
+        WHEN("call room_set_occupancy") {
+            int result = room_set_occupancy(test_room, selection);
+
+            THEN("result should be 1, occupancy should be 50") {
+                REQUIRE(result == 1);
+                REQUIRE(test_room->occupancy == 50);
+
+                free(test_room);
+            }
+        }
+    }
+
+        GIVEN("selection = 3") {
+        int selection = 3;
+        room * test_room = (room *)malloc(sizeof(room));
+
+        WHEN("call room_set_occupancy") {
+            int result = room_set_occupancy(test_room, selection);
+
+            THEN("result should be 1, occupancy should be 25") {
+                REQUIRE(result == 1);
+                REQUIRE(test_room->occupancy == 25);
+
+                free(test_room);
+            }
+        }
+    }
+}
+
+TEST_CASE("room_set_occupancy invalid input") {
+    GIVEN("selection = 0") {
+        int selection = 0;
+        room * test_room = (room *)malloc(sizeof(room));
+
+        WHEN("call room_set_occupancy") {
+            int result = room_set_occupancy(test_room, selection);
+
+            THEN("result should be 0") {
+                REQUIRE(result == 0);
+
+                free(test_room);
+            }
+        }
+    }
+
+        GIVEN("selection = -1") {
+        int selection = -1;
+        room * test_room = (room *)malloc(sizeof(room));
+
+        WHEN("call room_set_occupancy") {
+            int result = room_set_occupancy(test_room, selection);
+
+            THEN("result should be 0") {
+                REQUIRE(result == 0);
+
+                free(test_room);
+            }
+        }
+    }
+
+        GIVEN("selection = 4") {
+        int selection = 4;
+        room * test_room = (room *)malloc(sizeof(room));
+
+        WHEN("call room_set_occupancy") {
+            int result = room_set_occupancy(test_room, selection);
+
+            THEN("result should be 0") {
+                REQUIRE(result == 0);
+
+                free(test_room);
+            }
+        }
+    }
+}
+
+/*Tests for student.cpp functions*/
 
 TEST_CASE ("seat_assignment valid input"){
     GIVEN("3 students, 9 seats, occupancy 100") {
@@ -766,4 +1048,58 @@ TEST_CASE ("seat_assignment invalid input"){
             }
         }
     }
+}
+
+TEST_CASE("number_students valid input") {
+    GIVEN("list of 5 students") {
+        student * head = (student *)malloc(sizeof(student));
+        student * two = (student *)malloc(sizeof(student));
+        student * three = (student *)malloc(sizeof(student));
+        student * four = (student *)malloc(sizeof(student));
+        student * five = (student *)malloc(sizeof(student));
+        head->next = two;
+        two->next = three;
+        three->next = four;
+        four->next = five;
+        five->next = NULL;
+
+        WHEN ("call number_students"){
+            int result = number_students(head);
+
+            THEN("result should be 5"){
+                REQUIRE(result == 5);
+                free(head);
+                free(two);
+                free(three);
+                free(four);
+                free(five);
+            }
+        }
+    }
+
+        GIVEN("list of 1 student") {
+        student * head = (student *)malloc(sizeof(student));
+        head->next = NULL;
+
+        WHEN ("call number_students"){
+            int result = number_students(head);
+
+            THEN("result should be 1"){
+                REQUIRE(result == 1);
+                free(head);
+            }
+        }
+    }
+        GIVEN("empty list (head = NULL)") {
+        student * head = NULL;
+
+        WHEN ("call number_students"){
+            int result = number_students(head);
+
+            THEN("result should be 0"){
+                REQUIRE(result == 0);
+            }
+        }
+    }
+    
 }
