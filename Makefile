@@ -3,5 +3,5 @@
 compile:
 	mkdir -p build && cd build && cmake .. && make
 
-run: compile
+run:
 	./build/yadalufi
