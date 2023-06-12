@@ -10,6 +10,7 @@ Tests for:
 - contact_tracing.cpp
 reset_counter_vars  ok
 find_student        ok
+get_ct_filename     ok
 
 - file.cpp
 valid_input_year    ok
@@ -221,6 +222,37 @@ TEST_CASE("find_student invalid input"){
     }
 }
 
+TEST_CASE("get_ct_filename valid input") {
+    GIVEN("exam: HWSE, date: 202365, student: Harry Potter") {
+        room * test_room = (room *)malloc(sizeof(room));
+        test_room->exam_name = (char *)malloc(sizeof(char)*5);
+        strcpy(test_room->exam_name, "HWSE");
+        test_room->exam_date.year = 2023;
+        test_room->exam_date.month = 6;
+        test_room->exam_date.day = 5;
+        student * temp = (student *)malloc(sizeof(student));
+        temp->first_name = (char *)malloc(sizeof(char)*6);
+        strcpy(temp->first_name, "Harry");
+        temp->last_name = (char *)malloc(sizeof(char)*7);
+        strcpy(temp->last_name, "Potter");
+
+        WHEN("call get_ct_filename(test_room, temp)") {
+            char filename[MAX_STRING];
+            int result = get_ct_filename(test_room, temp, filename);
+
+            THEN("return string should be contact_tracing_HWSE_202365_Potter_Harry.csv") {
+                REQUIRE(strcmp(filename, "contact_tracing_HWSE_202365_Potter_Harry.csv") == 0);
+                REQUIRE(result == 0);
+
+                free(test_room->exam_name);
+                free(test_room);
+                free(temp->first_name);
+                free(temp->last_name);
+                free(temp);
+            }
+        }
+    }
+}
 /*Tests for file.cpp functions*/
 
 TEST_CASE("valid_input_year valid input") {

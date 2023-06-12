@@ -117,8 +117,19 @@ int trace_contacts(int selection, room *rm, student *head){
     int col_seat = 0;
 
     temp = find_student(head, selection);
+    char filename[MAX_STRING];
+    get_ct_filename(m_room, temp, filename);
+
+    FILE *fp = fopen(filename, "w+");
+    if (fp == NULL) {
+        printf("Error: Could not open file %s for writing\n", filename);
+        return 1;
+    }
+
     reset_counter_vars(&i, &j);
     printf("\nDirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    fprintf(fp, "%s,%s,%d/%d/%d\n", m_room->exam_name, m_room->room_name, m_room->exam_date.year, m_room->exam_date.month, m_room->exam_date.day);
+    fprintf(fp, "Contact tracing for\n%s,%s,%s\n\nDirect neighbours:\n", temp->last_name, temp->first_name, temp->student_id);
     // Seat of selected student as in list (starts at 0)
     // used in if statements to find neighbours by comparing to row and col
     row_seat = temp->row;
@@ -135,6 +146,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat -1 || temp->row == row_seat +1){
                 if(temp->col == col_seat -1 || temp->col == col_seat || temp->col == col_seat +1){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     direct_neighbours++;
                 }
             }
@@ -142,6 +154,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat){
                 if(temp->col == col_seat -1 || temp->col == col_seat +1){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     direct_neighbours++;
                 }
             }
@@ -151,12 +164,15 @@ int trace_contacts(int selection, room *rm, student *head){
     // if no direct neighbours print message
     if(direct_neighbours == 0){
         printf("\tNo direct neighbours\n");
+        fprintf(fp, "No direct neighbours\n");
     }
     reset_counter_vars(&i, &j);
 
     temp = head;
     temp = find_student(head, selection);
     printf("\nIndirect neighbours of Student %s, %s\tStudent ID: %s\n", temp->last_name, temp->first_name, temp->student_id);
+    fprintf(fp, "\nIndirect neighbours:\n");
+
 
     reset_counter_vars(&i, &j);
     temp = head;
@@ -176,6 +192,7 @@ int trace_contacts(int selection, room *rm, student *head){
             if(temp->row == row_seat -1 || temp->row == row_seat || temp->row == row_seat +1){
                 if(temp->col == col_seat -2 || temp->col == col_seat +2){
                     print_student_info(temp);
+                    print_student_info_file(temp, fp);
                     indirect_neighbours++;
                 }
             }
@@ -185,8 +202,10 @@ int trace_contacts(int selection, room *rm, student *head){
     // if no indirect neighbours print message
     if(indirect_neighbours == 0){
         printf("\tNo indirect neighbours\n");
+        fprintf(fp, "No indirect neighbours\n");
     }
     printf("\n");
+    fclose(fp);
     return 0;
 }
 
@@ -249,4 +268,23 @@ int select_student (room *rm, student *head){
     temp = find_student(head, selection);
     printf("Selected student: %s %s, %s\n", temp->last_name, temp->first_name, temp->student_id);
     return selection;
+}
+int get_ct_filename(room *rm, student *temp, char* filename) {
+    char datestr[8];
+    sprintf(datestr, "%d%d%d", rm->exam_date.year, rm->exam_date.month, rm->exam_date.day);
+
+    strcpy(filename, "contact_tracing_");
+    strcat(filename, rm->exam_name);
+    strcat(filename, "_");
+    strcat(filename, datestr);
+    strcat(filename, "_");
+    strcat(filename, temp->last_name);
+    strcat(filename, "_");
+    strcat(filename, temp->first_name);
+    strcat(filename, ".csv");
+    return 0;
+}
+
+void print_student_info_file(student *temp, FILE *fp) {
+    fprintf(fp, "%s,%s,%s\n", temp->last_name, temp->first_name, temp->student_id);
 }
