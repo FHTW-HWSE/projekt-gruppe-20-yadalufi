@@ -28,3 +28,15 @@ Then the student ID should be entered.
 Given name and ID were passed in,<br />
 When both is valid,<br />
 Then it is saved to the room.
+
+### 6.
+---
+Given that a student has been added to the room,<br />
+When the user wants to add another student,<br />
+Then the user is prompted to enter the student's name and ID.
+
+### 7.
+---
+Given that a student has been added to the room, <br />
+When the user selects "Delete student" in the menu, <br />
+Then the student is deleted from the list.
