@@ -32,7 +32,7 @@ student * read_csv(char* filename, room** exam_room, student* head) {
     char room_name[MAX_STRING];
     char exam_name[MAX_STRING];
     int year, month, day, row, col, occupancy;
-    fscanf(inputFile, "%[^,],%[^,],%d,%d,%d,%d,%d,%d\n", room_name, exam_name, &month, &day, &year, &row, &col, &occupancy);
+    fscanf(inputFile, "%[^,],%[^,],%d,%d,%d,%d,%d,%d\n", room_name, exam_name, &day, &month, &year, &row, &col, &occupancy);
 
     *exam_room = (room*)malloc(sizeof(room));
 
@@ -49,7 +49,6 @@ student * read_csv(char* filename, room** exam_room, student* head) {
 
     // Skip the third line
     fgets(line, sizeof(line), inputFile); // Read and discard the third line
- //   fgets(line, sizeof(line), inputFile);
 
     // Read student information
     while (fgets(line, sizeof(line), inputFile)) {

@@ -21,9 +21,9 @@ int write_csv(const char* filename, room* exam_room, student* head, int num_stud
         return EXIT_FAILURE;
     }
     // Write room header row
-    fprintf(fp, "Room name,Exam name,Month,Day,Year,row,col,occupancy\n");
+    fprintf(fp, "Room name,Exam name,Day,Month,Year,row,col,occupancy\n");
     fprintf(fp, "%s,%s,%d,%d,%d,%d,%d,%d\n", exam_room->room_name, exam_room->exam_name,
-            exam_room->exam_date.month, exam_room->exam_date.day,exam_room->exam_date.year, exam_room->row,
+            exam_room->exam_date.day, exam_room->exam_date.month,exam_room->exam_date.year, exam_room->row,
             exam_room->col, exam_room->occupancy);
     fprintf(fp,"\n");
 
