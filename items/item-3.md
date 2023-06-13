@@ -15,7 +15,7 @@ then the final plan (rows/columns/available seats) is generated.
 ---
 Given a basic plan has been created<br />
 when the user enters an invalid input<br />
-then the system askes for a valid input.
+then the system asks for a valid input.
 
 ### 3.
 ---
