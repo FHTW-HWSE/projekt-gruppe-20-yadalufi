@@ -45,6 +45,7 @@ int number_seats (int row, int col);
 int available_seats(int row, int col, int occupancy);
 int show_room(room *rm, student *head);
 int room_set_occupancy(room *p_room, int selection);
+void show_seat_pattern(room * sp_room);
 
 
 #endif /* FILE_H_ */
