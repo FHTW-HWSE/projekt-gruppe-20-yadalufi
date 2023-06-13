@@ -69,8 +69,8 @@ student * read_csv(char* filename, room** exam_room, student* head) {
         
         new_student->student_id = (char*)malloc(sizeof(char)*MAX_STRING);
         strcpy(new_student->student_id, student_id);
-        new_student->col = col;
-        new_student->row = row;
+        new_student->col = col-1;
+        new_student->row = row-1;
         new_student->next = NULL;
 
         if (head == NULL) {

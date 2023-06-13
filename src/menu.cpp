@@ -72,6 +72,7 @@ int menu_choice(char *filename)
         display_menu();
         printf("Enter your choice: ");
         scanf("%s", choice_string);
+        printf("\n");
         choice = strtol(choice_string, &ptr, 10);
 
         switch (choice)

@@ -33,7 +33,7 @@ int write_csv(const char* filename, room* exam_room, student* head, int num_stud
     // Write data rows
     for (int i = 0; i < num_students; i++) {
         fprintf(fp, "%s,%s,%s,%d,%d\n", temp->student_id, temp->first_name,
-                temp->last_name, temp->row, temp->col);
+                temp->last_name, temp->row+1, temp->col+1);
                 temp = temp->next;
     }
 
