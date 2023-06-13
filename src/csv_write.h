@@ -4,5 +4,5 @@
 
 #include "file.h"
 
-void write_csv(const char* filename, room* examRoom, student* students, int num_students);
+int write_csv(const char* filename, room* exam_room, student* head, int num_students);
 #endif //CSV_WRITE_H

@@ -9,7 +9,9 @@
 #include "student.h"
 #include "contact_tracing.h"
 #include "csv_read.h"
+#include "csv_write.h"
 #include "menu/load_csv.h"
+#include "menu/save_csv.h"
 
 
 enum menu_elements
@@ -20,6 +22,7 @@ enum menu_elements
     add_student,
     remove_student,
     load_csv_file,
+    save_csv_file,
     contact_tracing,
     quit
 } choice;
@@ -38,8 +41,9 @@ void display_menu()
     printf("4. Add student\n");
     printf("5. Remove student\n");
     printf("6. Load CSV file\n");
-    printf("7. Contact tracing\n");
-    printf("8. Quit\n");
+    printf("7. Save to CSV file\n");
+    printf("8. Contact tracing\n");
+    printf("9. Quit\n");
     printf("============\n\n");
     return;
 }
@@ -102,6 +106,10 @@ int menu_choice(char *filename)
         case load_csv_file:
             m_student = menu_load_csv(&m_room, m_student);
             break;
+        case save_csv_file:
+        {
+            int return_value = menu_write_csv(m_room, m_student);
+            break;}
         case contact_tracing:
             if (m_room != NULL && m_student != NULL) {
             selection = select_student(m_room, m_student);

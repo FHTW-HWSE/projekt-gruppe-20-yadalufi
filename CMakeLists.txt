@@ -7,6 +7,7 @@ add_executable(yadalufi
         src/menu/add_student.cpp
         src/menu/create_plan.cpp
         src/menu/load_csv.cpp
+        src/menu/save_csv.cpp
         src/menu/quit.cpp
         src/contact_tracing.cpp
         src/csv_read.cpp
@@ -26,6 +27,7 @@ add_executable(yadalufi_tests
         src/menu/create_plan.cpp
         src/menu/add_student.cpp
         src/menu/load_csv.cpp
+        src/menu/save_csv.cpp
         src/menu/quit.cpp
         tests/test.cpp
         src/menu.cpp
@@ -33,6 +35,7 @@ add_executable(yadalufi_tests
         src/student.cpp
         src/contact_tracing.cpp
         src/csv_read.cpp
+        src/csv_write.cpp
 )
 
 catch_discover_tests(yadalufi_tests)

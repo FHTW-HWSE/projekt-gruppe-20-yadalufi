@@ -49,7 +49,7 @@ student * read_csv(char* filename, room** exam_room, student* head) {
 
     // Skip the third line
     fgets(line, sizeof(line), inputFile); // Read and discard the third line
-    fgets(line, sizeof(line), inputFile);
+ //   fgets(line, sizeof(line), inputFile);
 
     // Read student information
     while (fgets(line, sizeof(line), inputFile)) {
