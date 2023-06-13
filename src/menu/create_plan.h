@@ -1,3 +1,8 @@
+/**
+ * @file        create_plan.h
+ * @brief       Header file for create_plan.cpp
+ */
+
 #ifndef MENU_CREATE_PLAN_H
 #define MENU_CREATE_PLAN_H
 

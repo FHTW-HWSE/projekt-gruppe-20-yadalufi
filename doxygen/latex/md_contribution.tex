@@ -1,0 +1,102 @@
+\chapter{Contribution Guide}
+\hypertarget{md_contribution}{}\label{md_contribution}\index{Contribution Guide@{Contribution Guide}}
+\label{md_contribution_autotoc_md0}%
+\Hypertarget{md_contribution_autotoc_md0}%
+ Below are some guidelines on how to get started in your terminal with cloning the project, committing changes, and branching.\hypertarget{md_contribution_autotoc_md1}{}\doxysection{\texorpdfstring{Cloning the Project}{Cloning the Project}}\label{md_contribution_autotoc_md1}
+To clone this project, follow these steps\+:
+
+
+\begin{DoxyEnumerate}
+\item Open the terminal or command prompt
+\item Navigate to the directory where you want to clone the project
+\item Run the following command\+:~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ git@github.com:FHTW-\/HWSE/projekt-\/gruppe-\/20-\/yadalufi.git}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_contribution_autotoc_md2}{}\doxysection{\texorpdfstring{Committing Changes}{Committing Changes}}\label{md_contribution_autotoc_md2}
+A commit in Git is a snapshot of changes made to a repository. It is used to save and track the history of modifications made to a project over time.
+
+To commit changes to the project, follow these steps\+:
+
+
+\begin{DoxyEnumerate}
+\item Make your changes to the code or files in the project
+\item Open a terminal or command prompt
+\item Navigate to the project directory
+\item Run the following command to stage your changes\+:~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ add\ .}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+This will stage all changes you made in the project directory.
+
+
+\begin{DoxyEnumerate}
+\item Run the following command to commit your changes locally\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}\#[item-\/id]\ your\ commit\ message\ here"{}}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+Replace {\ttfamily \mbox{[}item-\/id\mbox{]}} with your item id and write a brief description of the changes you made.\hypertarget{md_contribution_autotoc_md3}{}\doxysection{\texorpdfstring{Branching}{Branching}}\label{md_contribution_autotoc_md3}
+To branch the project, follow these steps\+:
+
+
+\begin{DoxyEnumerate}
+\item Open a terminal or command prompt
+\item Navigate to the project directory
+\item Run the following command to create a new branch\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ checkout\ -\/b\ feature/item-\/[item-\/id]}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+Replace {\ttfamily \mbox{[}item-\/id\mbox{]}} with the number of the item you are working on.
+
+
+\begin{DoxyEnumerate}
+\item Make your changes to the code or files in the project
+\item Run the following command to stage your changes\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ add\ .}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+This will stage all changes you made in the project directory.
+
+
+\begin{DoxyEnumerate}
+\item Run the following command to commit your changes\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}\#[item-\/id]\ your\ commit\ message\ here"{}}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+Replace {\ttfamily \mbox{[}item-\/id\mbox{]}} with your item id and write a brief description of the changes you made.
+
+
+\begin{DoxyEnumerate}
+\item Run the following command to push your changes to the new branch\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ push\ origin\ feature/item-\/[item-\/id]}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+Replace {\ttfamily \mbox{[}item-\/id\mbox{]}} with the id of the item you are working on. 

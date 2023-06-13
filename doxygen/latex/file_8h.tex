@@ -1,0 +1,423 @@
+\doxysection{file.\+h File Reference}
+\hypertarget{file_8h}{}\label{file_8h}\index{file.h@{file.h}}
+
+
+Header file for file.\+cpp.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdate}{date}}
+\begin{DoxyCompactList}\small\item\em Structure for date. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structroom}{room}}
+\begin{DoxyCompactList}\small\item\em Structure for room. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structstudent}{student}}
+\begin{DoxyCompactList}\small\item\em Structure for student. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structstudent}{student}} \mbox{\hyperlink{file_8h_a0aae7ef125b291c43dad230e70110d97}{student}}
+\begin{DoxyCompactList}\small\item\em Structure for student. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8h_a52a104be3484f032400b6eaa81a3dbb8}{allocate\+\_\+exam\+\_\+name}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}new\+\_\+room)
+\begin{DoxyCompactList}\small\item\em Allocates memory for exam\+\_\+name. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8h_a8b603f99115a9b36e40bd15e7362d2e9}{allocate\+\_\+room\+\_\+name}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}new\+\_\+room)
+\begin{DoxyCompactList}\small\item\em Allocates memory for room\+\_\+name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8h_a1b9a63025e81444d1126b7473b3953f2}{allocate\+\_\+new\+\_\+room}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}new\+\_\+room)
+\begin{DoxyCompactList}\small\item\em Allocates memory for new\+\_\+room (Struct room) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8h_a4de0713597f1a647b99114845e1a72f6}{new\+\_\+room}} ()
+\begin{DoxyCompactList}\small\item\em Allocates memory for new\+\_\+room (Struct room) Allocates memory for room\+\_\+name and exam\+\_\+name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file_8h_a4a87fd64d06ae3552e0780f258516e64}{set\+\_\+room\+\_\+name}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}p\+\_\+room, char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Set the room name for a given room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{file_8h_a015f2e076843458c233d7667412c8885}{set\+\_\+exam\+\_\+name}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}p\+\_\+room, char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Sets the exam name for a given room. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_aa43b0dbac1f0ee9df139533e15c9ae77}{valid\+\_\+input\+\_\+year}} (int input)
+\begin{DoxyCompactList}\small\item\em Checks if year is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a6a9e81cb4a28b887c244493309c8a361}{prompt\+\_\+exam\+\_\+date\+\_\+year}} ()
+\begin{DoxyCompactList}\small\item\em Reads input for year and checks if input is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a359051011dae31b68cd9fe12eececded}{valid\+\_\+input\+\_\+month}} (int input)
+\begin{DoxyCompactList}\small\item\em Checks if month is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a79aa8393180910b97fe1f92e07bb194f}{prompt\+\_\+exam\+\_\+date\+\_\+month}} ()
+\begin{DoxyCompactList}\small\item\em Reads input for month and checks if input is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a1fcc7705f09f41de9096bea4c7e382ee}{valid\+\_\+input\+\_\+day}} (int input)
+\begin{DoxyCompactList}\small\item\em Checks if day is valid. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a3b47c4158d6d309365acdeed68570714}{prompt\+\_\+exam\+\_\+date\+\_\+day}} ()
+\begin{DoxyCompactList}\small\item\em Reads input for day and checks if input is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8h_a26633320ce87ec6c419c80f57a8cc568}{create\+\_\+room}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}r\+\_\+room, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}r\+\_\+head)
+\begin{DoxyCompactList}\small\item\em Creates a new room with user input for room details. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_aca6c0982a069331f7f5f6c11236c5211}{free\+\_\+room}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}new\+\_\+room)
+\begin{DoxyCompactList}\small\item\em Frees the memory occupied by a room structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a48f55787e848a03e150e935717c9998c}{number\+\_\+seats}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Calculates the number of seats in a room. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_ac2f7f5f16529fbd13121f229f452a2ca}{available\+\_\+seats}} (int row, int col, int occupancy)
+\begin{DoxyCompactList}\small\item\em Calculates the number of available seats in a room, according to user input for occupancy rate. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a103d16cb7beb66576ee0e700b3cf9823}{show\+\_\+room}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}rm, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Displays the seating arrangement of a room along with student information. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{file_8h_a87e9a034ff1e6fb03f9d198ef627295e}{room\+\_\+set\+\_\+occupancy}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}p\+\_\+room, int selection)
+\begin{DoxyCompactList}\small\item\em Sets the occupancy rate of a room based on user input. \end{DoxyCompactList}\item 
+\Hypertarget{file_8h_a86362b8e025f075f5a95259186622cb0}\label{file_8h_a86362b8e025f075f5a95259186622cb0} 
+void {\bfseries show\+\_\+seat\+\_\+pattern} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}sp\+\_\+room)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for file.\+cpp. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{file_8h_a0aae7ef125b291c43dad230e70110d97}\label{file_8h_a0aae7ef125b291c43dad230e70110d97} 
+\index{file.h@{file.h}!student@{student}}
+\index{student@{student}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{student}{student}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structstudent}{student}} \mbox{\hyperlink{structstudent}{student}}}
+
+
+
+Structure for student. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+name} & \\
+\hline
+{\em last\+\_\+name} & \\
+\hline
+{\em student\+\_\+id} & \\
+\hline
+{\em col} & \\
+\hline
+{\em row} & \\
+\hline
+{\em next} & \\
+\hline
+{\em students} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{file_8h_a52a104be3484f032400b6eaa81a3dbb8}\label{file_8h_a52a104be3484f032400b6eaa81a3dbb8} 
+\index{file.h@{file.h}!allocate\_exam\_name@{allocate\_exam\_name}}
+\index{allocate\_exam\_name@{allocate\_exam\_name}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_exam\_name()}{allocate\_exam\_name()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} allocate\+\_\+exam\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for exam\+\_\+name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+room} & Pointer to the room structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a1b9a63025e81444d1126b7473b3953f2}\label{file_8h_a1b9a63025e81444d1126b7473b3953f2} 
+\index{file.h@{file.h}!allocate\_new\_room@{allocate\_new\_room}}
+\index{allocate\_new\_room@{allocate\_new\_room}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_new\_room()}{allocate\_new\_room()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*} allocate\+\_\+new\+\_\+room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for new\+\_\+room (Struct room) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+room} & Pointer to the room structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+room\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a8b603f99115a9b36e40bd15e7362d2e9}\label{file_8h_a8b603f99115a9b36e40bd15e7362d2e9} 
+\index{file.h@{file.h}!allocate\_room\_name@{allocate\_room\_name}}
+\index{allocate\_room\_name@{allocate\_room\_name}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_room\_name()}{allocate\_room\_name()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} allocate\+\_\+room\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for room\+\_\+name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+room} & Pointer to the room structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{file_8h_ac2f7f5f16529fbd13121f229f452a2ca}\label{file_8h_ac2f7f5f16529fbd13121f229f452a2ca} 
+\index{file.h@{file.h}!available\_seats@{available\_seats}}
+\index{available\_seats@{available\_seats}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{available\_seats()}{available\_seats()}}
+{\footnotesize\ttfamily int available\+\_\+seats (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col,  }\item[{int}]{occupancy }\end{DoxyParamCaption})}
+
+
+
+Calculates the number of available seats in a room, according to user input for occupancy rate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Number of rows in the room. \\
+\hline
+{\em col} & Number of seats per row. \\
+\hline
+{\em occupancy} & The occupancy rate of the room.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a26633320ce87ec6c419c80f57a8cc568}\label{file_8h_a26633320ce87ec6c419c80f57a8cc568} 
+\index{file.h@{file.h}!create\_room@{create\_room}}
+\index{create\_room@{create\_room}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{create\_room()}{create\_room()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*} create\+\_\+room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{r\+\_\+room,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{r\+\_\+head }\end{DoxyParamCaption})}
+
+
+
+Creates a new room with user input for room details. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r\+\_\+room} & Pointer to an existing room structure to be updated or NULL to create a new room. \\
+\hline
+{\em r\+\_\+head} & Pointer to the head of the student list.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+room\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{file_8h_aca6c0982a069331f7f5f6c11236c5211}\label{file_8h_aca6c0982a069331f7f5f6c11236c5211} 
+\index{file.h@{file.h}!free\_room@{free\_room}}
+\index{free\_room@{free\_room}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{free\_room()}{free\_room()}}
+{\footnotesize\ttfamily int free\+\_\+room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+Frees the memory occupied by a room structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+room} & Pointer to the room structure to free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a4de0713597f1a647b99114845e1a72f6}\label{file_8h_a4de0713597f1a647b99114845e1a72f6} 
+\index{file.h@{file.h}!new\_room@{new\_room}}
+\index{new\_room@{new\_room}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{new\_room()}{new\_room()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*} new\+\_\+room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for new\+\_\+room (Struct room) Allocates memory for room\+\_\+name and exam\+\_\+name. 
+
+\begin{DoxyReturn}{Returns}
+room\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a48f55787e848a03e150e935717c9998c}\label{file_8h_a48f55787e848a03e150e935717c9998c} 
+\index{file.h@{file.h}!number\_seats@{number\_seats}}
+\index{number\_seats@{number\_seats}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{number\_seats()}{number\_seats()}}
+{\footnotesize\ttfamily int number\+\_\+seats (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Calculates the number of seats in a room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & Number of rows in the room. \\
+\hline
+{\em col} & Number of seats per row.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a3b47c4158d6d309365acdeed68570714}\label{file_8h_a3b47c4158d6d309365acdeed68570714} 
+\index{file.h@{file.h}!prompt\_exam\_date\_day@{prompt\_exam\_date\_day}}
+\index{prompt\_exam\_date\_day@{prompt\_exam\_date\_day}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{prompt\_exam\_date\_day()}{prompt\_exam\_date\_day()}}
+{\footnotesize\ttfamily int prompt\+\_\+exam\+\_\+date\+\_\+day (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads input for day and checks if input is valid. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a79aa8393180910b97fe1f92e07bb194f}\label{file_8h_a79aa8393180910b97fe1f92e07bb194f} 
+\index{file.h@{file.h}!prompt\_exam\_date\_month@{prompt\_exam\_date\_month}}
+\index{prompt\_exam\_date\_month@{prompt\_exam\_date\_month}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{prompt\_exam\_date\_month()}{prompt\_exam\_date\_month()}}
+{\footnotesize\ttfamily int prompt\+\_\+exam\+\_\+date\+\_\+month (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads input for month and checks if input is valid. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a6a9e81cb4a28b887c244493309c8a361}\label{file_8h_a6a9e81cb4a28b887c244493309c8a361} 
+\index{file.h@{file.h}!prompt\_exam\_date\_year@{prompt\_exam\_date\_year}}
+\index{prompt\_exam\_date\_year@{prompt\_exam\_date\_year}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{prompt\_exam\_date\_year()}{prompt\_exam\_date\_year()}}
+{\footnotesize\ttfamily int prompt\+\_\+exam\+\_\+date\+\_\+year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads input for year and checks if input is valid. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a87e9a034ff1e6fb03f9d198ef627295e}\label{file_8h_a87e9a034ff1e6fb03f9d198ef627295e} 
+\index{file.h@{file.h}!room\_set\_occupancy@{room\_set\_occupancy}}
+\index{room\_set\_occupancy@{room\_set\_occupancy}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{room\_set\_occupancy()}{room\_set\_occupancy()}}
+{\footnotesize\ttfamily int room\+\_\+set\+\_\+occupancy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+room,  }\item[{int}]{selection }\end{DoxyParamCaption})}
+
+
+
+Sets the occupancy rate of a room based on user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+room} & Pointer to the room structure. \\
+\hline
+{\em selection} & The selection for the occupancy rate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a015f2e076843458c233d7667412c8885}\label{file_8h_a015f2e076843458c233d7667412c8885} 
+\index{file.h@{file.h}!set\_exam\_name@{set\_exam\_name}}
+\index{set\_exam\_name@{set\_exam\_name}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{set\_exam\_name()}{set\_exam\_name()}}
+{\footnotesize\ttfamily void set\+\_\+exam\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+room,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+
+
+Sets the exam name for a given room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+room} & Pointer to the room structure. \\
+\hline
+{\em name} & Pointer to the string containing the room name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a4a87fd64d06ae3552e0780f258516e64}\label{file_8h_a4a87fd64d06ae3552e0780f258516e64} 
+\index{file.h@{file.h}!set\_room\_name@{set\_room\_name}}
+\index{set\_room\_name@{set\_room\_name}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{set\_room\_name()}{set\_room\_name()}}
+{\footnotesize\ttfamily void set\+\_\+room\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+room,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+
+
+Set the room name for a given room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+room} & Pointer to the room structure. \\
+\hline
+{\em name} & Pointer to the string containing the room name\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a103d16cb7beb66576ee0e700b3cf9823}\label{file_8h_a103d16cb7beb66576ee0e700b3cf9823} 
+\index{file.h@{file.h}!show\_room@{show\_room}}
+\index{show\_room@{show\_room}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{show\_room()}{show\_room()}}
+{\footnotesize\ttfamily int show\+\_\+room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{rm,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+
+
+Displays the seating arrangement of a room along with student information. 
+
+This function prints the room name, exam name, and exam date, followed by the seating arrangement with corresponding student information. It iterates through the rows and columns of the room, matching the coordinates with the students\textquotesingle{} positions. If a student is found at a particular position, their initials and last name are printed. If a position is empty, \"{}$<$empty$>$\"{} is displayed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rm} & Pointer to the room structure. \\
+\hline
+{\em head} & Pointer to the head of the student list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a1fcc7705f09f41de9096bea4c7e382ee}\label{file_8h_a1fcc7705f09f41de9096bea4c7e382ee} 
+\index{file.h@{file.h}!valid\_input\_day@{valid\_input\_day}}
+\index{valid\_input\_day@{valid\_input\_day}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{valid\_input\_day()}{valid\_input\_day()}}
+{\footnotesize\ttfamily int valid\+\_\+input\+\_\+day (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Checks if day is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_a359051011dae31b68cd9fe12eececded}\label{file_8h_a359051011dae31b68cd9fe12eececded} 
+\index{file.h@{file.h}!valid\_input\_month@{valid\_input\_month}}
+\index{valid\_input\_month@{valid\_input\_month}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{valid\_input\_month()}{valid\_input\_month()}}
+{\footnotesize\ttfamily int valid\+\_\+input\+\_\+month (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Checks if month is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{file_8h_aa43b0dbac1f0ee9df139533e15c9ae77}\label{file_8h_aa43b0dbac1f0ee9df139533e15c9ae77} 
+\index{file.h@{file.h}!valid\_input\_year@{valid\_input\_year}}
+\index{valid\_input\_year@{valid\_input\_year}!file.h@{file.h}}
+\doxysubsubsection{\texorpdfstring{valid\_input\_year()}{valid\_input\_year()}}
+{\footnotesize\ttfamily int valid\+\_\+input\+\_\+year (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Checks if year is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

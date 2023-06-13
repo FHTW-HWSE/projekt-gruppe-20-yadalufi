@@ -14,7 +14,6 @@
 #include "menu/save_csv.h"
 #include "menu/remove_student.h"
 
-
 enum menu_elements
 {
     create_plan = 1,
@@ -49,8 +48,7 @@ void display_menu()
     return;
 }
 
-/**
- * @brief       Displays the menu and asks for user input
+/*! @brief       Displays the menu and asks for user input
  *
  * @param       fp    Pointer to the file
  *
@@ -61,10 +59,11 @@ int menu_choice(char *filename)
     int choice = 0;
     char choice_string[MAX_STRING];
     char *ptr;
-    room *m_room = NULL; 
+    room *m_room = NULL;
     student *m_student = NULL;
     int selection = 0;
-    if ((strcmp(filename, "") != 0)) {
+    if ((strcmp(filename, "") != 0))
+    {
         m_student = read_csv(filename, &m_room, m_student);
     }
 
@@ -111,15 +110,20 @@ int menu_choice(char *filename)
         case save_csv_file:
         {
             int return_value = menu_write_csv(m_room, m_student);
-            break;}
+            break;
+        }
         case contact_tracing:
-            if (m_room != NULL && m_student != NULL) {
-            selection = select_student(m_room, m_student);
-            if (selection == -1) {
-                break;
+            if (m_room != NULL && m_student != NULL)
+            {
+                selection = select_student(m_room, m_student);
+                if (selection == -1)
+                {
+                    break;
+                }
+                trace_contacts(selection, m_room, m_student);
             }
-            trace_contacts(selection, m_room, m_student);
-            } else {
+            else
+            {
                 printf("\nContact tracing not possible (no room/students)\n\n");
             }
             break;
