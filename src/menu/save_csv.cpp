@@ -9,11 +9,17 @@
 #define MAX_STRING 250
 
 /**
- * @brief 
+ * @brief               Saves the user input in a csv File
  * 
- * @param m_room 
- * @param m_student 
- * @return int 
+ * This function saves the user input when the user chooses save csv from the menu
+ * It alerts the user if there is no data to be saved or if the saving has failed 
+ * for other reasons
+ * 
+ * @param          m_room    Pointer to the room structure.
+ * @param           m_student Pointer to the student structure.
+ * 
+ * 
+ * @return              int 
  */
 
 int menu_write_csv(room *m_room, student *m_student) {

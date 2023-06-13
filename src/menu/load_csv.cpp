@@ -8,8 +8,16 @@
 #define MAX_STRING 250
 
 /**
- * @brief 
+ * @brief           Loads the room and student information 
  * 
+ * This function is called when the user chooses to load the room and student information from the menu
+ * If an existing plan exists,the user has the option to overwrite it or cancel the operation.
+ * The function returns 0 upon uccessful completion.
+ * 
+ * @param           m_room    Pointer to the pointer of the room structure.
+ * @param           m_student Pointer to the student structure.
+ * 
+ * @return          void
  */
 
 student * menu_load_csv(room **m_room, student *m_student) {
