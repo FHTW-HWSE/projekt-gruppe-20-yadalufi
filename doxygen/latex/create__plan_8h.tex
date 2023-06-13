@@ -1,0 +1,44 @@
+\doxysection{create\+\_\+plan.\+h File Reference}
+\hypertarget{create__plan_8h}{}\label{create__plan_8h}\index{create\_plan.h@{create\_plan.h}}
+
+
+Header file for create\+\_\+plan.\+cpp.  
+
+
+{\ttfamily \#include \"{}../file.\+h\"{}}\newline
+{\ttfamily \#include \"{}../menu.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{create__plan_8h_af6093e8909cbc58b3475d9eb42950c6b}{menu\+\_\+create\+\_\+plan}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}m\+\_\+room, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}m\+\_\+student)
+\begin{DoxyCompactList}\small\item\em Creates a seating plan and performs seat assignments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for create\+\_\+plan.\+cpp. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{create__plan_8h_af6093e8909cbc58b3475d9eb42950c6b}\label{create__plan_8h_af6093e8909cbc58b3475d9eb42950c6b} 
+\index{create\_plan.h@{create\_plan.h}!menu\_create\_plan@{menu\_create\_plan}}
+\index{menu\_create\_plan@{menu\_create\_plan}!create\_plan.h@{create\_plan.h}}
+\doxysubsubsection{\texorpdfstring{menu\_create\_plan()}{menu\_create\_plan()}}
+{\footnotesize\ttfamily int menu\+\_\+create\+\_\+plan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{m\+\_\+room,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{m\+\_\+student }\end{DoxyParamCaption})}
+
+
+
+Creates a seating plan and performs seat assignments. 
+
+This function is called when the user chooses to create a seating plan. It allows the user to create a new room and perform seat assignments for the students. If an existing plan exists, the user has the option to overwrite it or cancel the operation. The function returns 0 upon successful completion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+room} & Pointer to the pointer of the room structure. \\
+\hline
+{\em m\+\_\+student} & Pointer to the pointer of the student structure.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

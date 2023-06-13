@@ -8,22 +8,16 @@ So that I can use it in assigning seats and contact tracing
 ### 1.
 ---
 Given a basic plan has been created,<br />
-When a seat was selected,<br />
-Then the student name should be entered.
+When a student name and ID was entered,<br />
+Then the student is assigned a seat.
 
 ### 2.
 ---
-Given the student name is empty,<br />
-When the user should enter the student name,<br />
-Then a message will appear “The name is required”.
+Given a basic plan has been created,<br />
+When the user wants to add a student,<br />
+Then the user is prompted to enter the student's name and ID.
 
 ### 3.
----
-Given the student name has been entered,<br />
-When the student name contains non-alpha (a-z, A-Z) characters,<br />
-Then a message will appear “The name must contain only alphabetic characters”.
-
-### 4.
 ---
 Given the student name has been entered,<br />
 When the name is stored in a struct,<br />
@@ -31,12 +25,18 @@ Then the student ID should be entered.
 
 ### 5.
 ---
-Given the student ID is empty,<br />
-When the user should enter the student ID,<br />
-Then a message will appear “The student ID is required”.
+Given name and ID were passed in,<br />
+When both is valid,<br />
+Then it is saved to the room.
 
 ### 6.
 ---
-Given name and ID were passed in,<br />
-When both is valid,<br />
-Then update the file database and show “Student has been saved”.
+Given that a student has been added to the room,<br />
+When the user wants to add another student,<br />
+Then the user is prompted to enter the student's name and ID.
+
+### 7.
+---
+Given that a student has been added to the room, <br />
+When the user selects "Delete student" in the menu, <br />
+Then the student is deleted from the list.

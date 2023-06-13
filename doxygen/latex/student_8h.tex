@@ -1,0 +1,184 @@
+\doxysection{student.\+h File Reference}
+\hypertarget{student_8h}{}\label{student_8h}\index{student.h@{student.h}}
+
+
+Header file for student.\+cpp.  
+
+
+{\ttfamily \#include \"{}file.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{student_8h_a09a1654388e2e5a65aed30ee36eb1c6b}{allocate\+\_\+new\+\_\+student\+\_\+first\+\_\+name}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}new\+\_\+student)
+\begin{DoxyCompactList}\small\item\em Allocates memory for a new student\+\_\+first\+\_\+name. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{student_8h_a77ad893547fd533646e65c43eba90611}{allocate\+\_\+new\+\_\+student\+\_\+last\+\_\+name}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}new\+\_\+student)
+\begin{DoxyCompactList}\small\item\em Allocates memory for a new student\+\_\+last\+\_\+name. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{student_8h_af2cbad84b684da8ffaf1904c088b5d4d}{allocate\+\_\+new\+\_\+student\+\_\+id}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}new\+\_\+student)
+\begin{DoxyCompactList}\small\item\em Allocates memory for a new student\+\_\+id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{student_8h_a26208b557d776d3a74d54d1465872370}{allocate\+\_\+new\+\_\+student}} ()
+\begin{DoxyCompactList}\small\item\em Allocates memory for a new student. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{student_8h_afe72a0a840fd462789ffd424c023b7a3}{create\+\_\+student}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}st\+\_\+head, \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}st\+\_\+room)
+\begin{DoxyCompactList}\small\item\em Creates a new student. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{student_8h_a0876239fe500cfd41f2feb1203e87370}{free\+\_\+student}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}new\+\_\+student)
+\begin{DoxyCompactList}\small\item\em Frees the memory of the student list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{student_8h_ada2195c56b3994dfd2b538f524cb5463}{seat\+\_\+assignment}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head, \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}sa\+\_\+room)
+\begin{DoxyCompactList}\small\item\em Assigns a seat to students in the student list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{student_8h_ade991e509f8f35d5ae03101d70948726}{number\+\_\+students}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Counts the number of students in the student list. \end{DoxyCompactList}\item 
+\Hypertarget{student_8h_abfa86306bc714b1589fb1cccc61bdf04}\label{student_8h_abfa86306bc714b1589fb1cccc61bdf04} 
+\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} {\bfseries remove\+\_\+student} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head, \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}rs\+\_\+room)
+\item 
+\Hypertarget{student_8h_a23050e19bb6d2cb8abb3de4f0381fdb8}\label{student_8h_a23050e19bb6d2cb8abb3de4f0381fdb8} 
+\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} {\bfseries remove\+\_\+list\+\_\+item} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}temp)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for student.\+cpp. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{student_8h_a26208b557d776d3a74d54d1465872370}\label{student_8h_a26208b557d776d3a74d54d1465872370} 
+\index{student.h@{student.h}!allocate\_new\_student@{allocate\_new\_student}}
+\index{allocate\_new\_student@{allocate\_new\_student}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_new\_student()}{allocate\_new\_student()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} allocate\+\_\+new\+\_\+student (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a new student. 
+
+\begin{DoxyReturn}{Returns}
+student\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{student_8h_a09a1654388e2e5a65aed30ee36eb1c6b}\label{student_8h_a09a1654388e2e5a65aed30ee36eb1c6b} 
+\index{student.h@{student.h}!allocate\_new\_student\_first\_name@{allocate\_new\_student\_first\_name}}
+\index{allocate\_new\_student\_first\_name@{allocate\_new\_student\_first\_name}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_new\_student\_first\_name()}{allocate\_new\_student\_first\_name()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} allocate\+\_\+new\+\_\+student\+\_\+first\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+student }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a new student\+\_\+first\+\_\+name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+student} & Pointer to the new student\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{student_8h_af2cbad84b684da8ffaf1904c088b5d4d}\label{student_8h_af2cbad84b684da8ffaf1904c088b5d4d} 
+\index{student.h@{student.h}!allocate\_new\_student\_id@{allocate\_new\_student\_id}}
+\index{allocate\_new\_student\_id@{allocate\_new\_student\_id}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_new\_student\_id()}{allocate\_new\_student\_id()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} allocate\+\_\+new\+\_\+student\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+student }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a new student\+\_\+id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+student} & Pointer to the new student\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{student_8h_a77ad893547fd533646e65c43eba90611}\label{student_8h_a77ad893547fd533646e65c43eba90611} 
+\index{student.h@{student.h}!allocate\_new\_student\_last\_name@{allocate\_new\_student\_last\_name}}
+\index{allocate\_new\_student\_last\_name@{allocate\_new\_student\_last\_name}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{allocate\_new\_student\_last\_name()}{allocate\_new\_student\_last\_name()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} allocate\+\_\+new\+\_\+student\+\_\+last\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+student }\end{DoxyParamCaption})}
+
+
+
+Allocates memory for a new student\+\_\+last\+\_\+name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+student} & Pointer to the new student\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{student_8h_afe72a0a840fd462789ffd424c023b7a3}\label{student_8h_afe72a0a840fd462789ffd424c023b7a3} 
+\index{student.h@{student.h}!create\_student@{create\_student}}
+\index{create\_student@{create\_student}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{create\_student()}{create\_student()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} create\+\_\+student (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{st\+\_\+head,  }\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{st\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+Creates a new student. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em st\+\_\+head} & Pointer to the head of the student list \\
+\hline
+{\em st\+\_\+room} & Pointer to the room of the student\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+student\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{student_8h_a0876239fe500cfd41f2feb1203e87370}\label{student_8h_a0876239fe500cfd41f2feb1203e87370} 
+\index{student.h@{student.h}!free\_student@{free\_student}}
+\index{free\_student@{free\_student}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{free\_student()}{free\_student()}}
+{\footnotesize\ttfamily int free\+\_\+student (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{new\+\_\+student }\end{DoxyParamCaption})}
+
+
+
+Frees the memory of the student list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the student list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{student_8h_ade991e509f8f35d5ae03101d70948726}\label{student_8h_ade991e509f8f35d5ae03101d70948726} 
+\index{student.h@{student.h}!number\_students@{number\_students}}
+\index{number\_students@{number\_students}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{number\_students()}{number\_students()}}
+{\footnotesize\ttfamily int number\+\_\+students (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+
+
+Counts the number of students in the student list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the student list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{student_8h_ada2195c56b3994dfd2b538f524cb5463}\label{student_8h_ada2195c56b3994dfd2b538f524cb5463} 
+\index{student.h@{student.h}!seat\_assignment@{seat\_assignment}}
+\index{seat\_assignment@{seat\_assignment}!student.h@{student.h}}
+\doxysubsubsection{\texorpdfstring{seat\_assignment()}{seat\_assignment()}}
+{\footnotesize\ttfamily int seat\+\_\+assignment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head,  }\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{sa\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+Assigns a seat to students in the student list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the student list \\
+\hline
+{\em room} & Pointer to the room of the student\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

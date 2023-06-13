@@ -8,6 +8,11 @@
 #include "file.h"
 #include "student.h"
 #include "contact_tracing.h"
+#include "csv_read.h"
+#include "csv_write.h"
+#include "menu/load_csv.h"
+#include "menu/save_csv.h"
+#include "menu/remove_student.h"
 
 enum menu_elements
 {
@@ -15,8 +20,9 @@ enum menu_elements
     show_rm,
     show_seats,
     add_student,
-    remove_student,
+    remove_student_enum,
     load_csv_file,
+    save_csv_file,
     contact_tracing,
     quit
 } choice;
@@ -28,40 +34,45 @@ enum menu_elements
  */
 void display_menu()
 {
-    printf("=== MENU ===\n");
+    printf("\n\n=== MENU ===\n");
     printf("1. Create plan\n");
-    printf("2. Show room\n");
-    printf("3. Show seats\n");
+    printf("2. Show room (list)\n");
+    printf("3. Show seat pattern\n");
     printf("4. Add student\n");
     printf("5. Remove student\n");
     printf("6. Load CSV file\n");
-    printf("7. Contact tracing\n");
-    printf("8. Quit\n");
+    printf("7. Save to CSV file\n");
+    printf("8. Contact tracing\n");
+    printf("9. Quit\n");
     printf("============\n\n");
     return;
 }
 
-/**
- * @brief       Displays the menu and asks for user input
+/*! @brief       Displays the menu and asks for user input
  *
  * @param       fp    Pointer to the file
  *
  * @return      int
  */
-int menu_choice(FILE *fp)
+int menu_choice(char *filename)
 {
     int choice = 0;
     char choice_string[MAX_STRING];
     char *ptr;
-    room *m_room = NULL; // hier mit fp: wenn kein File da, dann room/student neu, sonst aus File laden
+    room *m_room = NULL;
     student *m_student = NULL;
     int selection = 0;
+    if ((strcmp(filename, "") != 0))
+    {
+        m_student = read_csv(filename, &m_room, m_student);
+    }
 
     while (choice != quit)
     {
         display_menu();
         printf("Enter your choice: ");
         scanf("%s", choice_string);
+        printf("\n");
         choice = strtol(choice_string, &ptr, 10);
 
         switch (choice)
@@ -77,26 +88,42 @@ int menu_choice(FILE *fp)
                 printf("\nNo room to show\n\n");
                 break;
             }
-
+            /*if (m_room->row > 8 || m_room->col > 6) {
+                printf("\n\n%s - %s (%d/%d/%d)\n", m_room->room_name, m_room->exam_name, m_room->exam_date.day, m_room->exam_date.month, m_room->exam_date.year);
+                printf("\nRoom too big to show\n\n");
+                break;
+            }*/
             show_room(m_room, m_student);
             break;
         case show_seats:
-            // insert function here
+            show_seat_pattern(m_room);
             break;
         case add_student:
             menu_add_student(&m_room, &m_student);
             break;
-        case remove_student:
-            // insert function here
+        case remove_student_enum:
+            m_student = menu_remove_student(m_room, m_student);
             break;
         case load_csv_file:
-            // insert function here
+            m_student = menu_load_csv(&m_room, m_student);
             break;
+        case save_csv_file:
+        {
+            int return_value = menu_write_csv(m_room, m_student);
+            break;
+        }
         case contact_tracing:
-            if (m_room != NULL && m_student != NULL) {
-            selection = select_student(m_room, m_student);
-            trace_contacts(selection, m_room, m_student);
-            } else {
+            if (m_room != NULL && m_student != NULL)
+            {
+                selection = select_student(m_room, m_student);
+                if (selection == -1)
+                {
+                    break;
+                }
+                trace_contacts(selection, m_room, m_student);
+            }
+            else
+            {
                 printf("\nContact tracing not possible (no room/students)\n\n");
             }
             break;

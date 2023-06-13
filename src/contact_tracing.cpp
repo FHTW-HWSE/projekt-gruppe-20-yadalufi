@@ -237,8 +237,11 @@ int select_student (room *rm, student *head){
         return 0;
     }
 
-    printf("\nSelect student: \n");
+    printf("\nSelect student \nor enter (q) to quit\n");
     scanf("%s", selected_student_string);
+    if (strcmp(selected_student_string, "q") == 0) {
+        return -1;
+    }
     selection = strtol(selected_student_string, &ptr_student, 10);
 
     while (selection < 1 || selection > counter){

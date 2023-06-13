@@ -612,8 +612,17 @@ int show_room(room *rm, student *head)
 {
     student *temp = head;
     int printed = 0; // boolean for printing of "<empty>"
-    printf("%s - %s (%d/%d/%d)\n\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
-
+    printf("%s - %s (%d/%d/%d)\n", rm->room_name, rm->exam_name, rm->exam_date.day, rm->exam_date.month, rm->exam_date.year);
+    printf("Rows: %d / Seats per row: %d \n\n", rm->row, rm->col);
+    int i = 1;
+    while (temp != NULL) {
+        printf("%d. %s, %s\n", i, temp->last_name, temp->first_name);
+        printf("\t\tID: %s\tSeat: %d/%d\n", temp->student_id, temp->row+1, temp->col+1);
+        temp = temp->next;
+        i++;
+    }
+    
+/*
     for (int i = rm->row - 1; i >= 0; i--) // prints the rows from back to front
     {
         printf("%-10d", i + 1);
@@ -656,8 +665,65 @@ int show_room(room *rm, student *head)
             printed = 0;
         }
         printf("\n\n");
-    }
-    printf("\n");
+    }*/
+    printf("\n\n");
 
     return EXIT_SUCCESS;
+}
+
+void show_seat_pattern(room * sp_room) {
+    switch (sp_room->occupancy) {
+        case 100: 
+            for (int i = 0; i < sp_room->row; i++) {
+                for(int j = 0; j < sp_room->col; j++) {
+                    printf("   X   ");
+                }
+                printf("\n");
+            }
+            break;
+        case 50: 
+            for (int i = sp_room->row; i > 0; i--) {
+                if (i%2 != 0) {
+                    for(int j = 1; j <= sp_room->col; j++) {
+                        if (j%2 != 0) {
+                            printf("   X   ");
+                        } else {
+                            printf("   0   ");
+                        }
+                    }
+                } else {
+                    for (int j = 1; j <= sp_room->col; j++) {
+                        if (j%2 != 0) {
+                            printf("   0   ");
+                        } else {
+                            printf("   X   ");
+                        }
+                    }
+                }
+                printf("\n");
+            }
+            break;
+        case 25:
+            for (int i = sp_room->row; i > 0; i--) {
+                if(i%2 != 0) {
+                    for(int j = 1; j <= sp_room->col; j++) {
+                        if(j%2 != 0) {
+                            printf("   X   ");
+                        } else {
+                            printf("   0   ");
+                        }
+                    }
+                } else {
+                    for (int j = 1; j <= sp_room->col; j++) {
+                        printf("   0   ");
+                    }
+                }
+                printf("\n");
+            }
+            break;
+        default: 
+        printf("Occupancy faulty\n");
+        break;
+    }
+    printf("\n(X: available seat)\n\n");
 }

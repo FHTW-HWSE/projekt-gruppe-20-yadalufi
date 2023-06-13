@@ -1,0 +1,177 @@
+\doxysection{contact\+\_\+tracing.\+h File Reference}
+\hypertarget{contact__tracing_8h}{}\label{contact__tracing_8h}\index{contact\_tracing.h@{contact\_tracing.h}}
+
+
+Header file for contact\+\_\+tracing.\+cpp.  
+
+
+{\ttfamily \#include \"{}file.\+h\"{}}\newline
+{\ttfamily \#include \"{}student.\+h\"{}}\newline
+{\ttfamily \#include \"{}menu.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{contact__tracing_8h_a4149e4a7fe77124434cd5e65b71e7bb4}{trace\+\_\+contacts}} (int selection, \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}rm, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Print direct and indirect neighbours of a selected student within a room to console. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{contact__tracing_8h_a2db15e181238f74f8b608d72e6195122}{select\+\_\+student}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}rm, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Selects a student from the list according to the user input. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{contact__tracing_8h_a920da8c38ca241ae7146959e52b6331a}{reset\+\_\+counter\+\_\+vars}} (int \texorpdfstring{$\ast$}{*}i, int \texorpdfstring{$\ast$}{*}j)
+\begin{DoxyCompactList}\small\item\em Resets the counter variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{contact__tracing_8h_a0af668828850871fb834e10f98c650be}{print\+\_\+student\+\_\+info}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}temp)
+\begin{DoxyCompactList}\small\item\em Prints the student\textquotesingle{}s information to console. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{contact__tracing_8h_aeb9018a8f125aa9eff0e0eb9262a879d}{find\+\_\+student}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head, int selection)
+\begin{DoxyCompactList}\small\item\em Finds selected student in list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{contact__tracing_8h_a3f7cf607af864a31e4bc6c96b327b9b0}{get\+\_\+ct\+\_\+filename}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}rm, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}temp, char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Gets the filename for the contact tracing file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{contact__tracing_8h_a03a56a57071aafd5fb67cf158c6a625e}{print\+\_\+student\+\_\+info\+\_\+file}} (\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}temp, FILE \texorpdfstring{$\ast$}{*}fp)
+\begin{DoxyCompactList}\small\item\em Prints the student information to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for contact\+\_\+tracing.\+cpp. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{contact__tracing_8h_aeb9018a8f125aa9eff0e0eb9262a879d}\label{contact__tracing_8h_aeb9018a8f125aa9eff0e0eb9262a879d} 
+\index{contact\_tracing.h@{contact\_tracing.h}!find\_student@{find\_student}}
+\index{find\_student@{find\_student}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{find\_student()}{find\_student()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*} find\+\_\+student (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head,  }\item[{int}]{selection }\end{DoxyParamCaption})}
+
+
+
+Finds selected student in list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the student list \\
+\hline
+{\em selection} & The selection index\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+student\texorpdfstring{$\ast$}{*} 
+\end{DoxyReturn}
+\Hypertarget{contact__tracing_8h_a3f7cf607af864a31e4bc6c96b327b9b0}\label{contact__tracing_8h_a3f7cf607af864a31e4bc6c96b327b9b0} 
+\index{contact\_tracing.h@{contact\_tracing.h}!get\_ct\_filename@{get\_ct\_filename}}
+\index{get\_ct\_filename@{get\_ct\_filename}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{get\_ct\_filename()}{get\_ct\_filename()}}
+{\footnotesize\ttfamily int get\+\_\+ct\+\_\+filename (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{rm,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{temp,  }\item[{char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Gets the filename for the contact tracing file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rm} & The room \\
+\hline
+{\em temp} & The student \\
+\hline
+{\em fp} & The file pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{contact__tracing_8h_a0af668828850871fb834e10f98c650be}\label{contact__tracing_8h_a0af668828850871fb834e10f98c650be} 
+\index{contact\_tracing.h@{contact\_tracing.h}!print\_student\_info@{print\_student\_info}}
+\index{print\_student\_info@{print\_student\_info}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{print\_student\_info()}{print\_student\_info()}}
+{\footnotesize\ttfamily void print\+\_\+student\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{temp }\end{DoxyParamCaption})}
+
+
+
+Prints the student\textquotesingle{}s information to console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & Pointer to the student structure\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{contact__tracing_8h_a03a56a57071aafd5fb67cf158c6a625e}\label{contact__tracing_8h_a03a56a57071aafd5fb67cf158c6a625e} 
+\index{contact\_tracing.h@{contact\_tracing.h}!print\_student\_info\_file@{print\_student\_info\_file}}
+\index{print\_student\_info\_file@{print\_student\_info\_file}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{print\_student\_info\_file()}{print\_student\_info\_file()}}
+{\footnotesize\ttfamily void print\+\_\+student\+\_\+info\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{temp,  }\item[{FILE \texorpdfstring{$\ast$}{*}}]{fp }\end{DoxyParamCaption})}
+
+
+
+Prints the student information to file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & The student \\
+\hline
+{\em fp} & The file pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{contact__tracing_8h_a920da8c38ca241ae7146959e52b6331a}\label{contact__tracing_8h_a920da8c38ca241ae7146959e52b6331a} 
+\index{contact\_tracing.h@{contact\_tracing.h}!reset\_counter\_vars@{reset\_counter\_vars}}
+\index{reset\_counter\_vars@{reset\_counter\_vars}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{reset\_counter\_vars()}{reset\_counter\_vars()}}
+{\footnotesize\ttfamily int reset\+\_\+counter\+\_\+vars (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{i,  }\item[{int \texorpdfstring{$\ast$}{*}}]{j }\end{DoxyParamCaption})}
+
+
+
+Resets the counter variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Pointer to the index \\
+\hline
+{\em j} & Pointer to the index\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{contact__tracing_8h_a2db15e181238f74f8b608d72e6195122}\label{contact__tracing_8h_a2db15e181238f74f8b608d72e6195122} 
+\index{contact\_tracing.h@{contact\_tracing.h}!select\_student@{select\_student}}
+\index{select\_student@{select\_student}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{select\_student()}{select\_student()}}
+{\footnotesize\ttfamily int select\+\_\+student (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{rm,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+
+
+Selects a student from the list according to the user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rm} & The room \\
+\hline
+{\em head} & The head of the student list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{contact__tracing_8h_a4149e4a7fe77124434cd5e65b71e7bb4}\label{contact__tracing_8h_a4149e4a7fe77124434cd5e65b71e7bb4} 
+\index{contact\_tracing.h@{contact\_tracing.h}!trace\_contacts@{trace\_contacts}}
+\index{trace\_contacts@{trace\_contacts}!contact\_tracing.h@{contact\_tracing.h}}
+\doxysubsubsection{\texorpdfstring{trace\_contacts()}{trace\_contacts()}}
+{\footnotesize\ttfamily int trace\+\_\+contacts (\begin{DoxyParamCaption}\item[{int}]{selection,  }\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{rm,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+
+
+Print direct and indirect neighbours of a selected student within a room to console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selection} & The selection index of the student \\
+\hline
+{\em rm} & Pointer to the room structure \\
+\hline
+{\em head} & Pointer to the head of the student list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

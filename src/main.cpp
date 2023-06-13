@@ -4,6 +4,7 @@
 #include "file.h"
 #include "menu.h"
 #include "contact_tracing.h"
+#include "csv_read.h"
 
 /**
  * @brief       Main function - entry point
@@ -20,7 +21,11 @@ int main(int argc, char **argv)
   if (argc < 2)
   {
     printf("Please enter a file name:\n");
-    getline(&file_name, &file_name_size, stdin);
+    //getline(&file_name, &file_name_size, stdin);
+    char temp[MAX_STRING];
+    file_name = (char *)malloc(sizeof(char)*MAX_STRING);
+    scanf("%[^\n]", &temp);
+    strcpy(file_name, temp);
   }
   else
   {
@@ -28,6 +33,7 @@ int main(int argc, char **argv)
     strcpy(file_name, argv[1]);
   }
 
+/*
   FILE *fp;
   fp = fopen(file_name, "r");
 
@@ -39,10 +45,13 @@ int main(int argc, char **argv)
     if (fp == NULL)
       fprintf(stderr, "The file could not be created.\n");
   }
+*/
+  menu_choice(file_name);
 
-  menu_choice(fp);
-
-  fclose(fp);
+if (file_name != NULL) {
+  free(file_name);
+}
+ // fclose(fp);
 
   return 0;
 }

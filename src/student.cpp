@@ -3,6 +3,7 @@
 #include <string.h>
 #include "file.h"
 #include "student.h"
+#include "contact_tracing.h"
 
 #define MAX_STRING 250
 
@@ -316,4 +317,38 @@ int number_students(student * head)
         current = current->next;
     }
     return num_students;
+}
+
+student * remove_student(student * head, room * rs_room) {
+    student *temp = head;
+    printf("\nWhich student to you want to remove from the list?\n");
+    int selection = select_student(rs_room, head);
+    if (selection == -1) {
+        return head;
+    } else {
+        temp = find_student(head, selection);
+        head = remove_list_item(head, temp);
+    }
+    return head;
+}
+
+student * remove_list_item(student * head, student * temp) {
+    student * current;
+    if (head == temp) {
+        head = head->next;
+        temp->next = NULL;
+        free(temp);
+    } else {
+        for (current = head; current != NULL; current = current->next) {
+            if (current->next == temp) {
+                current->next = temp->next;
+                temp->next = NULL;
+                int return_value = free_student(temp);
+                if (return_value == EXIT_FAILURE) {
+                    printf("\nStudent could not be freed\n\n");
+                }
+            }
+        }
+    }
+    return head;
 }

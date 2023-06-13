@@ -1,0 +1,7 @@
+Room name,Exam name,Day,Month,Year,row,col,occupancy
+Room 1,Math,4,20,2023,5,5,100
+,
+ID,First Name,Last Name,Seat
+1,John,Doe,1,1
+2,Jane,Smith,1,2
+3,Bob,Johnson,1,3

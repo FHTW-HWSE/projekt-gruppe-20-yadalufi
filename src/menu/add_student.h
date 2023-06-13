@@ -1,3 +1,8 @@
+/**
+ * @file        add_student.h
+ * @brief       Header file for add_student.cpp
+ */
+
 #ifndef MENU_ADD_STUDENT_H
 #define MENU_ADD_STUDENT_H
 

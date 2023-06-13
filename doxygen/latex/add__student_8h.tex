@@ -1,0 +1,44 @@
+\doxysection{add\+\_\+student.\+h File Reference}
+\hypertarget{add__student_8h}{}\label{add__student_8h}\index{add\_student.h@{add\_student.h}}
+
+
+Header file for add\+\_\+student.\+cpp.  
+
+
+{\ttfamily \#include \"{}../file.\+h\"{}}\newline
+{\ttfamily \#include \"{}../menu.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{add__student_8h_af618fe33b31c9e2b0fb92cc849b0f883}{menu\+\_\+add\+\_\+student}} (\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}m\+\_\+room, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}m\+\_\+student)
+\begin{DoxyCompactList}\small\item\em Adds a student to the seating plan and performs seat assignment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for add\+\_\+student.\+cpp. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{add__student_8h_af618fe33b31c9e2b0fb92cc849b0f883}\label{add__student_8h_af618fe33b31c9e2b0fb92cc849b0f883} 
+\index{add\_student.h@{add\_student.h}!menu\_add\_student@{menu\_add\_student}}
+\index{menu\_add\_student@{menu\_add\_student}!add\_student.h@{add\_student.h}}
+\doxysubsubsection{\texorpdfstring{menu\_add\_student()}{menu\_add\_student()}}
+{\footnotesize\ttfamily int menu\+\_\+add\+\_\+student (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{m\+\_\+room,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{m\+\_\+student }\end{DoxyParamCaption})}
+
+
+
+Adds a student to the seating plan and performs seat assignment. 
+
+This function is called when the user chooses to add a student to the seating plan. It checks if a room plan has been created first. If a room plan exists, the function allows the user to create a new student and assigns a seat to the student. If all seats are taken or if an error occurs during seat assignment, appropriate messages are displayed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+room} & Pointer to the pointer of the room structure. \\
+\hline
+{\em m\+\_\+student} & Pointer to the pointer of the student structure.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

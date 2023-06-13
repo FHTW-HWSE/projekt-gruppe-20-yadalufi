@@ -1,0 +1,74 @@
+\doxysection{menu.\+h File Reference}
+\hypertarget{menu_8h}{}\label{menu_8h}\index{menu.h@{menu.h}}
+
+
+Header file for menu.\+cpp.  
+
+
+{\ttfamily \#include \"{}menu/create\+\_\+plan.\+h\"{}}\newline
+{\ttfamily \#include \"{}menu/add\+\_\+student.\+h\"{}}\newline
+{\ttfamily \#include \"{}menu/quit.\+h\"{}}\newline
+{\ttfamily \#include \"{}file.\+h\"{}}\newline
+{\ttfamily \#include \"{}csv\+\_\+read.\+h\"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{menu_8h_ab5187269936538ffb8ccbbe7115ffdbc}\label{menu_8h_ab5187269936538ffb8ccbbe7115ffdbc} 
+\#define {\bfseries MAX\+\_\+\+STRING}~250
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{menu_8h_a39f5190c4bbb94c4d470854781e91105}{display\+\_\+menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the menu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{menu_8h_a0b44706f3bc3a3b7883a9238898de3ca}{menu\+\_\+choice}} (char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em Displays the menu and asks for user input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for menu.\+cpp. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{menu_8h_a39f5190c4bbb94c4d470854781e91105}\label{menu_8h_a39f5190c4bbb94c4d470854781e91105} 
+\index{menu.h@{menu.h}!display\_menu@{display\_menu}}
+\index{display\_menu@{display\_menu}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{display\_menu()}{display\_menu()}}
+{\footnotesize\ttfamily void display\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the menu. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{menu_8h_a0b44706f3bc3a3b7883a9238898de3ca}\label{menu_8h_a0b44706f3bc3a3b7883a9238898de3ca} 
+\index{menu.h@{menu.h}!menu\_choice@{menu\_choice}}
+\index{menu\_choice@{menu\_choice}!menu.h@{menu.h}}
+\doxysubsubsection{\texorpdfstring{menu\_choice()}{menu\_choice()}}
+{\footnotesize\ttfamily int menu\+\_\+choice (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+Displays the menu and asks for user input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Pointer to the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int
+\end{DoxyReturn}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Pointer to the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

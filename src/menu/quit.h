@@ -1,3 +1,8 @@
+/**
+ * @file        quit.h
+ * @brief       Header file for quit.cpp
+ */
+
 #ifndef MENU_QUIT_H
 #define MENU_QUIT_H
 

@@ -1,6 +1,6 @@
 # Description
 
-As a user I want to be able to generate 3 different occupancy patterns/percentages (25/50/100)<br />
+As a user I want to be able to generate 3 different occupancy percentages (25/50/100)<br />
 So that I can map out optimized seating plans
 
 ## Acceptance criteria
@@ -8,23 +8,17 @@ So that I can map out optimized seating plans
 ### 1.
 ---
 Given a basic plan (rows/columns) has been created<br />
-when I choose a valid percentage (25/50/100)<br />
-then the final plan (rows/columns/available seats) is generated
+when the user chooses a percentage (25/50/100) from the menu<br />
+then the final plan (rows/columns/available seats) is generated.
 
 ### 2.
 ---
 Given a basic plan has been created<br />
-when I enter an invalid input (letters, numbers != 25/50/100, special characters, space)<br />
-then I’m asked to enter a valid input (25/50/100)
+when the user enters an invalid input<br />
+then the system asks for a valid input.
 
 ### 3.
 ---
-Given I have chosen a seating pattern (25/50/100)<br />
-when I want to change the pattern before entering student<br />
-then I can edit the plan
-
-### 4.
----
-Given I have entered min. 1 student in the plan<br />
-when I want to change the pattern<br />
-then I’m denied and asked to create a new plan
+Given the user has created the room<br />
+when the user wants to change the occupancy rate<br />
+then the user is denied and asked to create a new plan.

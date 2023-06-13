@@ -1,0 +1,59 @@
+\doxysection{file.\+h}
+\hypertarget{file_8h_source}{}\label{file_8h_source}\index{file.h@{file.h}}
+\mbox{\hyperlink{file_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ FILE\_H\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ FILE\_H\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ year;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ month;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ day;}
+\DoxyCodeLine{00021\ \}\ \mbox{\hyperlink{structdate}{date}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{char}\ *room\_name;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{char}\ *exam\_name;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{structdate}{date}}\ exam\_date;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ row;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ col;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ occupancy;}
+\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structroom}{room}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstudent}{student}}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{char}\ *first\_name;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{char}\ *last\_name;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{char}\ *student\_id;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ col;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ row;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstudent}{student}}\ *next;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstudent}{student}}\ **students;\ \textcolor{comment}{//\ struct\ student\ *students[]}}
+\DoxyCodeLine{00063\ \}\ \mbox{\hyperlink{structstudent}{student}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{file_8h_a52a104be3484f032400b6eaa81a3dbb8}{allocate\_exam\_name}}(\mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a4de0713597f1a647b99114845e1a72f6}{new\_room}});}
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{file_8h_a8b603f99115a9b36e40bd15e7362d2e9}{allocate\_room\_name}}(\mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a4de0713597f1a647b99114845e1a72f6}{new\_room}});}
+\DoxyCodeLine{00067\ \mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a1b9a63025e81444d1126b7473b3953f2}{allocate\_new\_room}}(\mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a4de0713597f1a647b99114845e1a72f6}{new\_room}});}
+\DoxyCodeLine{00068\ \mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a4de0713597f1a647b99114845e1a72f6}{new\_room}}();}
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file_8h_a4a87fd64d06ae3552e0780f258516e64}{set\_room\_name}}(\mbox{\hyperlink{structroom}{room}}\ *p\_room,\ \textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{00070\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{file_8h_a015f2e076843458c233d7667412c8885}{set\_exam\_name}}(\mbox{\hyperlink{structroom}{room}}\ *p\_room,\ \textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_aa43b0dbac1f0ee9df139533e15c9ae77}{valid\_input\_year}}(\textcolor{keywordtype}{int}\ input);}
+\DoxyCodeLine{00072\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a6a9e81cb4a28b887c244493309c8a361}{prompt\_exam\_date\_year}}();}
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a359051011dae31b68cd9fe12eececded}{valid\_input\_month}}(\textcolor{keywordtype}{int}\ input);}
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a79aa8393180910b97fe1f92e07bb194f}{prompt\_exam\_date\_month}}();}
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a1fcc7705f09f41de9096bea4c7e382ee}{valid\_input\_day}}(\textcolor{keywordtype}{int}\ input);}
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a3b47c4158d6d309365acdeed68570714}{prompt\_exam\_date\_day}}();}
+\DoxyCodeLine{00077\ \mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a26633320ce87ec6c419c80f57a8cc568}{create\_room}}(\mbox{\hyperlink{structroom}{room}}\ *r\_room,\ \mbox{\hyperlink{structstudent}{student}}\ *r\_head);}
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_aca6c0982a069331f7f5f6c11236c5211}{free\_room}}(\mbox{\hyperlink{structroom}{room}}\ *\mbox{\hyperlink{file_8h_a4de0713597f1a647b99114845e1a72f6}{new\_room}});}
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a48f55787e848a03e150e935717c9998c}{number\_seats}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col);}
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_ac2f7f5f16529fbd13121f229f452a2ca}{available\_seats}}(\textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keywordtype}{int}\ occupancy);}
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a103d16cb7beb66576ee0e700b3cf9823}{show\_room}}(\mbox{\hyperlink{structroom}{room}}\ *rm,\ \mbox{\hyperlink{structstudent}{student}}\ *head);}
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file_8h_a87e9a034ff1e6fb03f9d198ef627295e}{room\_set\_occupancy}}(\mbox{\hyperlink{structroom}{room}}\ *p\_room,\ \textcolor{keywordtype}{int}\ selection);}
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ show\_seat\_pattern(\mbox{\hyperlink{structroom}{room}}\ *sp\_room);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ FILE\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{csv\+\_\+write.\+h File Reference}
+\hypertarget{csv__write_8h}{}\label{csv__write_8h}\index{csv\_write.h@{csv\_write.h}}
+
+
+Header file for csv\+\_\+write.\+cpp.  
+
+
+{\ttfamily \#include \"{}file.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{csv__write_8h_ade2aabca590f527a3ae1073fe17071d3}{write\+\_\+csv}} (const char \texorpdfstring{$\ast$}{*}filename, \mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}exam\+\_\+room, \mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}head, int num\+\_\+students)
+\begin{DoxyCompactList}\small\item\em Reads the student\textquotesingle{}s information in the room and student structures and writes it to a csv file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for csv\+\_\+write.\+cpp. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{csv__write_8h_ade2aabca590f527a3ae1073fe17071d3}\label{csv__write_8h_ade2aabca590f527a3ae1073fe17071d3} 
+\index{csv\_write.h@{csv\_write.h}!write\_csv@{write\_csv}}
+\index{write\_csv@{write\_csv}!csv\_write.h@{csv\_write.h}}
+\doxysubsubsection{\texorpdfstring{write\_csv()}{write\_csv()}}
+{\footnotesize\ttfamily int write\+\_\+csv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename,  }\item[{\mbox{\hyperlink{structroom}{room}} \texorpdfstring{$\ast$}{*}}]{exam\+\_\+room,  }\item[{\mbox{\hyperlink{structstudent}{student}} \texorpdfstring{$\ast$}{*}}]{head,  }\item[{int}]{num\+\_\+students }\end{DoxyParamCaption})}
+
+
+
+Reads the student\textquotesingle{}s information in the room and student structures and writes it to a csv file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The filename \\
+\hline
+{\em exam\+Room} & Pointer to the room structure \\
+\hline
+{\em students} & Pointer to the student list \\
+\hline
+{\em num\+\_\+students} & The number of students\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

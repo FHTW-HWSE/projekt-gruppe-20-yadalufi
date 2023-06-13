@@ -13,27 +13,30 @@
  *
  * @return     void
  */
-void write_csv(const char* filename, room* examRoom, student* students, int num_students) {
+int write_csv(const char* filename, room* exam_room, student* head, int num_students) {
+    student * temp = head;
     FILE *fp = fopen(filename, "w+");
     if (fp == NULL) {
         printf("Error: Could not open file %s for writing\n", filename);
-        return;
+        return EXIT_FAILURE;
     }
     // Write room header row
-    fprintf(fp, "Room name,Exam name,Month,Day,Year,row,col,occupancy\n");
-    fprintf(fp, "%s,%s,%d,%d,%d,%d,%d,%d\n", examRoom->room_name, examRoom->exam_name,
-            examRoom->exam_date.month, examRoom->exam_date.day,examRoom->exam_date.year, examRoom->row,
-            examRoom->col, examRoom->occupancy);
-    fprintf(fp,"\n");
+    fprintf(fp, "Room name,Exam name,Day,Month,Year,row,col,occupancy\n");
+    fprintf(fp, "%s,%s,%d,%d,%d,%d,%d,%d\n", exam_room->room_name, exam_room->exam_name,
+            exam_room->exam_date.day, exam_room->exam_date.month,exam_room->exam_date.year, exam_room->row,
+            exam_room->col, exam_room->occupancy);
+    fprintf(fp,",\n");
 
     // Write student header row
     fprintf(fp, "ID,First Name,Last Name,Seat\n");
 
     // Write data rows
     for (int i = 0; i < num_students; i++) {
-        fprintf(fp, "%s,%s,%s,%d,%d\n", students[i].student_id, students[i].first_name,
-                students[i].last_name, students[i].row, students[i].col);
+        fprintf(fp, "%s,%s,%s,%d,%d\n", temp->student_id, temp->first_name,
+                temp->last_name, temp->row+1, temp->col+1);
+                temp = temp->next;
     }
 
     fclose(fp);
+    return EXIT_SUCCESS;
 }

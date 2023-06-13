@@ -1,0 +1,19 @@
+Room name,Exam name,Day,Month,Year,row,col,occupancy
+HS9.8,History 101,9,1,2025,6,6,50
+,
+ID,First Name,Last Name,Seat
+11115,Anna,Arendt,1,1
+22245,Berta,Benatar,1,3
+33334,Curt,Curgens,1,5
+44446,Dilara,Durmanski,2,2
+55557,Evan,Evanski,2,4
+66668,Fausto,Fitello,2,6
+77778,Greta,Gans,3,1
+88889,Harald,Haardrade,3,3
+99997,Irmgard,Ibrahim,3,5
+10101,Jolande,Jamalski,4,2
+11110,Karole,King,4,4
+12123,Lawand,Lowenstein,4,6
+13135,Maurio,Markovic,5,1
+14146,Nevena,Novotny,5,3
+15156,Oleg,Orsolic,5,5
