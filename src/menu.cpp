@@ -37,8 +37,8 @@ void display_menu()
 {
     printf("\n\n=== MENU ===\n");
     printf("1. Create plan\n");
-    printf("2. Show room\n");
-    printf("3. Show seats\n");
+    printf("2. Show room (list)\n");
+    printf("3. Show seat pattern\n");
     printf("4. Add student\n");
     printf("5. Remove student\n");
     printf("6. Load CSV file\n");
@@ -89,15 +89,15 @@ int menu_choice(char *filename)
                 printf("\nNo room to show\n\n");
                 break;
             }
-            if (m_room->row > 8 || m_room->col > 6) {
+            /*if (m_room->row > 8 || m_room->col > 6) {
                 printf("\n\n%s - %s (%d/%d/%d)\n", m_room->room_name, m_room->exam_name, m_room->exam_date.day, m_room->exam_date.month, m_room->exam_date.year);
                 printf("\nRoom too big to show\n\n");
                 break;
-            }
+            }*/
             show_room(m_room, m_student);
             break;
         case show_seats:
-            // insert function here
+            show_seat_pattern(m_room);
             break;
         case add_student:
             menu_add_student(&m_room, &m_student);
