@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     //getline(&file_name, &file_name_size, stdin);
     char temp[MAX_STRING];
     file_name = (char *)malloc(sizeof(char)*MAX_STRING);
-    scanf("%s", &temp);
+    scanf("%[^\n]", &temp);
     strcpy(file_name, temp);
   }
   else

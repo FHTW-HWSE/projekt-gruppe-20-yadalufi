@@ -31,7 +31,7 @@ enum menu_elements
  */
 void display_menu()
 {
-    printf("=== MENU ===\n");
+    printf("\n\n=== MENU ===\n");
     printf("1. Create plan\n");
     printf("2. Show room\n");
     printf("3. Show seats\n");
@@ -56,10 +56,10 @@ int menu_choice(char *filename)
     int choice = 0;
     char choice_string[MAX_STRING];
     char *ptr;
-    room *m_room = NULL; // hier mit fp: wenn kein File da, dann room/student neu, sonst aus File laden
+    room *m_room = NULL; 
     student *m_student = NULL;
     int selection = 0;
-    if (filename != NULL) {
+    if ((strcmp(filename, "") != 0)) {
         m_student = read_csv(filename, &m_room, m_student);
     }
 
