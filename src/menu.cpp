@@ -12,6 +12,7 @@
 #include "csv_write.h"
 #include "menu/load_csv.h"
 #include "menu/save_csv.h"
+#include "menu/remove_student.h"
 
 
 enum menu_elements
@@ -20,7 +21,7 @@ enum menu_elements
     show_rm,
     show_seats,
     add_student,
-    remove_student,
+    remove_student_enum,
     load_csv_file,
     save_csv_file,
     contact_tracing,
@@ -101,8 +102,8 @@ int menu_choice(char *filename)
         case add_student:
             menu_add_student(&m_room, &m_student);
             break;
-        case remove_student:
-            // insert function here
+        case remove_student_enum:
+            m_student = menu_remove_student(m_room, m_student);
             break;
         case load_csv_file:
             m_student = menu_load_csv(&m_room, m_student);
@@ -114,6 +115,9 @@ int menu_choice(char *filename)
         case contact_tracing:
             if (m_room != NULL && m_student != NULL) {
             selection = select_student(m_room, m_student);
+            if (selection == -1) {
+                break;
+            }
             trace_contacts(selection, m_room, m_student);
             } else {
                 printf("\nContact tracing not possible (no room/students)\n\n");

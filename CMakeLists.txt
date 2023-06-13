@@ -9,6 +9,7 @@ add_executable(yadalufi
         src/menu/load_csv.cpp
         src/menu/save_csv.cpp
         src/menu/quit.cpp
+        src/menu/remove_student.cpp
         src/contact_tracing.cpp
         src/csv_read.cpp
         src/csv_write.cpp
@@ -29,6 +30,7 @@ add_executable(yadalufi_tests
         src/menu/load_csv.cpp
         src/menu/save_csv.cpp
         src/menu/quit.cpp
+        src/menu/remove_student.cpp
         tests/test.cpp
         src/menu.cpp
         src/file.cpp
