@@ -48,6 +48,9 @@ int main(int argc, char **argv)
 */
   menu_choice(file_name);
 
+if (file_name != NULL) {
+  free(file_name);
+}
  // fclose(fp);
 
   return 0;

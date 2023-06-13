@@ -9,6 +9,7 @@
 #include "student.h"
 #include "contact_tracing.h"
 #include "csv_read.h"
+#include "menu/load_csv.h"
 
 
 enum menu_elements
@@ -62,8 +63,6 @@ int menu_choice(char *filename)
         m_student = read_csv(filename, &m_room, m_student);
     }
 
-
-
     while (choice != quit)
     {
         display_menu();
@@ -84,7 +83,11 @@ int menu_choice(char *filename)
                 printf("\nNo room to show\n\n");
                 break;
             }
-
+            if (m_room->row > 8 || m_room->col > 6) {
+                printf("\n\n%s - %s (%d/%d/%d)\n", m_room->room_name, m_room->exam_name, m_room->exam_date.day, m_room->exam_date.month, m_room->exam_date.year);
+                printf("\nRoom too big to show\n\n");
+                break;
+            }
             show_room(m_room, m_student);
             break;
         case show_seats:
@@ -97,7 +100,7 @@ int menu_choice(char *filename)
             // insert function here
             break;
         case load_csv_file:
-            // insert function here
+            m_student = menu_load_csv(&m_room, m_student);
             break;
         case contact_tracing:
             if (m_room != NULL && m_student != NULL) {

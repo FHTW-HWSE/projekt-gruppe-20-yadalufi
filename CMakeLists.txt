@@ -6,6 +6,7 @@ project(yadalufi)
 add_executable(yadalufi
         src/menu/add_student.cpp
         src/menu/create_plan.cpp
+        src/menu/load_csv.cpp
         src/menu/quit.cpp
         src/contact_tracing.cpp
         src/csv_read.cpp
@@ -24,6 +25,7 @@ include(Catch)
 add_executable(yadalufi_tests
         src/menu/create_plan.cpp
         src/menu/add_student.cpp
+        src/menu/load_csv.cpp
         src/menu/quit.cpp
         tests/test.cpp
         src/menu.cpp
