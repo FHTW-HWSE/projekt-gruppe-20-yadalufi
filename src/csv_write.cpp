@@ -25,7 +25,7 @@ int write_csv(const char* filename, room* exam_room, student* head, int num_stud
     fprintf(fp, "%s,%s,%d,%d,%d,%d,%d,%d\n", exam_room->room_name, exam_room->exam_name,
             exam_room->exam_date.day, exam_room->exam_date.month,exam_room->exam_date.year, exam_room->row,
             exam_room->col, exam_room->occupancy);
-    fprintf(fp,"\n");
+    fprintf(fp,",\n");
 
     // Write student header row
     fprintf(fp, "ID,First Name,Last Name,Seat\n");
